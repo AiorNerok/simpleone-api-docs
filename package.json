@@ -21,14 +21,13 @@
     "api",
     "documentation",
     "itsm",
-    "low-code",
-    "SANIA_TEAMLEAD =)"
+    "low-code"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/simpleone-community/vscode-api-docs"
+    "url": "https://github.com/AiorNerok/simpleone-api-docs"
   },
-  "homepage": "https://docs.simpleone.ru/ru/platform/developer-help/developer-api/",
+  "homepage": "https://github.com/AiorNerok/simpleone-api-docs",
   "contributes": {
     "snippets": [
       {
