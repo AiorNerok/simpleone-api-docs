@@ -4,7 +4,7 @@
 <div align="center">
   <img src="./images/vova.png" width="350" height="350" alt="Спонсор проекта">
   <br>
-  <span><b>🌟🌟🌟Спонсор проекта Вова🌟🌟🌟</b></span>
+  <span><b>🌟🌟🌟Спонсор прикола Вова🌟🌟🌟</b></span>
   <br/>
 </div>
 
@@ -106,9 +106,6 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-  "html.customData": [
-    "./.vscode-simpleone/schemas/simpleone-html.html-data.json"
-  ]
 }
 ```
 
