@@ -1,14 +1,24 @@
 # SimpleOne API Documentation для VS Code
 
+
+<div align="center">
+  <img src="./images/vova.png" width="350" height="350" alt="Спонсор проекта">
+  <br>
+  <span><b>🌟🌟🌟Спонсор проекта Вова🌟🌟🌟</b></span>
+  <br/>
+</div>
+
 Полное справочное руководство по API платформы SimpleOne для разработчиков.
 
 ## 📖 О расширении
 
 Это расширение предоставляет исчерпывающую документацию по **клиентскому** и **серверному** API платформы SimpleOne версии 1.31.0+.
 
+Сделано по приколу
+
 ### Возможности
 
-* ✅ **Сниппеты кода** для всех классов API (90+ сниппетов)
+* ✅ **Сниппеты кода** для всех классов API (150+ сниппетов)
 * ✅ **IntelliSense** с подробным описанием методов и параметров
 * ✅ **TypeScript определения** (.d.ts файлы) для автодополнения
 * ✅ **Примеры использования** для каждого класса
@@ -16,6 +26,7 @@
 * ✅ **Поддержка JavaScript**
 * ✅ **Автоматическая установка** типов в проект
 * ✅ **Полное покрытие API** — все 50 классов платформы
+* ✅ **Simple-теги для HTML** — 43 тега с подсказками и сниппетами
 
 ## 📚 Классы API
 
@@ -87,13 +98,17 @@
 {
   "simpleoneApiDocs.enableClientApiSnippets": true,
   "simpleoneApiDocs.enableServerApiSnippets": true,
+  "simpleoneApiDocs.enableHtmlTags": true,
   "javascript.validate.enable": true,
   "javascript.suggest.completeFunctionCalls": true,
   "javascript.suggest.showMethodCompletions": true,
   "typescript.suggest.completeFunctionCalls": true,
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
+  "html.customData": [
+    "./.vscode-simpleone/schemas/simpleone-html.html-data.json"
+  ]
 }
 ```
 
@@ -103,6 +118,8 @@
 |---------|----------|
 | **SimpleOne: Открыть документацию клиентского API** | Открывает официальную документацию по клиентскому API |
 | **SimpleOne: Открыть документацию серверного API** | Открывает официальную документацию по серверному API |
+| **SimpleOne: Установить типы в проект** | Копирует файлы типов и создаёт jsconfig.json |
+| **SimpleOne: Добавить директивы типов** | Добавляет `/// <reference>` в текущий файл |
 
 ## 🔗 Полезные ссылки
 
@@ -110,11 +127,181 @@
 * [Developer API Documentation](https://docs.simpleone.ru/ru/platform/developer-help/developer-api/)
 * [Клиентское API](https://docs.simpleone.ru/ru/platform/developer-help/developer-api/client-side-api/)
 * [Серверное API](https://docs.simpleone.ru/ru/platform/developer-help/developer-api/server-side-api/)
+* [Simple-теги (Widget API)](https://docs.simpleone.ru/ru/platform/developer-help/developer-api/widget-api/simpletags/)
 
-## 🤝 Вклад в проект
+## 🏷️ Simple-теги для HTML
 
-Расширение создано на основе официальной документации SimpleOne версии 1.31.0.
-кинь сотку на пиво
+Расширение предоставляет IntelliSense подсказки для **Simple-тегов**, используемых в виджетах SimpleOne.
+
+### Общие Simple-теги (31 тег)
+
+| Тег | Описание |
+|-----|----------|
+| `<activityFeed>` | Лента активности на формах |
+| `<attachment>` | Виджет вложений |
+| `<button>` | Кнопка с различными стилями |
+| `<checkbox>` | Поле-флажок |
+| `<codemirror>` | Текстовое поле для кода |
+| `<conditions>` | Конструктор условий |
+| `<date>` | Поле ввода даты |
+| `<datetime>` | Поле ввода даты и времени |
+| `<daysofweek>` | Выбор дня недели |
+| `<duration>` | Отображение продолжительности |
+| `<durationinput>` | Ввод продолжительности |
+| `<Form>` | Форма записей |
+| `<hint>` | Всплывающая подсказка |
+| `<htmlEditor>` | HTML-редактор |
+| `<LabelTag>` | Текстовая метка |
+| `<list>` | Ссылочное поле |
+| `<modal>` | Модальное окно |
+| `<multiselect>` | Множественный выбор |
+| `<recordPopup>` | Всплывающее окно записи |
+| `<reference>` | Поле ссылки на таблицу |
+| `<rem>` | Атрибуты расширенной записи |
+| `<remform>` | Форма с атрибутами REM |
+| `<report>` | Виджет отчёта |
+| `<sectionMessage>` | Сообщение в секции |
+| `<select>` | Выпадающий список |
+| `<string>` | Текстовое поле |
+| `<textarea>` | Многострочное текстовое поле |
+| `<toggle>` | Переключатель |
+| `<tooltip>` | Подсказка по клику |
+| `<wysiwygEditor>` | WYSIWYG-редактор |
+| `<recordList>` | Списочное представление |
+| `<IndicatePresence>` | Индикация присутствия |
+
+### Портальные Simple-теги (12 тегов)
+
+| Тег | Описание |
+|-----|----------|
+| `<authFull>` | Пользовательская авторизация |
+| `<authHeader>` | Имя и аватар пользователя |
+| `<breadcrumbs>` | Навигационная цепочка |
+| `<card>` | Карточка информации |
+| `<category>` | Категории портала |
+| `<categoryFlat>` | Категории объектов |
+| `<dropdownMenu>` | Выпадающее меню |
+| `<listItems>` | Список записей |
+| `<previewList>` | Настраиваемый список |
+| `<results>` | Результаты поиска |
+| `<search>` | Поиск |
+| `<sideMenu>` | Боковое меню |
+
+### Пример использования Simple-тегов
+
+```html
+<!-- Форма с полями -->
+<Form tableName="incident" sysid="12345" uiActions="true"></Form>
+
+<!-- Текстовые поля -->
+<string model="data.firstname" label="Имя" placeholder="Введите имя"></string>
+<textarea model="data.description" label="Описание"></textarea>
+
+<!-- Выпадающий список -->
+<select model="data.priority" label="Приоритет" options='[{"database_value":"1","display_value":"Высокий"}]'></select>
+
+<!-- Кнопка -->
+<button buttonType="primary" event-click="saveRecord">Сохранить</button>
+
+<!-- Чекбокс -->
+<checkbox model="data.active" label="Активно"></checkbox>
+
+<!-- Дата -->
+<date model="data.dueDate" label="Срок" isMandatory="true"></date>
+```
+
+### Автодополнение в HTML
+
+Просто начните вводить `<` и название тега:
+
+```html
+<but → <button buttonType="primary" event-click="">
+    <stri → <string model="data." label="">
+        </string>
+        <sele → <select model="data." options='[]'></select>
+```
+
+При вводе атрибутов появляются подсказки с описанием и допустимыми значениями.
+
+### Сниппеты для Simple-тегов
+
+Для быстрой вставки тегов используйте **сниппеты** (начните вводить префикс и нажмите Tab):
+
+| Сниппет | Префикс | Описание |
+|---------|---------|----------|
+| **Кнопка** | `s-button` | Кнопка с обработчиком нажатия |
+| **Кнопка с иконкой** | `s-button-icon` | Кнопка с SVG-иконкой |
+| **Текстовое поле** | `s-string` | Поле ввода текста |
+| **Обязательное поле** | `s-string-m` | Обязательное текстовое поле |
+| **Многострочное поле** | `s-textarea` | Поле для многострочного текста |
+| **Флажок** | `s-checkbox` | Чекбокс |
+| **Выпадающий список** | `s-select` | Select с опциями |
+| **Переключатели** | `s-select-radio` | Radio buttons |
+| **Дата** | `s-date` | Поле даты |
+| **Дата и время** | `s-datetime` | Поле даты и времени |
+| **Форма** | `s-form` | Форма записей |
+| **Форма создания** | `s-form-create` | Форма создания записи |
+| **Ссылочное поле** | `s-reference` | Reference поле |
+| **Список** | `s-list` | List поле |
+| **Множественный выбор** | `s-multiselect` | Multiselect |
+| **Модальное окно** | `s-modal` | Модальное окно |
+| **Список записей** | `s-recordlist` | Список записей таблицы |
+| **Вложения** | `s-attachment` | Виджет вложений |
+| **Лента активности** | `s-activityfeed` | Лента активности |
+| **Поле для кода** | `s-codemirror` | CodeMirror редактор |
+| **Конструктор условий** | `s-conditions` | Conditions builder |
+| **Ввод продолжительности** | `s-durationinput` | Duration input |
+| **HTML-редактор** | `s-htmleditor` | HTML редактор |
+| **Текстовая метка** | `s-labeltag` | Label |
+| **WYSIWYG-редактор** | `s-wysiwygeditor` | WYSIWYG редактор |
+| **Переключатель** | `s-toggle` | Toggle |
+| **Подсказка** | `s-hint` | Hint при наведении |
+| **Подсказка по клику** | `s-tooltip` | Tooltip |
+| **Сообщение** | `s-sectionmessage` | Сообщение в секции |
+| **Сообщение об ошибке** | `s-sectionmessage-error` | Error message |
+| **Сообщение об успехе** | `s-sectionmessage-success` | Success message |
+| **Предупреждение** | `s-sectionmessage-warning` | Warning message |
+| **Отчёт** | `s-report` | Виджет отчёта |
+| **REM атрибуты** | `s-rem` | REM атрибуты |
+| **REM форма** | `s-remform` | REM форма |
+| **Индикация присутствия** | `s-indicatepresence` | Indicate Presence |
+| **Поиск** | `s-search` | Поиск |
+| **Результаты поиска** | `s-results` | Результаты |
+| **Навигация** | `s-breadcrumbs` | Breadcrumbs |
+| **Боковое меню** | `s-sidemenu` | Side menu |
+| **Выпадающее меню** | `s-dropdownmenu` | Dropdown menu |
+| **Авторизация** | `s-authfull` | Страница авторизации |
+| **Шапка профиля** | `s-authheader` | Auth header |
+| **Карточка** | `s-card` | Карточка |
+| **Категории** | `s-category` | Категории портала |
+| **Категории (плоский)** | `s-categoryflat` | Категории flat |
+| **Список элементов** | `s-listitems` | List items |
+| **Предпросмотр списка** | `s-previewlist` | Preview list |
+| **Дни недели** | `s-daysofweek` | Days of week |
+| **Продолжительность** | `s-duration` | Duration |
+| **Всплывающее окно** | `s-recordpopup` | Record popup |
+| **Полный шаблон формы** | `s-form-full` | Полный шаблон формы |
+| **Поле с подсказкой** | `s-string-hint` | Text field с help/hint |
+| **Числовое поле** | `s-string-number` | Числовое поле |
+| **Поле пароля** | `s-string-password` | Password field |
+| **Дата с диапазоном** | `s-date-range` | Date range |
+| **Reference с условием** | `s-reference-condition` | Reference с condition |
+| **Select с событием** | `s-select-change` | Select с event-change |
+| **Вторичная кнопка** | `s-button-secondary` | Secondary button |
+| **Кнопка удаления** | `s-button-destructive` | Destructive button |
+| **Кнопка согласования** | `s-button-approve` | Approve button |
+
+#### Пример использования сниппета
+
+1. Введите `s-button` в HTML-файле
+2. Нажмите **Tab**
+3. Получите:
+
+```html
+<button buttonType="primary" event-click="handleClick">Текст кнопки</button>
+```
+
+---
 
 # Полная инструкция
 
@@ -123,7 +310,7 @@
 ### Шаг 1: Установка расширения
 
 ```bash
-code --install-extension simpleone-api-docs-1.0.1.vsix
+code --install-extension simpleone-api-docs-1.2.0.vsix
 ```
 
 Или через VS Code:
@@ -131,7 +318,7 @@ code --install-extension simpleone-api-docs-1.0.1.vsix
 1. Откройте VS Code
 2. **Extensions** (Ctrl+Shift+X / Cmd+Shift+X)
 3. Нажмите `...` → **Install from VSIX...**
-4. Выберите файл `simpleone-api-docs-1.0.1.vsix`
+4. Выберите файл `simpleone-api-docs-1.2.0.vsix`
 
 ---
 
@@ -445,39 +632,31 @@ MIT
 
 ---
 
-**Версия расширения:** 1.1.0
+**Версия расширения:** 1.2.0
 **Версия документации:** SimpleOne 1.31.0
 **Последнее обновление:** Март 2026
 
-### Что нового в версии 1.1.0
+### Что нового в версии 1.2.0
 
-**Клиентское API:**
-* ✅ Добавлен класс **SimpleWidget** (10 методов) — настройка структуры и функциональности виджетов
-* ✅ Добавлен класс **SimpleWidgets** (7 методов) — взаимодействие с виджетами на форме
+**Simple-теги для HTML (Widget API):**
 
-**Серверное API:**
-* ✅ Добавлен класс **ExportVariables** — глобальные функции для отладки (alert, echo, print, sleep...)
-* ✅ Добавлен класс **SimpleAttachmentService** — работа с вложениями с удалённых экземпляров
-* ✅ Дополнен **SimpleDateTime** — 32 метода для работы с датой и временем
-* ✅ Дополнен **SimpleDelegation** — методы для работы с делегированием полномочий
-* ✅ Дополнен **SimpleDuration** — 11 методов для работы с продолжительностью
-* ✅ Дополнен **SimpleEmailOutbound** — 14 методов для работы с электронной почтой
-* ✅ Дополнен **SimpleEmailTemplate** — 14 методов для создания почтовых шаблонов
-* ✅ Дополнен **SimpleImage** — 4 метода для работы с изображениями
-* ✅ Дополнен **SimpleImport** — 6 методов для импорта данных
-* ✅ Дополнен **SimpleLogArchive** — 3 метода для архивирования журналов
-* ✅ Дополнен **SimpleMessage** — локализация сообщений
-* ✅ Дополнен **SimpleRecordDeletionLog** — восстановление удалённых записей
-* ✅ Дополнен **SimpleRecordSecure** — работа с записями с учётом ACL
-* ✅ Дополнен **SimpleSchedule** — 10 методов для работы с календарями
-* ✅ Дополнен **SimpleTemplatePrinter** — печать в почтовых сообщениях
-* ✅ Дополнен **SimpleTime** — 6 методов для работы со временем
-* ✅ Добавлен namespace **su (SimpleUser)** — настройки пользователя
-* ✅ Дополнен **SimpleUserCriteria** — проверка пользовательских критериев
-* ✅ Дополнен **SimpleWysiwyg** — конвертация HTML ↔ WYSIWYG-JSON
-* ✅ Дополнен **SimpleExternalRabbitMQ** — 5 методов для работы с RabbitMQ
+* ✅ Добавлено **60+ сниппетов** для быстрой вставки Simple-тегов
+* ✅ Сниппеты для всех основных тегов: button, string, select, date, Form, textarea...
+* ✅ Специализированные сниппеты: s-button-icon, s-string-hint, s-reference-condition...
+* ✅ Сниппеты для кнопок: s-button-secondary, s-button-destructive, s-button-approve
+* ✅ Сниппеты для сообщений: s-sectionmessage-error/success/warning
+* ✅ Полный шаблон формы: s-form-full с кнопками сохранения/отмены
+* ✅ Поддержка в HTML и XML файлах
+
+**Обновления атрибутов:**
+
+* ✅ Дополнено описание всех атрибутов для 43 Simple-тегов
+* ✅ Добавлены глобальные атрибуты: class, style, model, event-click, isVisible...
+* ✅ Указаны типы данных и значения по умолчанию для всех атрибутов
 
 **Всего в расширении:**
+
 * **15 классов** клиентского API
 * **35 классов** серверного API
-* **90+ сниппетов** для быстрой разработки
+* **43 Simple-тега** для HTML
+* **150+ сниппетов** для быстрой разработки (90+ API + 60+ HTML)

@@ -1,0 +1,445 @@
+{
+  "simple_button": {
+    "prefix": "s-button",
+    "body": [
+      "<button buttonType=\"${1:primary}\" event-click=\"${2:handleClick}\">${3:Текст кнопки}</button>"
+    ],
+    "description": "SimpleOne: Кнопка"
+  },
+  "simple_button_icon": {
+    "prefix": "s-button-icon",
+    "body": [
+      "<button buttonType=\"${1:icon}\" hint=\"${2:Подсказка}\" svg='${3:<svg></svg>}' event-click=\"${4:handleClick}\"></button>"
+    ],
+    "description": "SimpleOne: Кнопка с иконкой"
+  },
+  "simple_string": {
+    "prefix": "s-string",
+    "body": [
+      "<string model=\"data.${1:field}\" label=\"${2:Заголовок}\" placeholder=\"${3:Подсказка}\"></string>"
+    ],
+    "description": "SimpleOne: Текстовое поле"
+  },
+  "simple_string_mandatory": {
+    "prefix": "s-string-m",
+    "body": [
+      "<string model=\"data.${1:field}\" label=\"${2:Заголовок}\" isMandatory=\"true\" placeholder=\"${3:Подсказка}\"></string>"
+    ],
+    "description": "SimpleOne: Обязательное текстовое поле"
+  },
+  "simple_textarea": {
+    "prefix": "s-textarea",
+    "body": [
+      "<textarea model=\"data.${1:field}\" label=\"${2:Заголовок}\" placeholder=\"${3:Подсказка}\"></textarea>"
+    ],
+    "description": "SimpleOne: Многострочное текстовое поле"
+  },
+  "simple_checkbox": {
+    "prefix": "s-checkbox",
+    "body": [
+      "<checkbox model=\"data.${1:field}\" label=\"${2:Заголовок}\" value=\"true\"></checkbox>"
+    ],
+    "description": "SimpleOne: Флажок"
+  },
+  "simple_select": {
+    "prefix": "s-select",
+    "body": [
+      "<select model=\"data.${1:field}\" label=\"${2:Заголовок}\" options='${3:[{\"database_value\":\"1\",\"display_value\":\"Значение 1\"}]}'></select>"
+    ],
+    "description": "SimpleOne: Выпадающий список"
+  },
+  "simple_select_radiobuttons": {
+    "prefix": "s-select-radio",
+    "body": [
+      "<select model=\"data.${1:field}\" label=\"${2:Заголовок}\" radioButtonsMode=\"true\" options='${3:[{\"database_value\":\"1\",\"display_value\":\"Значение 1\"}]}'></select>"
+    ],
+    "description": "SimpleOne: Переключатели (radio buttons)"
+  },
+  "simple_date": {
+    "prefix": "s-date",
+    "body": [
+      "<date model=\"data.${1:field}\" label=\"${2:Заголовок}\" isMandatory=\"${3:true}\"></date>"
+    ],
+    "description": "SimpleOne: Поле даты"
+  },
+  "simple_datetime": {
+    "prefix": "s-datetime",
+    "body": [
+      "<datetime model=\"data.${1:field}\" label=\"${2:Заголовок}\" isMandatory=\"${3:true}\"></datetime>"
+    ],
+    "description": "SimpleOne: Поле даты и времени"
+  },
+  "simple_form": {
+    "prefix": "s-form",
+    "body": [
+      "<Form tableName=\"${1:incident}\" sysid=\"${2:12345}\" uiActions=\"${3:true}\" userScripts=\"${4:true}\"></Form>"
+    ],
+    "description": "SimpleOne: Форма записей"
+  },
+  "simple_form_create": {
+    "prefix": "s-form-create",
+    "body": [
+      "<Form tableName=\"${1:incident}\" view=\"${2:Modal Form}\" uiActions=\"false\" save=\"${3:Сохранить}\"></Form>"
+    ],
+    "description": "SimpleOne: Форма создания записи"
+  },
+  "simple_reference": {
+    "prefix": "s-reference",
+    "body": [
+      "<reference model=\"data.${1:field}\" label=\"${2:Заголовок}\" tableName=\"${3:table_name}\"></reference>"
+    ],
+    "description": "SimpleOne: Ссылочное поле"
+  },
+  "simple_list": {
+    "prefix": "s-list",
+    "body": [
+      "<list model=\"data.${1:field}\" label=\"${2:Заголовок}\" tableName=\"${3:table_name}\"></list>"
+    ],
+    "description": "SimpleOne: Ссылочное поле (список)"
+  },
+  "simple_multiselect": {
+    "prefix": "s-multiselect",
+    "body": [
+      "<multiselect model=\"data.${1:field}\" label=\"${2:Заголовок}\" options='${3:[{\"database_value\":\"1\",\"display_value\":\"Значение 1\"}]}'></multiselect>"
+    ],
+    "description": "SimpleOne: Множественный выбор"
+  },
+  "simple_modal": {
+    "prefix": "s-modal",
+    "body": [
+      "<modal title=\"${1:Заголовок}\" isShow=\"${2:false}\" isFullScreenMode=\"${3:false}\">",
+      "\t${4:<!-- Содержимое модального окна -->}",
+      "</modal>"
+    ],
+    "description": "SimpleOne: Модальное окно"
+  },
+  "simple_recordlist": {
+    "prefix": "s-recordlist",
+    "body": [
+      "<recordList tableName=\"${1:incident}\" name=\"${2:myList}\" query=\"${3:active=true}\"></recordList>"
+    ],
+    "description": "SimpleOne: Списочное представление"
+  },
+  "simple_attachment": {
+    "prefix": "s-attachment",
+    "body": [
+      "<attachment model=\"data.${1:field}\" tableName=\"${2:incident}\" isMandatory=\"${3:false}\"></attachment>"
+    ],
+    "description": "SimpleOne: Вложения"
+  },
+  "simple_activityfeed": {
+    "prefix": "s-activityfeed",
+    "body": [
+      "<activityFeed tableName=\"${1:incident}\" sysId=\"${2:12345}\" config='${3:{}' isAlwaysOpen=\"${4:false}\"></activityFeed>"
+    ],
+    "description": "SimpleOne: Лента активности"
+  },
+  "simple_codemirror": {
+    "prefix": "s-codemirror",
+    "body": [
+      "<codemirror model=\"data.${1:field}\" label=\"${2:Заголовок}\"></codemirror>"
+    ],
+    "description": "SimpleOne: Поле для кода"
+  },
+  "simple_conditions": {
+    "prefix": "s-conditions",
+    "body": [
+      "<conditions model=\"data.${1:field}\" label=\"${2:Заголовок}\" tableId=\"${3:table_id}\"></conditions>"
+    ],
+    "description": "SimpleOne: Конструктор условий"
+  },
+  "simple_durationinput": {
+    "prefix": "s-durationinput",
+    "body": [
+      "<durationInput model=\"data.${1:field}\" label=\"${2:Заголовок}\"></durationInput>"
+    ],
+    "description": "SimpleOne: Ввод продолжительности"
+  },
+  "simple_htmleditor": {
+    "prefix": "s-htmleditor",
+    "body": [
+      "<htmlEditor model=\"data.${1:field}\" label=\"${2:Заголовок}\"></htmlEditor>"
+    ],
+    "description": "SimpleOne: HTML-редактор"
+  },
+  "simple_labeltag": {
+    "prefix": "s-labeltag",
+    "body": [
+      "<LabelTag text=\"${1:Текст метки}\"></LabelTag>"
+    ],
+    "description": "SimpleOne: Текстовая метка"
+  },
+  "simple_wysiwygeditor": {
+    "prefix": "s-wysiwygeditor",
+    "body": [
+      "<wysiwygEditor model=\"data.${1:field}\" label=\"${2:Заголовок}\"></wysiwygEditor>"
+    ],
+    "description": "SimpleOne: WYSIWYG-редактор"
+  },
+  "simple_toggle": {
+    "prefix": "s-toggle",
+    "body": [
+      "<toggle model=\"data.${1:field}\" label=\"${2:Заголовок}\" value=\"${3:true}\"></toggle>"
+    ],
+    "description": "SimpleOne: Переключатель"
+  },
+  "simple_hint": {
+    "prefix": "s-hint",
+    "body": [
+      "<hint text=\"${1:Текст подсказки}\"></hint>"
+    ],
+    "description": "SimpleOne: Всплывающая подсказка"
+  },
+  "simple_tooltip": {
+    "prefix": "s-tooltip",
+    "body": [
+      "<tooltip text=\"${1:Текст подсказки}\"></tooltip>"
+    ],
+    "description": "SimpleOne: Подсказка по клику"
+  },
+  "simple_sectionmessage": {
+    "prefix": "s-sectionmessage",
+    "body": [
+      "<sectionMessage type=\"${1:info}\" message=\"${2:Текст сообщения}\"></sectionMessage>"
+    ],
+    "description": "SimpleOne: Сообщение в секции"
+  },
+  "simple_sectionmessage_error": {
+    "prefix": "s-sectionmessage-error",
+    "body": [
+      "<sectionMessage type=\"error\" message=\"${1:Текст ошибки}\"></sectionMessage>"
+    ],
+    "description": "SimpleOne: Сообщение об ошибке"
+  },
+  "simple_sectionmessage_success": {
+    "prefix": "s-sectionmessage-success",
+    "body": [
+      "<sectionMessage type=\"success\" message=\"${1:Текст успеха}\"></sectionMessage>"
+    ],
+    "description": "SimpleOne: Сообщение об успехе"
+  },
+  "simple_sectionmessage_warning": {
+    "prefix": "s-sectionmessage-warning",
+    "body": [
+      "<sectionMessage type=\"warning\" message=\"${1:Текст предупреждения}\"></sectionMessage>"
+    ],
+    "description": "SimpleOne: Сообщение предупреждения"
+  },
+  "simple_report": {
+    "prefix": "s-report",
+    "body": [
+      "<report reportId=\"${1:report_id}\"></report>"
+    ],
+    "description": "SimpleOne: Виджет отчёта"
+  },
+  "simple_rem": {
+    "prefix": "s-rem",
+    "body": [
+      "<rem model=\"data.${1:field}\" tableName=\"${2:table_name}\" modelId=\"${3:model_id}\" recordId=\"${4:record_id}\"></rem>"
+    ],
+    "description": "SimpleOne: Атрибуты расширенной записи (REM)"
+  },
+  "simple_remform": {
+    "prefix": "s-remform",
+    "body": [
+      "<remForm name=\"${1:formName}\" tableName=\"${2:table_name}\" modelId=\"${3:model_id}\"></remForm>"
+    ],
+    "description": "SimpleOne: Форма с атрибутами REM"
+  },
+  "simple_indicatepresence": {
+    "prefix": "s-indicatepresence",
+    "body": [
+      "<IndicatePresence tableName=\"${1:incident}\" recordId=\"${2:12345}\"></IndicatePresence>"
+    ],
+    "description": "SimpleOne: Индикация присутствия"
+  },
+  "simple_search": {
+    "prefix": "s-search",
+    "body": [
+      "<search placeholder=\"${1:Поиск...}\" size=\"${2:lg}\" showTitle=\"${3:true}\"></search>"
+    ],
+    "description": "SimpleOne: Поиск"
+  },
+  "simple_results": {
+    "prefix": "s-results",
+    "body": [
+      "<results isTreeShown=\"${1:false}\" quantity=\"${2:10}\"></results>"
+    ],
+    "description": "SimpleOne: Результаты поиска"
+  },
+  "simple_breadcrumbs": {
+    "prefix": "s-breadcrumbs",
+    "body": [
+      "<breadcrumbs></breadcrumbs>"
+    ],
+    "description": "SimpleOne: Навигационная цепочка"
+  },
+  "simple_sidemenu": {
+    "prefix": "s-sidemenu",
+    "body": [
+      "<sideMenu childDepth=\"${1:1}\" parentsDepth=\"${2:1}\" includeCategories=\"${3:1}\" includeItems=\"${4:1}\"></sideMenu>"
+    ],
+    "description": "SimpleOne: Боковое меню"
+  },
+  "simple_dropdownmenu": {
+    "prefix": "s-dropdownmenu",
+    "body": [
+      "<dropdownMenu size=\"${1:low}\" isShow=\"${2:false}\" event-click=\"${3:handleClick}\"></dropdownMenu>"
+    ],
+    "description": "SimpleOne: Выпадающее меню"
+  },
+  "simple_authfull": {
+    "prefix": "s-authfull",
+    "body": [
+      "<authFull isRegistration=\"${1:false}\" isRememberMe=\"${2:true}\" isResetPassword=\"${3:true}\" isSwitchLang=\"${4:true}\" redirectTo=\"${5:/portal}\"></authFull>"
+    ],
+    "description": "SimpleOne: Страница авторизации"
+  },
+  "simple_authheader": {
+    "prefix": "s-authheader",
+    "body": [
+      "<authHeader profileUrl=\"${1:/profile}\"></authHeader>"
+    ],
+    "description": "SimpleOne: Шапка с профилем"
+  },
+  "simple_card": {
+    "prefix": "s-card",
+    "body": [
+      "<card name=\"${1:Card Name}\" shortDescription=\"${2:Описание}\" url=\"${3:/link}\" svg='${4:<svg></svg>}'></card>"
+    ],
+    "description": "SimpleOne: Карточка"
+  },
+  "simple_category": {
+    "prefix": "s-category",
+    "body": [
+      "<category nodeId=\"${1:node_id}\" categorySubject=\"${2:category_name}\" itemSubject=\"${3:item_name}\"></category>"
+    ],
+    "description": "SimpleOne: Категории портала"
+  },
+  "simple_categoryflat": {
+    "prefix": "s-categoryflat",
+    "body": [
+      "<categoryFlat nodeId=\"${1:node_id}\" categorySubject=\"${2:category_name}\" itemSubject=\"${3:item_name}\"></categoryFlat>"
+    ],
+    "description": "SimpleOne: Категории объектов (плоский)"
+  },
+  "simple_listitems": {
+    "prefix": "s-listitems",
+    "body": [
+      "<listItems tableName=\"${1:incident}\" condition=\"${2:active=true}\" itemPage=\"${3:/incident/view}\"></listItems>"
+    ],
+    "description": "SimpleOne: Список записей"
+  },
+  "simple_previewlist": {
+    "prefix": "s-previewlist",
+    "body": [
+      "<previewList tableName=\"${1:incident}\" condition=\"${2:active=true}\" elementCount=\"${3:5}\" wrap=\"${4:true}\"></previewList>"
+    ],
+    "description": "SimpleOne: Настраиваемый список"
+  },
+  "simple_daysofweek": {
+    "prefix": "s-daysofweek",
+    "body": [
+      "<daysOfWeek model=\"data.${1:field}\" label=\"${2:Заголовок}\"></daysOfWeek>"
+    ],
+    "description": "SimpleOne: Выбор дня недели"
+  },
+  "simple_duration": {
+    "prefix": "s-duration",
+    "body": [
+      "<duration model=\"data.${1:field}\" label=\"${2:Заголовок}\"></duration>"
+    ],
+    "description": "SimpleOne: Отображение продолжительности"
+  },
+  "simple_recordpopup": {
+    "prefix": "s-recordpopup",
+    "body": [
+      "<recordPopup model=\"data.${1:field}\" label=\"${2:Заголовок}\"></recordPopup>"
+    ],
+    "description": "SimpleOne: Всплывающее окно записи"
+  },
+  "simple_form_full_template": {
+    "prefix": "s-form-full",
+    "body": [
+      "<Form",
+      "\ttableName=\"${1:incident}\"",
+      "\tsysid=\"${2:12345}\"",
+      "\tview=\"${3:Modal Form}\"",
+      "\tname=\"${4:myForm}\"",
+      "\tuiActions=\"${5:true}\"",
+      "\tuserScripts=\"${6:true}\"",
+      "\ttitleHide=\"${7:false}\"",
+      ">",
+      "</Form>",
+      "",
+      "<div class=\"${8:buttons-modal}\">",
+      "\t<button buttonType=\"secondary\" event-click=\"${9:cancel}\">${10:Отмена}</button>",
+      "\t<button buttonType=\"primary\" event-click=\"${11:save}\">${12:Сохранить}</button>",
+      "</div>"
+    ],
+    "description": "SimpleOne: Полный шаблон формы"
+  },
+  "simple_string_with_hint": {
+    "prefix": "s-string-hint",
+    "body": [
+      "<string model=\"data.${1:field}\" label=\"${2:Заголовок}\" fieldInfo='{\"help\": \"${3:Пояснение}\", \"hint\": \"${4:Подсказка}\"}'></string>"
+    ],
+    "description": "SimpleOne: Текстовое поле с подсказкой"
+  },
+  "simple_string_number": {
+    "prefix": "s-string-number",
+    "body": [
+      "<string model=\"data.${1:field}\" label=\"${2:Заголовок}\" column_type=\"${3:integer}\" enableGroupingSeparator=\"${4:true}\"></string>"
+    ],
+    "description": "SimpleOne: Числовое поле"
+  },
+  "simple_string_password": {
+    "prefix": "s-string-password",
+    "body": [
+      "<string model=\"data.${1:field}\" label=\"${2:Заголовок}\" column_type=\"password\"></string>"
+    ],
+    "description": "SimpleOne: Поле пароля"
+  },
+  "simple_date_range": {
+    "prefix": "s-date-range",
+    "body": [
+      "<date model=\"data.${1:field}\" label=\"${2:Заголовок}\" beginDate=\"{data.beginDate}\" endDate=\"{data.endDate}\"></date>"
+    ],
+    "description": "SimpleOne: Дата с диапазоном"
+  },
+  "simple_reference_with_condition": {
+    "prefix": "s-reference-condition",
+    "body": [
+      "<reference model=\"data.${1:field}\" label=\"${2:Заголовок}\" tableName=\"${3:table_name}\" condition=\"${4:active=true}\"></reference>"
+    ],
+    "description": "SimpleOne: Ссылочное поле с условием"
+  },
+  "simple_select_with_event": {
+    "prefix": "s-select-change",
+    "body": [
+      "<select model=\"data.${1:field}\" label=\"${2:Заголовок}\" options='${3:[]}' event-change=\"${4:handleChange}\"></select>"
+    ],
+    "description": "SimpleOne: Выпадающий список с событием"
+  },
+  "simple_button_secondary": {
+    "prefix": "s-button-secondary",
+    "body": [
+      "<button buttonType=\"secondary\" event-click=\"${1:handleClick}\">${2:Отмена}</button>"
+    ],
+    "description": "SimpleOne: Вторичная кнопка"
+  },
+  "simple_button_destructive": {
+    "prefix": "s-button-destructive",
+    "body": [
+      "<button buttonType=\"destructive\" event-click=\"${1:handleDelete}\">${2:Удалить}</button>"
+    ],
+    "description": "SimpleOne: Кнопка удаления (красная)"
+  },
+  "simple_button_approve": {
+    "prefix": "s-button-approve",
+    "body": [
+      "<button buttonType=\"approve\" event-click=\"${1:handleApprove}\">${2:Согласовать}</button>"
+    ],
+    "description": "SimpleOne: Кнопка согласования (зелёная)"
+  }
+}

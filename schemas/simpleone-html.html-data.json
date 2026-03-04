@@ -1,0 +1,535 @@
+{
+  "version": 1.2,
+  "tags": {
+    "activityfeed": {
+      "description": "Добавление ленты активности на формы других виджетов",
+      "attributes": {
+        "config": { "description": "Настройка ленты активности (JSON)", "type": "string" },
+        "isAlwaysOpen": { "description": "Лента всегда открыта (без шеврона)", "type": "boolean", "default": "false" },
+        "sysId": { "description": "ID записи таблицы", "type": "string" },
+        "tableName": { "description": "Наименование таблицы", "type": "string" }
+      }
+    },
+    "attachment": {
+      "description": "Добавление виджета вложений на формы",
+      "attributes": {
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "tableName": { "description": "Наименование таблицы", "type": "string" }
+      }
+    },
+    "button": {
+      "description": "Добавление кнопки на форму виджета",
+      "attributes": {
+        "buttonType": { "description": "Стиль отображения кнопки", "type": "string", "values": ["primary", "approve", "destructive", "secondary", "expand", "icon", "icon-mini", "icon-micro", "icon-primary", "icon-border", "unstyled"] },
+        "disabled": { "description": "Неактивная кнопка", "type": "boolean", "default": "false" },
+        "hint": { "description": "Текстовая подсказка при наведении", "type": "string" },
+        "svg": { "description": "SVG-код изображения", "type": "string" },
+        "svgPosition": { "description": "Положение изображения", "type": "string", "values": ["left", "right"] },
+        "event-click": { "description": "Обработчик нажатия", "type": "string" }
+      }
+    },
+    "checkbox": {
+      "description": "Добавление и настройка поля-флажка",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "value": { "description": "Значение по умолчанию", "type": "string", "default": "false" },
+        "indeterminate": { "description": "Неопределённое состояние", "type": "boolean", "default": "false" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" }
+      }
+    },
+    "codemirror": {
+      "description": "Добавление текстового поля в формате кода",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" }
+      }
+    },
+    "conditions": {
+      "description": "Добавление конструктора условий",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "tableId": { "description": "ID таблицы", "type": "string" }
+      }
+    },
+    "date": {
+      "description": "Добавление поля ввода даты",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "beginDate": { "description": "Минимальное значение даты", "type": "string" },
+        "endDate": { "description": "Максимальное значение даты", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" },
+        "placeholder": { "description": "Подсказка для поля", "type": "string" },
+        "value": { "description": "Значение по умолчанию", "type": "string" }
+      }
+    },
+    "datetime": {
+      "description": "Добавление поля ввода даты и времени",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "beginDate": { "description": "Минимальное значение даты", "type": "string" },
+        "endDate": { "description": "Максимальное значение даты", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" },
+        "placeholder": { "description": "Подсказка для поля", "type": "string" },
+        "value": { "description": "Значение по умолчанию", "type": "string" }
+      }
+    },
+    "daysofweek": {
+      "description": "Добавление поля для выбора дня недели",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" }
+      }
+    },
+    "duration": {
+      "description": "Добавление поля для отсчёта продолжительности времени",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" }
+      }
+    },
+    "durationinput": {
+      "description": "Добавление поля для ввода продолжительности времени",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" },
+        "alignRight": { "description": "Выравнивание по правому краю", "type": "boolean", "default": "false" },
+        "exclude": { "description": "Параметры, которые не нужно отображать", "type": "array" },
+        "maxValue": { "description": "Максимальное значение в миллисекундах", "type": "integer" },
+        "onchange": { "description": "Функция при смене значения", "type": "string" }
+      }
+    },
+    "form": {
+      "description": "Отображение виджета формы записей",
+      "attributes": {
+        "tableName": { "description": "Наименование таблицы", "type": "string", "required": true },
+        "name": { "description": "Название формы", "type": "string" },
+        "view": { "description": "Название вида формы", "type": "string" },
+        "save": { "description": "Текст кнопки сохранения", "type": "string" },
+        "titleHide": { "description": "Скрыть заголовок формы", "type": "boolean", "default": "false" },
+        "uiActions": { "description": "Разрешить UI-действия", "type": "boolean", "default": "true" },
+        "userScripts": { "description": "Отключить клиентские скрипты", "type": "boolean", "default": "true" },
+        "sysid": { "description": "ID записи таблицы", "type": "string" }
+      }
+    },
+    "hint": {
+      "description": "Всплывающая подсказка при наведении",
+      "attributes": {
+        "text": { "description": "Текст подсказки", "type": "string", "required": true }
+      }
+    },
+    "htmleditor": {
+      "description": "Добавление поля для ввода форматированного текста",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" }
+      }
+    },
+    "labeltag": {
+      "description": "Размещение текстовой метки на виджете",
+      "attributes": {
+        "text": { "description": "Текст метки", "type": "string", "required": true }
+      }
+    },
+    "list": {
+      "description": "Добавление ссылочного поля",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "tableName": { "description": "Наименование таблицы", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" },
+        "value": { "description": "Значение по умолчанию", "type": "array" },
+        "canRead": { "description": "Доступность таблицы", "type": "boolean", "default": "true" },
+        "canCreate": { "description": "Кнопка создания записи", "type": "boolean", "default": "false" },
+        "condition": { "description": "Условие фильтрации", "type": "string" },
+        "isFixed": { "description": "Отключение изменения условия", "type": "boolean", "default": "false" }
+      }
+    },
+    "modal": {
+      "description": "Отображение модального окна",
+      "attributes": {
+        "title": { "description": "Заголовок модального окна", "type": "string" },
+        "isShow": { "description": "Отображение окна", "type": "boolean", "default": "false" },
+        "isFullScreenMode": { "description": "На весь экран на мобильном", "type": "boolean", "default": "false" },
+        "doClose": { "description": "Функция при закрытии", "type": "string" }
+      }
+    },
+    "multiselect": {
+      "description": "Добавление функции множественного выбора",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "options": { "description": "Опции для выбора", "type": "array" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" },
+        "canExcludeAll": { "description": "Возможность оставить поле пустым", "type": "boolean", "default": "false" }
+      }
+    },
+    "recordpopup": {
+      "description": "Всплывающее окно при нажатии на запись",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" }
+      }
+    },
+    "reference": {
+      "description": "Добавление поля ссылки на таблицу",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "tableName": { "description": "Наименование таблицы", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" },
+        "canRead": { "description": "Доступность таблицы", "type": "boolean", "default": "true" },
+        "canCreate": { "description": "Кнопка создания записи", "type": "boolean", "default": "false" },
+        "condition": { "description": "Условие фильтрации", "type": "string" },
+        "isFixed": { "description": "Отключение изменения условия", "type": "boolean", "default": "false" }
+      }
+    },
+    "rem": {
+      "description": "Атрибуты модели расширенной записи",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "tableName": { "description": "Наименование таблицы", "type": "string" },
+        "modelId": { "description": "ID расширенной модели (REM)", "type": "string" },
+        "recordId": { "description": "ID записи с REM", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "isPortal": { "description": "Портальное поведение", "type": "boolean", "default": "false" },
+        "isUserScripts": { "description": "Выполнение клиентских скриптов", "type": "boolean", "default": "true" }
+      }
+    },
+    "remform": {
+      "description": "Форма с атрибутами модели расширенной записи",
+      "attributes": {
+        "name": { "description": "Название формы", "type": "string" },
+        "tableName": { "description": "Наименование таблицы", "type": "string" },
+        "modelId": { "description": "ID расширенной модели (REM)", "type": "string" },
+        "isPortal": { "description": "Портальное поведение", "type": "boolean", "default": "false" },
+        "isUserScripts": { "description": "Выполнение клиентских скриптов", "type": "boolean", "default": "true" },
+        "saveButtonCaption": { "description": "Текст кнопки «Сохранить»", "type": "string" }
+      }
+    },
+    "report": {
+      "description": "Добавление виджета отчёта",
+      "attributes": {
+        "reportId": { "description": "ID отчёта", "type": "string", "required": true },
+        "condition": { "description": "Условие фильтрации", "type": "string" }
+      }
+    },
+    "sectionmessage": {
+      "description": "Сообщение в выделенной секции",
+      "attributes": {
+        "type": { "description": "Тип сообщения", "type": "string", "values": ["error", "warning", "info", "success"] },
+        "message": { "description": "Текст сообщения", "type": "string", "required": true }
+      }
+    },
+    "select": {
+      "description": "Добавление поля с одиночным выбором",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "options": { "description": "Опции для выбора в формате JSON", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" },
+        "placeholder": { "description": "Подсказка для поля", "type": "string" },
+        "value": { "description": "Значение по умолчанию", "type": "string" },
+        "radioButtonsMode": { "description": "Отображать как переключатели", "type": "boolean", "default": "false" }
+      }
+    },
+    "string": {
+      "description": "Размещение поля ввода текстовой информации",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" },
+        "placeholder": { "description": "Подсказка для поля", "type": "string" },
+        "value": { "description": "Значение по умолчанию", "type": "string" },
+        "fieldInfo": { "description": "Уточняющая информация (help, hint)", "type": "string" },
+        "column_type": { "description": "Тип колонки", "type": "string", "values": ["text", "integer", "smallinteger", "biginteger", "float", "decimal", "percent_complete", "password"], "default": "text" },
+        "enableGroupingSeparator": { "description": "Разделители разрядов для чисел", "type": "boolean", "default": "true" }
+      }
+    },
+    "textarea": {
+      "description": "Добавление текстового поля (2+ строки)",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" },
+        "placeholder": { "description": "Подсказка для поля", "type": "string" },
+        "value": { "description": "Значение по умолчанию", "type": "string" }
+      }
+    },
+    "toggle": {
+      "description": "Добавление переключателя опций",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" },
+        "value": { "description": "Значение по умолчанию", "type": "string" }
+      }
+    },
+    "tooltip": {
+      "description": "Подсказка при нажатии на элемент",
+      "attributes": {
+        "text": { "description": "Текст подсказки", "type": "string", "required": true }
+      }
+    },
+    "wysiwygeditor": {
+      "description": "Размещение текстового редактора",
+      "attributes": {
+        "model": { "description": "Привязка объекта данных контроллера", "type": "string", "required": true },
+        "label": { "description": "Заголовок поля", "type": "string" },
+        "isMandatory": { "description": "Сделать поле обязательным", "type": "boolean", "default": "false" },
+        "isVisible": { "description": "Видимость тега", "type": "boolean", "default": "true" },
+        "readOnly": { "description": "Только для чтения", "type": "boolean", "default": "false" }
+      }
+    },
+    "recordlist": {
+      "description": "Настройка списочного представления таблицы",
+      "attributes": {
+        "tableName": { "description": "Наименование таблицы", "type": "string", "required": true },
+        "name": { "description": "Название списка", "type": "string" },
+        "query": { "description": "Условие фильтрации", "type": "string" }
+      }
+    },
+    "indicatepresence": {
+      "description": "Индикация присутствия пользователей (с <Form>)",
+      "attributes": {
+        "tableName": { "description": "Название таблицы", "type": "string", "required": true },
+        "recordId": { "description": "ID записи таблицы", "type": "string", "required": true }
+      }
+    },
+    "authfull": {
+      "description": "Настройка пользовательской авторизации",
+      "attributes": {
+        "isRegistration": { "description": "Регистрация для новых пользователей", "type": "boolean", "default": "false" },
+        "isRememberMe": { "description": "Сохранение учётных данных", "type": "boolean", "default": "false" },
+        "isResetPassword": { "description": "Ссылка восстановления пароля", "type": "boolean", "default": "false" },
+        "isSwitchLang": { "description": "Смена языка интерфейса", "type": "boolean", "default": "true" },
+        "logo": { "description": "Абсолютный путь логотипа", "type": "string" },
+        "redirectTo": { "description": "Путь перенаправления после авторизации", "type": "string" },
+        "useSourceUrl": { "description": "Сохранение исходного URL", "type": "boolean", "default": "false" }
+      }
+    },
+    "authheader": {
+      "description": "Отображение имени и аватара пользователя",
+      "attributes": {
+        "profileUrl": { "description": "Путь к секции профиля", "type": "string" }
+      }
+    },
+    "breadcrumbs": {
+      "description": "Отображение навигационной цепочки"
+    },
+    "card": {
+      "description": "Размещение информации в виде карточек",
+      "attributes": {
+        "name": { "description": "Название карточки", "type": "string" },
+        "shortDescription": { "description": "Краткое описание", "type": "string" },
+        "svg": { "description": "SVG-код или ссылка на изображение", "type": "string" },
+        "url": { "description": "URL страницы для карточки", "type": "string" }
+      }
+    },
+    "category": {
+      "description": "Отображение категорий портала",
+      "attributes": {
+        "categoryDescription": { "description": "Поле таблицы с описанием категорий", "type": "string" },
+        "categoryIcon": { "description": "Колонка с иконками категорий", "type": "string" },
+        "categorySubject": { "description": "Поле таблицы с заголовками категорий", "type": "string" },
+        "itemDescription": { "description": "Поле таблицы с описанием элементов", "type": "string" },
+        "itemIcon": { "description": "Колонка с иконками элементов", "type": "string" },
+        "itemSubject": { "description": "Поле таблицы с заголовками элементов", "type": "string" },
+        "nodeId": { "description": "ID узла портала", "type": "string" }
+      }
+    },
+    "categoryflat": {
+      "description": "Отображение категорий портальных объектов",
+      "attributes": {
+        "categoryDescription": { "description": "Поле таблицы с описанием категорий", "type": "string" },
+        "categoryIcon": { "description": "Колонка с иконками категорий", "type": "string" },
+        "categorySubject": { "description": "Поле таблицы с заголовками категорий", "type": "string" },
+        "date": { "description": "Колонка с датой создания элемента", "type": "string" },
+        "itemDescription": { "description": "Поле таблицы с описанием элементов", "type": "string" },
+        "itemIcon": { "description": "Колонка с иконками элементов", "type": "string" },
+        "itemSubject": { "description": "Поле таблицы с заголовками элементов", "type": "string" },
+        "nodeId": { "description": "ID узла портала", "type": "string" },
+        "preview": { "description": "Колонка с информацией предпросмотра", "type": "string" },
+        "user": { "description": "Колонка с информацией о создателе", "type": "string" }
+      }
+    },
+    "dropdownmenu": {
+      "description": "Создание многоуровневого выпадающего меню",
+      "attributes": {
+        "size": { "description": "Размер меню", "type": "string", "values": ["low", "large"] },
+        "isShow": { "description": "Отображение меню", "type": "boolean", "default": "false" },
+        "doClose": { "description": "Функция при закрытии", "type": "string" },
+        "events": { "description": "Действия после выбора", "type": "string" },
+        "model": { "description": "Привязка объекта данных", "type": "string" }
+      }
+    },
+    "listitems": {
+      "description": "Отображение записей таблицы в виде списка",
+      "attributes": {
+        "tableName": { "description": "Наименование таблицы", "type": "string", "required": true },
+        "choiceConditionName": { "description": "Колонки Choice для опций", "type": "string" },
+        "condition": { "description": "Условие фильтрации", "type": "string" },
+        "dateConditionName": { "description": "Колонки Date/DateTime", "type": "string" },
+        "displayColumnNumber": { "description": "Номер колонки для клика", "type": "integer" },
+        "fixedCondition": { "description": "Фиксированное условие", "type": "string" },
+        "itemPage": { "description": "Путь к странице портала", "type": "string" },
+        "itemView": { "description": "Представление внешнего вида", "type": "string" },
+        "listView": { "description": "Представление списка", "type": "string" }
+      }
+    },
+    "previewlist": {
+      "description": "Отображение в настраиваемом списке",
+      "attributes": {
+        "tableName": { "description": "Наименование таблицы", "type": "string", "required": true },
+        "condition": { "description": "Условие фильтрации", "type": "string" },
+        "dateColumn": { "description": "Колонка с датами", "type": "string" },
+        "elementCount": { "description": "Элементов на странице", "type": "integer", "default": "5" },
+        "itemView": { "description": "Представление внешнего вида", "type": "string" },
+        "listView": { "description": "Представление списка", "type": "string" },
+        "stateColumn": { "description": "Колонка со статусами", "type": "string" },
+        "subjectColumn": { "description": "Колонка с темами", "type": "string" },
+        "transparent": { "description": "Прозрачный фон", "type": "boolean", "default": "false" },
+        "wrap": { "description": "Быстрый просмотр", "type": "boolean", "default": "false" }
+      }
+    },
+    "results": {
+      "description": "Отображение результатов поиска",
+      "attributes": {
+        "isTreeShown": { "description": "Группировка результатов (дерево)", "type": "boolean", "default": "false" },
+        "itemPage": { "description": "Путь к странице портала", "type": "string" },
+        "itemView": { "description": "Представление внешнего вида", "type": "string" },
+        "quantity": { "description": "Макс. количество результатов", "type": "integer" },
+        "searchQuery": { "description": "Строка поиска", "type": "string" },
+        "tsGroupId": { "description": "ID группы поиска", "type": "string" }
+      }
+    },
+    "search": {
+      "description": "Добавление возможности поиска",
+      "attributes": {
+        "title": { "description": "Заголовок поиска", "type": "string" },
+        "placeholder": { "description": "Подсказка для поля", "type": "string" },
+        "itemPage": { "description": "Путь к странице портала", "type": "string" },
+        "itemView": { "description": "Представление внешнего вида", "type": "string" },
+        "onchange": { "description": "Функция при смене значения", "type": "string" },
+        "searchQuery": { "description": "Начальное значение поиска", "type": "string" },
+        "searchUrl": { "description": "URL перенаправления", "type": "string" },
+        "showTitle": { "description": "Отображение названия", "type": "boolean", "default": "false" },
+        "size": { "description": "Размер строки", "type": "string", "values": ["lg", "sm"] },
+        "top": { "description": "Количество совпадений в подсказке", "type": "integer" },
+        "tsGroupId": { "description": "ID группы поиска", "type": "string" }
+      }
+    },
+    "sidemenu": {
+      "description": "Добавление бокового меню",
+      "attributes": {
+        "childDepth": { "description": "Глубина дочерней категории", "type": "integer" },
+        "includeCategories": { "description": "Добавление категорий", "type": "integer", "default": "0" },
+        "includeItems": { "description": "Добавление элементов", "type": "integer", "default": "0" },
+        "parentsDepth": { "description": "Глубина родительской категории", "type": "integer" }
+      }
+    }
+  },
+  "globalAttributes": {
+    "class": {
+      "description": "Название CSS-класса из поля CSS виджета",
+      "type": "string"
+    },
+    "style": {
+      "description": "Настройка вида элементов (CSS-синтаксис)",
+      "type": "string"
+    },
+    "model": {
+      "description": "Привязка объекта данных контроллера",
+      "type": "string"
+    },
+    "event-click": {
+      "description": "Действия при нажатии",
+      "type": "string"
+    },
+    "event-change": {
+      "description": "Действия при изменении",
+      "type": "string"
+    },
+    "isVisible": {
+      "description": "Видимость тега",
+      "type": "boolean",
+      "default": "true"
+    },
+    "isMandatory": {
+      "description": "Обязательное поле",
+      "type": "boolean",
+      "default": "false"
+    },
+    "readOnly": {
+      "description": "Только для чтения",
+      "type": "boolean",
+      "default": "false"
+    },
+    "label": {
+      "description": "Заголовок поля",
+      "type": "string"
+    },
+    "value": {
+      "description": "Значение по умолчанию",
+      "type": "string"
+    },
+    "tableName": {
+      "description": "Наименование таблицы",
+      "type": "string"
+    },
+    "condition": {
+      "description": "Условие фильтрации",
+      "type": "string"
+    },
+    "onchange": {
+      "description": "Функция при смене значения",
+      "type": "string"
+    }
+  }
+}

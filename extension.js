@@ -89,8 +89,6 @@ function activate(context) {
         }
     });
 
-    // === ПРОВЕРКА ДИРЕКТИВ И ПРЕДЛОЖЕНИЕ ДОБАВИТЬ ===
-    
     // Коллекция диагностик
     const diagnosticCollection = vscode.languages.createDiagnosticCollection('simpleone');
     

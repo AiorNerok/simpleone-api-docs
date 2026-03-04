@@ -2,7 +2,7 @@
   "name": "simpleone-api-docs",
   "displayName": "SimpleOne API Documentation",
   "description": "Полная документация по клиентскому и серверному API платформы SimpleOne",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "publisher": "AiorNerok",
   "license": "MIT",
   "icon": "images/icon.png",
@@ -21,7 +21,11 @@
     "api",
     "documentation",
     "itsm",
-    "low-code"
+    "low-code",
+    "html",
+    "widgets",
+    "simpletags",
+    "snippets"
   ],
   "repository": {
     "type": "git",
@@ -37,6 +41,14 @@
       {
         "language": "javascript",
         "path": "./snippets/simpleone-server-api.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/simpleone-html-tags.json"
+      },
+      {
+        "language": "xml",
+        "path": "./snippets/simpleone-html-tags.json"
       }
     ],
     "typescriptServerPlugins": [
@@ -59,6 +71,11 @@
         "url": "./schemas/api-schema.json"
       }
     ],
+    "html": {
+      "customData": [
+        "./schemas/simpleone-html.html-data.json"
+      ]
+    },
     "configuration": {
       "title": "SimpleOne API Documentation",
       "properties": {
@@ -71,6 +88,11 @@
           "type": "boolean",
           "default": true,
           "description": "Включить сниппеты серверного API"
+        },
+        "simpleoneApiDocs.enableHtmlTags": {
+          "type": "boolean",
+          "default": true,
+          "description": "Включить подсказки для Simple-тегов в HTML"
         }
       }
     },
@@ -122,8 +144,7 @@
   ],
   "main": "./extension.js",
   "scripts": {
-    "lint": "eslint .",
-    "test": "node ./test/runTest.js"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@types/vscode": "^1.74.0",
