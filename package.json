@@ -1,0 +1,134 @@
+{
+  "name": "simpleone-api-docs",
+  "displayName": "SimpleOne API Documentation",
+  "description": "Полная документация по клиентскому и серверному API платформы SimpleOne",
+  "version": "1.0.1",
+  "publisher": "AiorNerok",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "author": {
+    "name": "AiorNerok"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "simpleone",
+    "api",
+    "documentation",
+    "itsm",
+    "low-code",
+    "SANIA_TEAMLEAD =)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simpleone-community/vscode-api-docs"
+  },
+  "homepage": "https://docs.simpleone.ru/ru/platform/developer-help/developer-api/",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/simpleone-client-api.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/simpleone-server-api.json"
+      }
+    ],
+    "typescriptServerPlugins": [
+      {
+        "name": "simpleone-types",
+        "enableForWorkspaceTypeScriptVersions": true
+      }
+    ],
+    "configurationDefaults": {
+      "typescript.tsdk": "node_modules/typescript/lib",
+      "typescript.enablePromptUseWorkspaceTsdk": true,
+      "typeScript.tsserver.pluginPaths": [
+        "./node_modules/@types"
+      ]
+    },
+    "types": "./types/s1-server.d.ts",
+    "jsonValidation": [
+      {
+        "fileMatch": "*.simpleone.json",
+        "url": "./schemas/api-schema.json"
+      }
+    ],
+    "configuration": {
+      "title": "SimpleOne API Documentation",
+      "properties": {
+        "simpleoneApiDocs.enableClientApiSnippets": {
+          "type": "boolean",
+          "default": true,
+          "description": "Включить сниппеты клиентского API"
+        },
+        "simpleoneApiDocs.enableServerApiSnippets": {
+          "type": "boolean",
+          "default": true,
+          "description": "Включить сниппеты серверного API"
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "simpleoneApiDocs.openClientApiDocs",
+          "title": "SimpleOne: Открыть документацию клиентского API"
+        },
+        {
+          "command": "simpleoneApiDocs.openServerApiDocs",
+          "title": "SimpleOne: Открыть документацию серверного API"
+        },
+        {
+          "command": "simpleoneApiDocs.installTypes",
+          "title": "SimpleOne: Установить типы в проект"
+        },
+        {
+          "command": "simpleoneApiDocs.addReference",
+          "title": "SimpleOne: Добавить директивы типов"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "simpleoneApiDocs.openClientApiDocs",
+        "title": "Открыть документацию клиентского API",
+        "category": "SimpleOne"
+      },
+      {
+        "command": "simpleoneApiDocs.openServerApiDocs",
+        "title": "Открыть документацию серверного API",
+        "category": "SimpleOne"
+      },
+      {
+        "command": "simpleoneApiDocs.installTypes",
+        "title": "Установить типы в проект",
+        "category": "SimpleOne"
+      },
+      {
+        "command": "simpleoneApiDocs.addReference",
+        "title": "Добавить директивы типов",
+        "category": "SimpleOne"
+      }
+    ]
+  },
+  "activationEvents": [
+    "onLanguage:javascript"
+  ],
+  "main": "./extension.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "^25.3.3",
+    "eslint": "^10.0.2"
+  }
+}

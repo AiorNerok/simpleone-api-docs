@@ -1,0 +1,926 @@
+{
+  "clientApi": {
+    "s_i18n": {
+      "name": "s_i18n",
+      "globalObject": "s_i18n",
+      "description": "Класс для работы с переводами и локализацией сообщений в системе",
+      "methods": {
+        "getMessage": {
+          "signature": "getMessage(msgKey, config, callback)",
+          "description": "Возвращает одну переведённую строку",
+          "async": true,
+          "parameters": [
+            { "name": "msgKey", "type": "String", "required": true, "description": "Ключ сообщения" },
+            { "name": "config", "type": "Object", "required": false, "description": "Конфигурация: { language, category, params }" },
+            { "name": "callback", "type": "Function", "required": false, "description": "Функция обратного вызова" }
+          ],
+          "returns": "String",
+          "example": "await s_i18n.getMessage('Description', { params: {serviceName: 'Почта'}, language: 'ru' }, (response) => console.log(response));"
+        },
+        "getMessages": {
+          "signature": "getMessages(msgKeys, config, callback)",
+          "description": "Возвращает массив переведённых строк",
+          "async": true,
+          "parameters": [
+            { "name": "msgKeys", "type": "Array<String>", "required": true, "description": "Массив ключей сообщений" },
+            { "name": "config", "type": "Object", "required": false, "description": "Конфигурация" },
+            { "name": "callback", "type": "Function", "required": false, "description": "Функция обратного вызова" }
+          ],
+          "returns": "Array<String>"
+        }
+      }
+    },
+    "SimpleAjax": {
+      "name": "SimpleAjax",
+      "globalObject": null,
+      "description": "Позволяет клиентскому скрипту выполнять серверный код, используя Внешний скрипт",
+      "constructor": "new SimpleAjax(externalScriptName)",
+      "methods": {
+        "addParam": {
+          "signature": "addParam(paramName, paramValue)",
+          "description": "Передаёт имя и значение параметра серверной функции",
+          "parameters": [
+            { "name": "paramName", "type": "String", "required": true, "description": "Имя параметра (должен начинаться с sysparm_)" },
+            { "name": "paramValue", "type": "String", "required": true, "description": "Значение параметра" }
+          ],
+          "returns": "Void"
+        },
+        "getXML": {
+          "signature": "getXML(callback)",
+          "description": "Отправляет запрос на сервер для выполнения метода",
+          "parameters": [
+            { "name": "callback", "type": "Function", "required": true, "description": "Функция обратного вызова" }
+          ],
+          "returns": "Void"
+        },
+        "runScript": {
+          "signature": "runScript(scriptValue, tableName, callback)",
+          "description": "Запускает скрипт на заданной таблице с учётом ACL",
+          "async": true,
+          "parameters": [
+            { "name": "scriptValue", "type": "String", "required": true, "description": "Код скрипта" },
+            { "name": "tableName", "type": "String", "required": false, "description": "Имя таблицы" },
+            { "name": "callback", "type": "Function", "required": false, "description": "Функция обратного вызова" }
+          ],
+          "returns": "Void"
+        },
+        "runAdminScript": {
+          "signature": "runAdminScript(scriptValue, tableName, callback)",
+          "description": "Запускает скрипт от имени администратора (без ACL)",
+          "async": true,
+          "parameters": [
+            { "name": "scriptValue", "type": "String", "required": true, "description": "Код скрипта" },
+            { "name": "tableName", "type": "String", "required": false, "description": "Имя таблицы" },
+            { "name": "callback", "type": "Function", "required": false, "description": "Функция обратного вызова" }
+          ],
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleEventBus": {
+      "name": "SimpleEventBus",
+      "globalObject": "SimpleEventBus",
+      "description": "Работа с потоком событий (событийная шина)",
+      "methods": {
+        "on": {
+          "signature": "on(eventType, callback)",
+          "description": "Подписка на событие",
+          "parameters": [
+            { "name": "eventType", "type": "String", "required": true, "description": "Тип события" },
+            { "name": "callback", "type": "Function", "required": true, "description": "Функция обработчик" }
+          ],
+          "returns": "Object с методом unsubscribe()"
+        },
+        "emit": {
+          "signature": "emit(eventType, data)",
+          "description": "Инициация события",
+          "parameters": [
+            { "name": "eventType", "type": "String", "required": true, "description": "Тип события" },
+            { "name": "data", "type": "Any", "required": false, "description": "Данные события" }
+          ],
+          "returns": "Void"
+        },
+        "deleteEvent": {
+          "signature": "deleteEvent(eventType)",
+          "description": "Удаление события",
+          "parameters": [
+            { "name": "eventType", "type": "String", "required": true, "description": "Тип события" }
+          ],
+          "returns": "Void"
+        },
+        "reset": {
+          "signature": "reset()",
+          "description": "Сброс всех событий и подписок",
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleForm": {
+      "name": "SimpleForm",
+      "globalObject": "s_form",
+      "description": "Класс для работы с формами записей на стороне клиента",
+      "constructor": "new SimpleForm(table, sys_id)",
+      "methods": {
+        "getValue": {
+          "signature": "getValue(fieldName)",
+          "description": "Получить значение поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "String"
+        },
+        "getDisplayValue": {
+          "signature": "getDisplayValue(fieldName)",
+          "description": "Получить отображаемое значение",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "String"
+        },
+        "setValue": {
+          "signature": "setValue(fieldName, databaseValue)",
+          "description": "Установить значение поля (асинхронно)",
+          "async": true,
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "databaseValue", "type": "String", "required": true, "description": "Значение" }
+          ],
+          "returns": "Promise"
+        },
+        "clearValue": {
+          "signature": "clearValue(fieldName)",
+          "description": "Очистить поле",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "Boolean"
+        },
+        "addOption": {
+          "signature": "addOption(fieldName, choiceValue)",
+          "description": "Добавить опцию Choice (асинхронно)",
+          "async": true,
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "choiceValue", "type": "String", "required": true, "description": "Значение опции" }
+          ],
+          "returns": "Promise"
+        },
+        "removeOption": {
+          "signature": "removeOption(fieldName, choiceValue)",
+          "description": "Удалить опцию",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "choiceValue", "type": "String", "required": true, "description": "Значение опции" }
+          ],
+          "returns": "Void"
+        },
+        "clearOptions": {
+          "signature": "clearOptions(fieldName)",
+          "description": "Удалить все опции Choice",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "Void"
+        },
+        "getLabelOf": {
+          "signature": "getLabelOf(fieldName)",
+          "description": "Получить заголовок поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "String"
+        },
+        "setLabelOf": {
+          "signature": "setLabelOf(fieldName, value)",
+          "description": "Установить заголовок поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "value", "type": "String", "required": true, "description": "Заголовок" }
+          ],
+          "returns": "Void"
+        },
+        "isVisible": {
+          "signature": "isVisible(fieldName)",
+          "description": "Проверить видимость поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "Boolean"
+        },
+        "setVisible": {
+          "signature": "setVisible(fieldName, display)",
+          "description": "Установить видимость поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "display", "type": "Boolean", "required": true, "description": "Видимость" }
+          ],
+          "returns": "Void"
+        },
+        "isReadonly": {
+          "signature": "isReadonly(fieldName)",
+          "description": "Проверить доступность поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "Boolean"
+        },
+        "setReadOnly": {
+          "signature": "setReadOnly(fieldName, readOnly)",
+          "description": "Установить доступность поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "readOnly", "type": "Boolean", "required": true, "description": "Доступность" }
+          ],
+          "returns": "Boolean"
+        },
+        "isMandatory": {
+          "signature": "isMandatory(fieldName)",
+          "description": "Проверить обязательность поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "Boolean"
+        },
+        "setMandatory": {
+          "signature": "setMandatory(fieldName, mandatory)",
+          "description": "Установить обязательность поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "mandatory", "type": "Boolean", "required": true, "description": "Обязательность" }
+          ],
+          "returns": "Boolean"
+        },
+        "isFieldChanged": {
+          "signature": "isFieldChanged(fieldName)",
+          "description": "Проверить изменение поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "Boolean"
+        },
+        "addErrorMessage": {
+          "signature": "addErrorMessage(message)",
+          "description": "Сообщение об ошибке",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true, "description": "Текст сообщения" }
+          ],
+          "returns": "Void"
+        },
+        "addInfoMessage": {
+          "signature": "addInfoMessage(message, durationMilliseconds)",
+          "description": "Информационное сообщение",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true, "description": "Текст сообщения" },
+            { "name": "durationMilliseconds", "type": "Number", "required": false, "description": "Длительность в мс" }
+          ],
+          "returns": "Void"
+        },
+        "addSuccessMessage": {
+          "signature": "addSuccessMessage(message, durationMilliseconds)",
+          "description": "Сообщение об успехе",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true, "description": "Текст сообщения" },
+            { "name": "durationMilliseconds", "type": "Number", "required": false, "description": "Длительность в мс" }
+          ],
+          "returns": "Void"
+        },
+        "addWarningMessage": {
+          "signature": "addWarningMessage(message, durationMilliseconds)",
+          "description": "Предупреждение",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true, "description": "Текст сообщения" },
+            { "name": "durationMilliseconds", "type": "Number", "required": false, "description": "Длительность в мс" }
+          ],
+          "returns": "Void"
+        },
+        "clearMessages": {
+          "signature": "clearMessages()",
+          "description": "Закрыть все сообщения",
+          "returns": "Void"
+        },
+        "hideFieldMsg": {
+          "signature": "hideFieldMsg(fieldName)",
+          "description": "Скрыть сообщения поля",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "Void"
+        },
+        "showFieldMsg": {
+          "signature": "showFieldMsg(fieldName, message, type)",
+          "description": "Показать сообщение под полем",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "message", "type": "String", "required": true, "description": "Текст сообщения" },
+            { "name": "type", "type": "String", "required": true, "description": "Тип сообщения" }
+          ],
+          "returns": "Void"
+        },
+        "getSections": {
+          "signature": "getSections()",
+          "description": "Получить массив секций",
+          "returns": "Array<HTML>"
+        },
+        "getSectionNames": {
+          "signature": "getSectionNames()",
+          "description": "Получить названия секций",
+          "returns": "Array<String>"
+        },
+        "isSectionVisible": {
+          "signature": "isSectionVisible(sectionName)",
+          "description": "Проверить видимость секции",
+          "parameters": [
+            { "name": "sectionName", "type": "String", "required": true, "description": "Имя секции" }
+          ],
+          "returns": "Boolean"
+        },
+        "setSectionDisplay": {
+          "signature": "setSectionDisplay(sectionName, display)",
+          "description": "Установить видимость секции",
+          "parameters": [
+            { "name": "sectionName", "type": "String", "required": true, "description": "Имя секции" },
+            { "name": "display", "type": "Boolean", "required": true, "description": "Видимость" }
+          ],
+          "returns": "Void"
+        },
+        "hideRelatedLists": {
+          "signature": "hideRelatedLists()",
+          "description": "Скрыть все связанные списки",
+          "returns": "Void"
+        },
+        "showRelatedLists": {
+          "signature": "showRelatedLists()",
+          "description": "Показать все связанные списки",
+          "returns": "Void"
+        },
+        "hideRelatedList": {
+          "signature": "hideRelatedList(relListTitle)",
+          "description": "Скрыть связанный список",
+          "parameters": [
+            { "name": "relListTitle", "type": "String", "required": true, "description": "Заголовок списка" }
+          ],
+          "returns": "Void"
+        },
+        "showRelatedList": {
+          "signature": "showRelatedList(listTitle)",
+          "description": "Показать связанный список",
+          "parameters": [
+            { "name": "listTitle", "type": "String", "required": true, "description": "Заголовок списка" }
+          ],
+          "returns": "Void"
+        },
+        "getREMValue": {
+          "signature": "getREMValue(fieldName)",
+          "description": "Получить значение REM-атрибута",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "String"
+        },
+        "getREMDisplayValue": {
+          "signature": "getREMDisplayValue(fieldName)",
+          "description": "Получить отображаемое значение REM",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "String"
+        },
+        "getREMLabelOf": {
+          "signature": "getREMLabelOf(fieldName)",
+          "description": "Получить заголовок REM-атрибута",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" }
+          ],
+          "returns": "String"
+        },
+        "setREMLabelOf": {
+          "signature": "setREMLabelOf(fieldName, value)",
+          "description": "Установить заголовок REM-атрибута",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "value", "type": "String", "required": true, "description": "Заголовок" }
+          ],
+          "returns": "String"
+        },
+        "setREMValue": {
+          "signature": "setREMValue(fieldName, databaseValue)",
+          "description": "Установить значение REM-атрибута (асинхронно)",
+          "async": true,
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "databaseValue", "type": "Any", "required": true, "description": "Значение" }
+          ],
+          "returns": "Void"
+        },
+        "setREMVisible": {
+          "signature": "setREMVisible(fieldName, display)",
+          "description": "Установить видимость REM-атрибута",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "display", "type": "Boolean", "required": true, "description": "Видимость" }
+          ],
+          "returns": "Void"
+        },
+        "setREMReadOnly": {
+          "signature": "setREMReadOnly(fieldName, readOnly)",
+          "description": "Установить доступность REM-атрибута",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "readOnly", "type": "Boolean", "required": true, "description": "Доступность" }
+          ],
+          "returns": "Boolean"
+        },
+        "setREMMandatory": {
+          "signature": "setREMMandatory(fieldName, mandatory)",
+          "description": "Установить обязательность REM-атрибута",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true, "description": "Имя поля" },
+            { "name": "mandatory", "type": "Boolean", "required": true, "description": "Обязательность" }
+          ],
+          "returns": "Boolean"
+        },
+        "formId": {
+          "signature": "formId",
+          "description": "ID формы",
+          "returns": "String"
+        },
+        "getTableName": {
+          "signature": "getTableName()",
+          "description": "Получить имя таблицы",
+          "returns": "String"
+        },
+        "getUniqueValue": {
+          "signature": "getUniqueValue()",
+          "description": "Получить ID записи",
+          "returns": "String|null"
+        },
+        "isNewRecord": {
+          "signature": "isNewRecord()",
+          "description": "Проверить, новая ли запись",
+          "returns": "Boolean"
+        },
+        "isChanged": {
+          "signature": "isChanged()",
+          "description": "Проверить, изменена ли запись",
+          "returns": "Boolean"
+        },
+        "getChanges": {
+          "signature": "getChanges()",
+          "description": "Получить изменённые поля",
+          "returns": "Array<Object>"
+        },
+        "getAllFields": {
+          "signature": "getAllFields(isAll)",
+          "description": "Получить все поля формы",
+          "parameters": [
+            { "name": "isAll", "type": "Boolean", "required": false, "description": "Включая скрытые" }
+          ],
+          "returns": "Object"
+        },
+        "isValid": {
+          "signature": "isValid()",
+          "description": "Проверить валидность формы",
+          "returns": "Boolean"
+        },
+        "refreshUiActions": {
+          "signature": "refreshUiActions()",
+          "description": "Обновить UI-действия",
+          "returns": "Void"
+        },
+        "save": {
+          "signature": "save()",
+          "description": "Сохранить запись (асинхронно)",
+          "async": true,
+          "returns": "String (ID)"
+        },
+        "submit": {
+          "signature": "submit()",
+          "description": "Передать форму",
+          "returns": "Void"
+        },
+        "goBack": {
+          "signature": "goBack()",
+          "description": "Назад",
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleGo": {
+      "name": "SimpleGo",
+      "globalObject": "s_go",
+      "description": "Предоставляет методы для выполнения URL-переходов в системе SimpleOne",
+      "methods": {
+        "open": {
+          "signature": "open(url, target, callback)",
+          "description": "Переход по URL",
+          "parameters": [
+            { "name": "url", "type": "String", "required": true, "description": "URL перехода" },
+            { "name": "target", "type": "String", "required": false, "description": "Цель (например, '_blank')" },
+            { "name": "callback", "type": "Function", "required": false, "description": "Функция обратного вызова" }
+          ],
+          "returns": "Void"
+        },
+        "openList": {
+          "signature": "openList(table, query)",
+          "description": "Открытие списка таблицы",
+          "parameters": [
+            { "name": "table", "type": "String", "required": true, "description": "Имя таблицы" },
+            { "name": "query", "type": "String", "required": false, "description": "Условие" }
+          ],
+          "returns": "Void"
+        },
+        "openRecord": {
+          "signature": "openRecord(table, sys_id)",
+          "description": "Открытие формы записи",
+          "parameters": [
+            { "name": "table", "type": "String", "required": true, "description": "Имя таблицы" },
+            { "name": "sys_id", "type": "String", "required": true, "description": "ID записи" }
+          ],
+          "returns": "Void"
+        },
+        "reloadWindow": {
+          "signature": "reloadWindow()",
+          "description": "Перезагрузка страницы",
+          "returns": "Void"
+        },
+        "getURL": {
+          "signature": "getURL()",
+          "description": "Получение текущего URL",
+          "returns": "String"
+        },
+        "back": {
+          "signature": "back()",
+          "description": "Возврат на предыдущую страницу",
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleList": {
+      "name": "SimpleList",
+      "globalObject": "s_list",
+      "description": "Конфигурация и управление списками в платформе SimpleOne",
+      "methods": {
+        "addErrorMessage": {
+          "signature": "addErrorMessage(message)",
+          "description": "Сообщение об ошибке",
+          "parameters": [{ "name": "message", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "addInfoMessage": {
+          "signature": "addInfoMessage(message, duration)",
+          "description": "Инфо-сообщение",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true },
+            { "name": "duration", "type": "Number", "required": false }
+          ],
+          "returns": "Void"
+        },
+        "addSuccessMessage": {
+          "signature": "addSuccessMessage(message, duration)",
+          "description": "Сообщение об успехе",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true },
+            { "name": "duration", "type": "Number", "required": false }
+          ],
+          "returns": "Void"
+        },
+        "addWarningMessage": {
+          "signature": "addWarningMessage(message, duration)",
+          "description": "Предупреждение",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true },
+            { "name": "duration", "type": "Number", "required": false }
+          ],
+          "returns": "Void"
+        },
+        "deleteRows": {
+          "signature": "deleteRows(tableName, sysIds)",
+          "description": "Удалить записи",
+          "async": true,
+          "parameters": [
+            { "name": "tableName", "type": "String", "required": true },
+            { "name": "sysIds", "type": "Array", "required": true }
+          ],
+          "returns": "Promise"
+        },
+        "fetchExportTable": {
+          "signature": "fetchExportTable(format)",
+          "description": "Экспорт в очередь",
+          "parameters": [{ "name": "format", "type": "'json'|'xlsx'|'excel'", "required": true }],
+          "returns": "Void"
+        },
+        "getCheckedRow": {
+          "signature": "getCheckedRow(tableName)",
+          "description": "Отмеченные строки",
+          "parameters": [{ "name": "tableName", "type": "String", "required": true }],
+          "returns": "Array<String>"
+        },
+        "getQuery": {
+          "signature": "getQuery()",
+          "description": "Условие фильтрации",
+          "returns": "String"
+        },
+        "getTablesName": {
+          "signature": "getTablesName()",
+          "description": "Названия таблиц",
+          "returns": "Array<String>"
+        },
+        "refresh": {
+          "signature": "refresh(tableName)",
+          "description": "Обновить список",
+          "parameters": [{ "name": "tableName", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "recondition": {
+          "signature": "recondition(condition)",
+          "description": "Изменить фильтр",
+          "parameters": [{ "name": "condition", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "runQuickImport": {
+          "signature": "runQuickImport()",
+          "description": "Быстрый импорт",
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleMenu": {
+      "name": "SimpleMenu",
+      "globalObject": "SimpleMenu",
+      "description": "Работа с объектами меню: Избранное и Навигатор",
+      "methods": {
+        "updateFavoritesList": {
+          "signature": "updateFavoritesList()",
+          "description": "Обновить избранное",
+          "returns": "Void"
+        },
+        "updateMenuList": {
+          "signature": "updateMenuList()",
+          "description": "Обновить навигатор",
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleModal": {
+      "name": "SimpleModal",
+      "globalObject": "s_modal",
+      "description": "Работа с модальными окнами в клиентских скриптах",
+      "methods": {
+        "renderPageTemplate": {
+          "signature": "renderPageTemplate(portal, page)",
+          "description": "Рендер шаблона портала",
+          "parameters": [
+            { "name": "portal", "type": "String", "required": true },
+            { "name": "page", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "renderPagePathTemplate": {
+          "signature": "renderPagePathTemplate(page, portal)",
+          "description": "Рендер шаблона (обратный порядок)",
+          "parameters": [
+            { "name": "page", "type": "String", "required": true },
+            { "name": "portal", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "renderTemplate": {
+          "signature": "renderTemplate(template, style)",
+          "description": "Рендер HTML-шаблона",
+          "parameters": [
+            { "name": "template", "type": "String", "required": true },
+            { "name": "style", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "setShow": {
+          "signature": "setShow(isShow)",
+          "description": "Показать/скрыть",
+          "parameters": [{ "name": "isShow", "type": "Boolean", "required": true }],
+          "returns": "Void"
+        },
+        "setTitle": {
+          "signature": "setTitle(title)",
+          "description": "Установить заголовок",
+          "parameters": [{ "name": "title", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setWidth": {
+          "signature": "setWidth(width)",
+          "description": "Установить ширину (px)",
+          "parameters": [{ "name": "width", "type": "Integer", "required": true }],
+          "returns": "Void"
+        },
+        "setIsLoading": {
+          "signature": "setIsLoading(isLoading)",
+          "description": "Индикатор загрузки",
+          "parameters": [{ "name": "isLoading", "type": "Boolean", "required": true }],
+          "returns": "Void"
+        }
+      }
+    },
+    "SimplePreference": {
+      "name": "SimplePreference",
+      "globalObject": "s_pref",
+      "description": "Работа с настройками пользовательского интерфейса",
+      "methods": {
+        "refresh": {
+          "signature": "refresh()",
+          "description": "Обновить меню настроек",
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleRecord": {
+      "name": "SimpleRecord",
+      "globalObject": null,
+      "description": "Работа с базой данных в клиентских скриптах",
+      "constructor": "new SimpleRecord(tableName)",
+      "methods": {
+        "addQuery": {
+          "signature": "addQuery(field, operator, value)",
+          "description": "Добавить условие",
+          "parameters": [
+            { "name": "field", "type": "String", "required": true },
+            { "name": "operator", "type": "String", "required": false },
+            { "name": "value", "type": "Any", "required": false }
+          ],
+          "returns": "Void"
+        },
+        "deleteRecord": {
+          "signature": "deleteRecord(responseFunction)",
+          "description": "Удалить запись",
+          "parameters": [{ "name": "responseFunction", "type": "Function", "required": true }],
+          "returns": "Void"
+        },
+        "get": {
+          "signature": "get(recordId, callback)",
+          "description": "Получить по ID",
+          "parameters": [
+            { "name": "recordId", "type": "String", "required": true },
+            { "name": "callback", "type": "Function", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "getRows": {
+          "signature": "getRows()",
+          "description": "Массив записей",
+          "returns": "Array<String>"
+        },
+        "getTableName": {
+          "signature": "getTableName()",
+          "description": "Имя таблицы",
+          "returns": "String"
+        },
+        "hasNext": {
+          "signature": "hasNext()",
+          "description": "Есть ли ещё записи",
+          "returns": "Boolean"
+        },
+        "insert": {
+          "signature": "insert(responseFunction)",
+          "description": "Вставить запись",
+          "parameters": [{ "name": "responseFunction", "type": "Function", "required": true }],
+          "returns": "Void"
+        },
+        "next": {
+          "signature": "next()",
+          "description": "Следующая запись",
+          "returns": "Boolean"
+        },
+        "orderBy": {
+          "signature": "orderBy(column)",
+          "description": "Сортировка",
+          "parameters": [{ "name": "column", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "query": {
+          "signature": "query(responseFunction, ...)",
+          "description": "Выполнить запрос",
+          "parameters": [{ "name": "responseFunction", "type": "Function", "required": true }],
+          "returns": "Void"
+        },
+        "setLimit": {
+          "signature": "setLimit(maxQuery)",
+          "description": "Лимит записей",
+          "parameters": [{ "name": "maxQuery", "type": "Integer", "required": true }],
+          "returns": "Void"
+        },
+        "setValue": {
+          "signature": "setValue(fieldName, value)",
+          "description": "Установить значение",
+          "parameters": [
+            { "name": "fieldName", "type": "String", "required": true },
+            { "name": "value", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleStorage": {
+      "name": "SimpleStorage",
+      "globalObject": "SimpleStorage",
+      "description": "Хранилище объектов по принципу JavaScript Map (ключ-значение)",
+      "methods": {
+        "getItem": {
+          "signature": "getItem(key)",
+          "description": "Получить значение",
+          "parameters": [{ "name": "key", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "hasItem": {
+          "signature": "hasItem(key)",
+          "description": "Проверить наличие",
+          "parameters": [{ "name": "key", "type": "Any", "required": true }],
+          "returns": "Boolean"
+        },
+        "setItem": {
+          "signature": "setItem(key, value)",
+          "description": "Установить значение",
+          "parameters": [
+            { "name": "key", "type": "String", "required": true },
+            { "name": "value", "type": "Any", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "getEntries": {
+          "signature": "getEntries()",
+          "description": "Все пары [ключ, значение]",
+          "returns": "Array"
+        },
+        "getKeys": {
+          "signature": "getKeys()",
+          "description": "Все ключи",
+          "returns": "Array"
+        },
+        "getSize": {
+          "signature": "getSize()",
+          "description": "Количество записей",
+          "returns": "Integer"
+        },
+        "reset": {
+          "signature": "reset()",
+          "description": "Очистить хранилище",
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleSystem": {
+      "name": "SimpleSystem",
+      "globalObject": "ss",
+      "description": "Работа с системными префиксами таблиц и колонок базы данных",
+      "methods": {
+        "getTablePrefix": {
+          "signature": "getTablePrefix()",
+          "description": "Получение префикса таблицы текущего приложения",
+          "async": true,
+          "returns": "Promise<String>"
+        },
+        "getColumnPrefix": {
+          "signature": "getColumnPrefix(tableName)",
+          "description": "Получение префикса колонки для таблицы",
+          "async": true,
+          "parameters": [{ "name": "tableName", "type": "String", "required": false }],
+          "returns": "Promise<String>"
+        }
+      }
+    },
+    "SimpleUser": {
+      "name": "SimpleUser",
+      "globalObject": "s_user",
+      "description": "Взаимодействие с информацией о текущем пользователе",
+      "properties": {
+        "accessToken": { "type": "String", "description": "⚠️ Устаревшее (с 1.29.0)" },
+        "firstName": { "type": "String", "description": "Имя пользователя" },
+        "lastName": { "type": "String", "description": "Фамилия пользователя" },
+        "userID": { "type": "String", "description": "ID пользователя" },
+        "user": { "type": "Object", "description": "Полный объект пользователя" },
+        "userName": { "type": "String", "description": "Логин пользователя" }
+      },
+      "methods": {
+        "getFullName": {
+          "signature": "getFullName()",
+          "description": "Полное имя",
+          "returns": "String"
+        },
+        "getPreference": {
+          "signature": "getPreference(name)",
+          "description": "Асинхронное получение настроек пользователя",
+          "async": true,
+          "parameters": [{ "name": "name", "type": "String|Array<String>", "required": true }],
+          "returns": "Promise<Object>"
+        },
+        "setPreference": {
+          "signature": "setPreference(name, value)",
+          "description": "Асинхронная установка настройки",
+          "async": true,
+          "parameters": [
+            { "name": "name", "type": "String", "required": true },
+            { "name": "value", "type": "String", "required": true }
+          ],
+          "returns": "Promise<Object>"
+        }
+      }
+    }
+  }
+}

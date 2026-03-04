@@ -1,0 +1,15 @@
+.vscode/**
+.vscode-test/**
+src/**
+test/**
+.gitignore
+.eslintrc.json
+.yarnrc
+vscextensionappveyor-pipeline.yml
+ThirdPartyNotices.txt
+*.map
+*.ts
+!.vscode-simpleone/**
+!node_modules/@types/**
+!types/**
+!images/**

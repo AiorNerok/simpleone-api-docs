@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SimpleOne API Schema",
+  "description": "Схема для автодополнения и валидации API SimpleOne",
+  "type": "object",
+  "definitions": {
+    "clientApiClass": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "globalObject": { "type": "string" },
+        "description": { "type": "string" },
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "parameters": { "type": "array" },
+              "returns": { "type": "string" },
+              "description": { "type": "string" },
+              "async": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "serverApiClass": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "globalObject": { "type": "string" },
+        "description": { "type": "string" },
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "parameters": { "type": "array" },
+              "returns": { "type": "string" },
+              "description": { "type": "string" },
+              "static": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

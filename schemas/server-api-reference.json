@@ -1,0 +1,1001 @@
+{
+  "serverApi": {
+    "SimpleRecord": {
+      "name": "SimpleRecord",
+      "globalObject": null,
+      "description": "Серверный класс для работы с записями базы данных платформы SimpleOne",
+      "constructor": "SimpleRecord(tableName)",
+      "methods": {
+        "addQuery": {
+          "signature": "addQuery(field, operator, value)",
+          "description": "Добавляет условие выборки",
+          "parameters": [
+            { "name": "field", "type": "String", "required": true },
+            { "name": "operator", "type": "String", "required": false },
+            { "name": "value", "type": "Any", "required": false }
+          ],
+          "returns": "SimpleRecord",
+          "example": "task.addQuery('active', true); task.addQuery('subject', 'like', 'email');"
+        },
+        "addOrCondition": {
+          "signature": "addOrCondition(property, operator, value)",
+          "description": "Добавляет условие ИЛИ",
+          "parameters": [
+            { "name": "property", "type": "String", "required": true },
+            { "name": "operator", "type": "String", "required": false },
+            { "name": "value", "type": "Any", "required": false }
+          ],
+          "returns": "SimpleRecord"
+        },
+        "addEncodedQuery": {
+          "signature": "addEncodedQuery(condition)",
+          "description": "Добавляет закодированное условие",
+          "parameters": [{ "name": "condition", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "getConditionQuery": {
+          "signature": "getConditionQuery()",
+          "description": "Возвращает текущее условие запроса",
+          "returns": "String"
+        },
+        "query": {
+          "signature": "query()",
+          "description": "Применяет запрос для получения выборки",
+          "returns": "Void"
+        },
+        "next": {
+          "signature": "next()",
+          "description": "Возвращает следующую запись",
+          "returns": "SimpleRecord/Boolean"
+        },
+        "orderBy": {
+          "signature": "orderBy(column)",
+          "description": "Сортировка по возрастанию",
+          "parameters": [{ "name": "column", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "orderByDesc": {
+          "signature": "orderByDesc(column)",
+          "description": "Сортировка по убыванию",
+          "parameters": [{ "name": "column", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setLimit": {
+          "signature": "setLimit(maxNumRecords)",
+          "description": "Ограничивает количество записей",
+          "parameters": [{ "name": "maxNumRecords", "type": "Integer", "required": true }],
+          "returns": "Void"
+        },
+        "selectAttributes": {
+          "signature": "selectAttributes(attributes)",
+          "description": "Выбирает только указанные атрибуты",
+          "parameters": [{ "name": "attributes", "type": "String|Array", "required": true }],
+          "returns": "SimpleRecord"
+        },
+        "getRowCount": {
+          "signature": "getRowCount()",
+          "description": "Количество элементов в выборке",
+          "returns": "Integer"
+        },
+        "get": {
+          "signature": "get(propertyOrValue, value)",
+          "description": "Загружает запись по ID",
+          "parameters": [
+            { "name": "propertyOrValue", "type": "String", "required": true },
+            { "name": "value", "type": "String", "required": false }
+          ],
+          "returns": "SimpleRecord"
+        },
+        "getValue": {
+          "signature": "getValue(property)",
+          "description": "Возвращает значение атрибута",
+          "parameters": [{ "name": "property", "type": "String", "required": true }],
+          "returns": "Any"
+        },
+        "getDisplayValue": {
+          "signature": "getDisplayValue(property)",
+          "description": "Отображаемое значение",
+          "parameters": [{ "name": "property", "type": "String", "required": false }],
+          "returns": "String"
+        },
+        "getAttributes": {
+          "signature": "getAttributes()",
+          "description": "Все атрибуты записи",
+          "returns": "Object"
+        },
+        "getLabel": {
+          "signature": "getLabel(property)",
+          "description": "Заголовок поля",
+          "parameters": [{ "name": "property", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "getTitle": {
+          "signature": "getTitle(attribute)",
+          "description": "Заголовок REM-атрибута",
+          "parameters": [{ "name": "attribute", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "getClassDisplayValue": {
+          "signature": "getClassDisplayValue()",
+          "description": "Заголовок таблицы",
+          "returns": "String"
+        },
+        "getTableName": {
+          "signature": "getTableName()",
+          "description": "Системное имя таблицы",
+          "returns": "String"
+        },
+        "getReModelId": {
+          "signature": "getReModelId()",
+          "description": "ID расширенной модели",
+          "returns": "String"
+        },
+        "getErrors": {
+          "signature": "getErrors()",
+          "description": "Сообщения об ошибках",
+          "returns": "Array<String>"
+        },
+        "initialize": {
+          "signature": "initialize()",
+          "description": "Заполняет поля значениями по умолчанию",
+          "returns": "Void"
+        },
+        "insert": {
+          "signature": "insert()",
+          "description": "Создаёт новую запись",
+          "returns": "String (ID)"
+        },
+        "update": {
+          "signature": "update()",
+          "description": "Обновляет текущую запись",
+          "returns": "String (ID)"
+        },
+        "updateMultiple": {
+          "signature": "updateMultiple()",
+          "description": "Обновляет все записи выборки",
+          "returns": "Boolean"
+        },
+        "deleteRecord": {
+          "signature": "deleteRecord(id)",
+          "description": "Удаляет запись",
+          "parameters": [{ "name": "id", "type": "String", "required": false }],
+          "returns": "Boolean"
+        },
+        "deleteMultiple": {
+          "signature": "deleteMultiple()",
+          "description": "Удаляет записи из выборки",
+          "returns": "Boolean"
+        },
+        "setValue": {
+          "signature": "setValue(property, value)",
+          "description": "Устанавливает значение поля",
+          "parameters": [
+            { "name": "property", "type": "String", "required": true },
+            { "name": "value", "type": "Any", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "setMultipleValue": {
+          "signature": "setMultipleValue(property, value)",
+          "description": "Значение для всех записей выборки",
+          "parameters": [
+            { "name": "property", "type": "String", "required": true },
+            { "name": "value", "type": "Any", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "setReModelId": {
+          "signature": "setReModelId(reModelId)",
+          "description": "Устанавливает ID расширенной модели",
+          "parameters": [{ "name": "reModelId", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "canCreate": {
+          "signature": "canCreate()",
+          "description": "Право создания записей",
+          "returns": "Boolean"
+        },
+        "canRead": {
+          "signature": "canRead()",
+          "description": "Право просмотра записей",
+          "returns": "Boolean"
+        },
+        "canUpdate": {
+          "signature": "canUpdate()",
+          "description": "Право редактирования",
+          "returns": "Boolean"
+        },
+        "canDelete": {
+          "signature": "canDelete()",
+          "description": "Право удаления записей",
+          "returns": "Boolean"
+        },
+        "hasAttachment": {
+          "signature": "hasAttachment()",
+          "description": "Наличие вложений",
+          "returns": "Boolean"
+        },
+        "isTableVcsEnabled": {
+          "signature": "isTableVcsEnabled()",
+          "description": "Контроль версий таблицы",
+          "returns": "Boolean"
+        },
+        "matchesCondition": {
+          "signature": "matchesCondition(condition)",
+          "description": "Соответствие условию",
+          "parameters": [{ "name": "condition", "type": "String", "required": true }],
+          "returns": "Boolean"
+        },
+        "getJournalInput": {
+          "signature": "getJournalInput(name)",
+          "description": "Объект поля Journal Input",
+          "parameters": [{ "name": "name", "type": "String", "required": true }],
+          "returns": "Object"
+        },
+        "setAbortAction": {
+          "signature": "setAbortAction(flag, message)",
+          "description": "Прерывает операцию",
+          "parameters": [
+            { "name": "flag", "type": "Boolean", "required": true },
+            { "name": "message", "type": "String", "required": false }
+          ],
+          "returns": "Void"
+        },
+        "silentMode": {
+          "signature": "silentMode(enable)",
+          "description": "Обновление без бизнес-логики",
+          "parameters": [{ "name": "enable", "type": "Boolean", "required": false, "default": true }],
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleAttachment": {
+      "name": "SimpleAttachment",
+      "globalObject": null,
+      "description": "Серверный класс для работы с вложениями (файлами)",
+      "constructor": "SimpleAttachment()",
+      "methods": {
+        "base64Decode": {
+          "signature": "base64Decode(data, strict)",
+          "description": "Декодирование Base64 → ASCII",
+          "parameters": [
+            { "name": "data", "type": "String", "required": true },
+            { "name": "strict", "type": "Boolean", "required": false, "default": true }
+          ],
+          "returns": "String"
+        },
+        "base64Encode": {
+          "signature": "base64Encode(data)",
+          "description": "Кодирование ASCII → Base64",
+          "parameters": [{ "name": "data", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "copy": {
+          "signature": "copy(sourceTableName, sourceID, targetTableName, targetID)",
+          "description": "Копирование вложений между записями",
+          "parameters": [
+            { "name": "sourceTableName", "type": "String", "required": true },
+            { "name": "sourceID", "type": "String", "required": true },
+            { "name": "targetTableName", "type": "String", "required": true },
+            { "name": "targetID", "type": "String", "required": true }
+          ],
+          "returns": "Boolean"
+        },
+        "deleteAttachment": {
+          "signature": "deleteAttachment(attachmentID)",
+          "description": "Удаление вложения",
+          "parameters": [{ "name": "attachmentID", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "getAttachmentUrlById": {
+          "signature": "getAttachmentUrlById(attachmentId)",
+          "description": "URL вложения в S3",
+          "parameters": [{ "name": "attachmentId", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "getContent": {
+          "signature": "getContent(attachmentId)",
+          "description": "Текстовое содержимое вложения",
+          "parameters": [{ "name": "attachmentId", "type": "SimpleRecord", "required": true }],
+          "returns": "String/Object|null"
+        },
+        "readBase64": {
+          "signature": "readBase64(attachmentId)",
+          "description": "Чтение вложения как Base64 (до 10 Мб)",
+          "parameters": [{ "name": "attachmentId", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "rename": {
+          "signature": "rename(attachmentId, fileName)",
+          "description": "Переименование вложения",
+          "parameters": [
+            { "name": "attachmentId", "type": "String", "required": true },
+            { "name": "fileName", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "write": {
+          "signature": "write(documentId, fileName, content, mimeContentType)",
+          "description": "Создание вложения из строки",
+          "parameters": [
+            { "name": "documentId", "type": "String", "required": true },
+            { "name": "fileName", "type": "String", "required": true },
+            { "name": "content", "type": "String", "required": true },
+            { "name": "mimeContentType", "type": "String", "required": true }
+          ],
+          "returns": "String|null"
+        },
+        "writeBase64": {
+          "signature": "writeBase64(documentId, fileName, base64, mimeContentType)",
+          "description": "Создание вложения из Base64",
+          "parameters": [
+            { "name": "documentId", "type": "String", "required": true },
+            { "name": "fileName", "type": "String", "required": true },
+            { "name": "base64", "type": "String", "required": true },
+            { "name": "mimeContentType", "type": "String", "required": true }
+          ],
+          "returns": "String|null"
+        }
+      }
+    },
+    "SimpleSystem": {
+      "name": "SimpleSystem",
+      "globalObject": "ss",
+      "description": "Класс для получения информации о системе, текущем пользователе и других системных данных",
+      "methods": {
+        "addInfoMessage": {
+          "signature": "addInfoMessage(message, params)",
+          "description": "Показать информационное сообщение",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true },
+            { "name": "params", "type": "Object", "required": false }
+          ],
+          "returns": "Void",
+          "checkACL": false
+        },
+        "addErrorMessage": {
+          "signature": "addErrorMessage(message, params)",
+          "description": "Показать сообщение об ошибке",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true },
+            { "name": "params", "type": "Object", "required": false }
+          ],
+          "returns": "Void",
+          "checkACL": false
+        },
+        "addSuccessMessage": {
+          "signature": "addSuccessMessage(message, params)",
+          "description": "Показать сообщение об успехе",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true },
+            { "name": "params", "type": "Object", "required": false }
+          ],
+          "returns": "Void",
+          "checkACL": false
+        },
+        "info": {
+          "signature": "info(message)",
+          "description": "Информационное сообщение в sys_log",
+          "parameters": [{ "name": "message", "type": "Any", "required": true }],
+          "returns": "Void"
+        },
+        "debug": {
+          "signature": "debug(message)",
+          "description": "Отладочное сообщение",
+          "parameters": [{ "name": "message", "type": "Any", "required": true }],
+          "returns": "Void"
+        },
+        "warning": {
+          "signature": "warning(message)",
+          "description": "Предупреждение",
+          "parameters": [{ "name": "message", "type": "Any", "required": true }],
+          "returns": "Void"
+        },
+        "error": {
+          "signature": "error(message)",
+          "description": "Сообщение об ошибке",
+          "parameters": [{ "name": "message", "type": "Any", "required": true }],
+          "returns": "Void"
+        },
+        "eventQueue": {
+          "signature": "eventQueue(name, current, param_1...param_5)",
+          "description": "Поставить событие в очередь",
+          "parameters": [
+            { "name": "name", "type": "String", "required": true },
+            { "name": "current", "type": "SimpleRecord", "required": true },
+            { "name": "param_1..5", "type": "String", "required": false }
+          ],
+          "returns": "Void",
+          "checkACL": true
+        },
+        "eventQueueScheduled": {
+          "signature": "eventQueueScheduled(name, current, process_started_at, param_1...param_5)",
+          "description": "Поставить событие в очередь по расписанию",
+          "parameters": [
+            { "name": "name", "type": "String", "required": true },
+            { "name": "current", "type": "SimpleRecord", "required": true },
+            { "name": "process_started_at", "type": "SimpleDateTime", "required": true },
+            { "name": "param_1..5", "type": "String", "required": false }
+          ],
+          "returns": "Void",
+          "checkACL": true
+        },
+        "generateResetToken": {
+          "signature": "generateResetToken()",
+          "description": "Токен для сброса пароля",
+          "returns": "String"
+        },
+        "generateUrlAction": {
+          "signature": "generateUrlAction(userId, script, expire)",
+          "description": "URL для выполнения скрипта",
+          "parameters": [
+            { "name": "userId", "type": "String", "required": true },
+            { "name": "script", "type": "String", "required": true },
+            { "name": "expire", "type": "String", "required": true }
+          ],
+          "returns": "String"
+        },
+        "getApplicationId": {
+          "signature": "getApplicationId()",
+          "description": "ID приложения",
+          "returns": "String",
+          "checkACL": true
+        },
+        "getProperty": {
+          "signature": "getProperty(name)",
+          "description": "Получить системное свойство",
+          "parameters": [{ "name": "name", "type": "String", "required": true }],
+          "returns": "String|null",
+          "checkACL": true
+        },
+        "setProperty": {
+          "signature": "setProperty(name, value, description)",
+          "description": "Установить системное свойство",
+          "parameters": [
+            { "name": "name", "type": "String", "required": true },
+            { "name": "value", "type": "String", "required": true },
+            { "name": "description", "type": "String", "required": false }
+          ],
+          "returns": "Void",
+          "checkACL": true
+        },
+        "getSession": {
+          "signature": "getSession()",
+          "description": "Информация о сессии",
+          "returns": "SimpleSession",
+          "checkACL": false
+        },
+        "getUser": {
+          "signature": "getUser()",
+          "description": "Объект текущего пользователя",
+          "returns": "SimpleRecord",
+          "checkACL": true
+        },
+        "getUserID": {
+          "signature": "getUserID()",
+          "description": "ID текущего пользователя",
+          "returns": "String",
+          "checkACL": true
+        },
+        "getDocIdByIds": {
+          "signature": "getDocIdByIds(tableId, recordId)",
+          "description": "Document ID по ID таблицы и записи",
+          "parameters": [
+            { "name": "tableId", "type": "String", "required": true },
+            { "name": "recordId", "type": "String", "required": true }
+          ],
+          "returns": "String (UUID)"
+        },
+        "getTableIdByDocId": {
+          "signature": "getTableIdByDocId(docId)",
+          "description": "ID таблицы по Document ID",
+          "parameters": [{ "name": "docId", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "getRecordIdByDocId": {
+          "signature": "getRecordIdByDocId(docId)",
+          "description": "ID записи по Document ID",
+          "parameters": [{ "name": "docId", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "hasRole": {
+          "signature": "hasRole(role)",
+          "description": "Проверка роли (включая admin)",
+          "parameters": [{ "name": "role", "type": "String", "required": true }],
+          "returns": "Boolean"
+        },
+        "importIncludeScript": {
+          "signature": "importIncludeScript(name)",
+          "description": "Импорт внешнего скрипта",
+          "parameters": [{ "name": "name", "type": "String", "required": true }],
+          "returns": "Boolean"
+        },
+        "setRedirect": {
+          "signature": "setRedirect(url)",
+          "description": "Перенаправление на URL",
+          "parameters": [{ "name": "url", "type": "String", "required": false }],
+          "returns": "Void"
+        },
+        "getLogoURL": {
+          "signature": "getLogoURL()",
+          "description": "Ссылка на логотип",
+          "returns": "String"
+        },
+        "getLogoBase64": {
+          "signature": "getLogoBase64()",
+          "description": "Логотип в Base64",
+          "returns": "String"
+        }
+      }
+    },
+    "SimpleWebService": {
+      "name": "SimpleWebService",
+      "globalObject": "sws",
+      "description": "Класс для создания и выполнения REST-запросов к внешним веб-сервисам",
+      "methods": {
+        "restRequestV1": {
+          "signature": "restRequestV1(requestName, methodName)",
+          "description": "Создание объекта REST-запроса",
+          "parameters": [
+            { "name": "requestName", "type": "String", "required": false },
+            { "name": "methodName", "type": "String", "required": false }
+          ],
+          "returns": "SimpleRestRequest"
+        }
+      }
+    },
+    "SimpleRestRequest": {
+      "name": "SimpleRestRequest",
+      "globalObject": null,
+      "description": "Класс для создания, настройки и выполнения HTTP/HTTPS запросов",
+      "methods": {
+        "setRequestUrl": {
+          "signature": "setRequestUrl(requestUrl)",
+          "description": "URL запроса (http/https)",
+          "parameters": [{ "name": "requestUrl", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setRequestMethod": {
+          "signature": "setRequestMethod(methodName)",
+          "description": "HTTP-метод (GET, POST, PUT...)",
+          "parameters": [{ "name": "methodName", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setRequestTimeout": {
+          "signature": "setRequestTimeout(timeout)",
+          "description": "Таймаут в секундах",
+          "parameters": [{ "name": "timeout", "type": "Integer", "required": true }],
+          "returns": "Void"
+        },
+        "setRequestBody": {
+          "signature": "setRequestBody(body)",
+          "description": "Тело запроса (PUT/POST)",
+          "parameters": [{ "name": "body", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setRequestHeader": {
+          "signature": "setRequestHeader(name, value)",
+          "description": "HTTP-заголовок",
+          "parameters": [
+            { "name": "name", "type": "String", "required": true },
+            { "name": "value", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "setBasicAuth": {
+          "signature": "setBasicAuth(userName, userPassword)",
+          "description": "Базовая авторизация",
+          "parameters": [
+            { "name": "userName", "type": "String", "required": true },
+            { "name": "userPassword", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "setQueryParameter": {
+          "signature": "setQueryParameter(name, value)",
+          "description": "Параметр URL",
+          "parameters": [
+            { "name": "name", "type": "String", "required": true },
+            { "name": "value", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "setStringParameter": {
+          "signature": "setStringParameter(name, value)",
+          "description": "Переменная запроса",
+          "parameters": [
+            { "name": "name", "type": "String", "required": true },
+            { "name": "value", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "addFileContent": {
+          "signature": "addFileContent(content, paramName, fileName)",
+          "description": "Файл для POST (base64)",
+          "parameters": [
+            { "name": "content", "type": "String", "required": true },
+            { "name": "paramName", "type": "String", "required": true },
+            { "name": "fileName", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "useHttp2": {
+          "signature": "useHttp2(value)",
+          "description": "Включить HTTP/2",
+          "parameters": [{ "name": "value", "type": "Boolean", "required": false, "default": true }],
+          "returns": "Void"
+        },
+        "getRequestUrl": {
+          "signature": "getRequestUrl()",
+          "description": "URL запроса с параметрами",
+          "returns": "String"
+        },
+        "getRequestBody": {
+          "signature": "getRequestBody()",
+          "description": "Тело запроса",
+          "returns": "String"
+        },
+        "getRequestHeaders": {
+          "signature": "getRequestHeaders()",
+          "description": "Все заголовки",
+          "returns": "Object"
+        },
+        "getRequestMethod": {
+          "signature": "getRequestMethod()",
+          "description": "Метод запроса",
+          "returns": "String"
+        },
+        "execute": {
+          "signature": "execute()",
+          "description": "Отправка запроса",
+          "returns": "SimpleRestResponse"
+        }
+      }
+    },
+    "SimpleRestResponse": {
+      "name": "SimpleRestResponse",
+      "globalObject": null,
+      "description": "Класс для работы с ответами REST-запросов",
+      "methods": {
+        "getBody": {
+          "signature": "getBody()",
+          "description": "Тело ответа",
+          "returns": "String"
+        },
+        "getAllHeaders": {
+          "signature": "getAllHeaders()",
+          "description": "Заголовки ответа",
+          "returns": "Object"
+        },
+        "getContentBase64": {
+          "signature": "getContentBase64()",
+          "description": "Содержимое в Base64 (для бинарных файлов)",
+          "returns": "String|null"
+        },
+        "getStatusCode": {
+          "signature": "getStatusCode()",
+          "description": "HTTP-код состояния",
+          "returns": "String"
+        },
+        "haveError": {
+          "signature": "haveError()",
+          "description": "Флаг наличия ошибок",
+          "returns": "Boolean"
+        }
+      }
+    },
+    "SimpleWorkflow": {
+      "name": "SimpleWorkflow",
+      "globalObject": null,
+      "description": "Класс для управления рабочими процессами (workflow)",
+      "constructor": "SimpleWorkflow(workflowId)",
+      "methods": {
+        "cancel": {
+          "signature": "cancel(current)",
+          "description": "Отмена всех активных контекстов",
+          "parameters": [{ "name": "current", "type": "SimpleRecord", "required": true }],
+          "returns": "Void"
+        },
+        "copy": {
+          "signature": "copy()",
+          "description": "Копирование рабочего процесса",
+          "returns": "SimpleRecord"
+        },
+        "delete": {
+          "signature": "delete()",
+          "description": "Удаление рабочего процесса",
+          "returns": "Boolean"
+        },
+        "hasActiveContexts": {
+          "signature": "hasActiveContexts(current)",
+          "description": "Проверка активных контекстов",
+          "parameters": [{ "name": "current", "type": "SimpleRecord", "required": true }],
+          "returns": "Boolean"
+        },
+        "revival": {
+          "signature": "revival(executingActivity, current)",
+          "description": "Перезапуск рабочего процесса",
+          "parameters": [
+            { "name": "executingActivity", "type": "SimpleRecord", "required": true },
+            { "name": "current", "type": "SimpleRecord", "required": true }
+          ],
+          "returns": "SimpleRecord"
+        },
+        "start": {
+          "signature": "start(current)",
+          "description": "Запуск рабочего процесса",
+          "parameters": [{ "name": "current", "type": "SimpleRecord", "required": true }],
+          "returns": "SimpleRecord"
+        },
+        "startSubflow": {
+          "signature": "startSubflow(executingActivity, current, workflowId)",
+          "description": "Запуск подпроцесса",
+          "parameters": [
+            { "name": "executingActivity", "type": "SimpleRecord", "required": true },
+            { "name": "current", "type": "SimpleRecord", "required": true },
+            { "name": "workflowId", "type": "String", "required": true }
+          ],
+          "returns": "SimpleRecord"
+        }
+      }
+    },
+    "SimpleSearch": {
+      "name": "SimpleSearch",
+      "globalObject": null,
+      "description": "Класс для выполнения полнотекстовых поисковых запросов",
+      "methods": {
+        "recreateAllIndices": {
+          "signature": "recreateAllIndices()",
+          "description": "Переиндексация всех таблиц системы",
+          "returns": "Void"
+        },
+        "recreateIndicesByTableName": {
+          "signature": "recreateIndicesByTableName(tableName)",
+          "description": "Переиндексация указанной таблицы",
+          "parameters": [{ "name": "tableName", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "recreateIndicesByColumnId": {
+          "signature": "recreateIndicesByColumnId(columnId)",
+          "description": "Переиндексация конкретной колонки",
+          "parameters": [{ "name": "columnId", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "search": {
+          "signature": "search(text, tableIDs)",
+          "description": "Поисковый запрос по таблицам",
+          "parameters": [
+            { "name": "text", "type": "String", "required": true },
+            { "name": "tableIDs", "type": "Array<String>", "required": true }
+          ],
+          "returns": "Array<SimpleRecord>"
+        }
+      }
+    },
+    "SimpleMail": {
+      "name": "SimpleMail",
+      "globalObject": null,
+      "description": "Класс для работы с почтовым сервером",
+      "constructor": "SimpleMail()",
+      "methods": {
+        "checkConnection": {
+          "signature": "checkConnection(current)",
+          "description": "Проверка соединения с почтовым сервером",
+          "parameters": [{ "name": "current", "type": "SimpleRecord", "required": true }],
+          "returns": "Boolean"
+        }
+      }
+    },
+    "SimpleCache": {
+      "name": "SimpleCache",
+      "globalObject": null,
+      "description": "Класс для управления системным кэшем платформы",
+      "constructor": "SimpleCache()",
+      "methods": {
+        "resetCacheSystemUrl": {
+          "signature": "resetCacheSystemUrl()",
+          "description": "Сброс кэша URL",
+          "returns": "Boolean"
+        }
+      }
+    },
+    "SimpleEngine": {
+      "name": "SimpleEngine",
+      "globalObject": null,
+      "description": "Класс для расширения функциональности Управления механизмами",
+      "constructor": "SimpleEngine('Название механизма')",
+      "methods": {
+        "getAllEngines": {
+          "signature": "getAllEngines()",
+          "description": "Список всех механизмов (статический)",
+          "static": true,
+          "returns": "Array<String>"
+        },
+        "getEngineOption": {
+          "signature": "getEngineOption(optionName)",
+          "description": "Опция механизма",
+          "parameters": [{ "name": "optionName", "type": "String", "required": true }],
+          "returns": "SimpleEngine"
+        },
+        "getOptionValueForTable": {
+          "signature": "getOptionValueForTable(optionName, tableName)",
+          "description": "Значение опции для таблицы",
+          "parameters": [
+            { "name": "optionName", "type": "String", "required": true },
+            { "name": "tableName", "type": "String", "required": true }
+          ],
+          "returns": "String"
+        },
+        "isEngineEnable": {
+          "signature": "isEngineEnable(tableName)",
+          "description": "Включён ли механизм для таблицы",
+          "parameters": [{ "name": "tableName", "type": "String", "required": true }],
+          "returns": "Boolean"
+        }
+      }
+    },
+    "SimpleTable": {
+      "name": "SimpleTable",
+      "globalObject": null,
+      "description": "Класс для работы с информацией о таблицах системы",
+      "constructor": "SimpleTable(tableName)",
+      "methods": {
+        "getParentTables": {
+          "signature": "getParentTables()",
+          "description": "Родительские таблицы всех уровней",
+          "returns": "Array<Object>"
+        },
+        "getChildTables": {
+          "signature": "getChildTables()",
+          "description": "Дочерние таблицы всех уровней",
+          "returns": "Array<Object>"
+        }
+      }
+    },
+    "SimpleTemplate": {
+      "name": "SimpleTemplate",
+      "globalObject": null,
+      "description": "Класс для работы с шаблонами",
+      "constructor": "SimpleTemplate(templateName)",
+      "methods": {
+        "applyTo": {
+          "signature": "applyTo(record)",
+          "description": "Применить шаблон к записи",
+          "parameters": [{ "name": "record", "type": "SimpleRecord", "required": true }],
+          "returns": "Void"
+        },
+        "applyToByTemplateField": {
+          "signature": "applyToByTemplateField(record, template)",
+          "description": "Применить значение из поля Template",
+          "parameters": [
+            { "name": "record", "type": "SimpleRecord", "required": true },
+            { "name": "template", "type": "Array/String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "createBySimpleRecord": {
+          "signature": "createBySimpleRecord(record, templateName, templateTableName)",
+          "description": "Создать шаблон из SimpleRecord",
+          "parameters": [
+            { "name": "record", "type": "SimpleRecord", "required": true },
+            { "name": "templateName", "type": "String", "required": true },
+            { "name": "templateTableName", "type": "String", "required": false }
+          ],
+          "returns": "String"
+        },
+        "createByTemplateData": {
+          "signature": "createByTemplateData(templateData, tableName, templateName, templateTableName)",
+          "description": "Создать шаблон из данных",
+          "parameters": [
+            { "name": "templateData", "type": "Object", "required": true },
+            { "name": "tableName", "type": "String", "required": true },
+            { "name": "templateName", "type": "String", "required": true },
+            { "name": "templateTableName", "type": "String", "required": false }
+          ],
+          "returns": "String"
+        },
+        "createByTemplateField": {
+          "signature": "createByTemplateField(template, tableName, templateName, templateTableName)",
+          "description": "Создать шаблон из поля Template",
+          "parameters": [
+            { "name": "template", "type": "Object", "required": true },
+            { "name": "tableName", "type": "String", "required": true },
+            { "name": "templateName", "type": "String", "required": true },
+            { "name": "templateTableName", "type": "String", "required": false }
+          ],
+          "returns": "String"
+        },
+        "get": {
+          "signature": "get(templateName)",
+          "description": "Получить шаблон по имени",
+          "parameters": [{ "name": "templateName", "type": "String", "required": true }],
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleVcs": {
+      "name": "SimpleVcs",
+      "globalObject": null,
+      "description": "Класс для работы с системой контроля версий (VCS)",
+      "constructor": "SimpleVcs()",
+      "methods": {
+        "applyRetrievedPack": {
+          "signature": "applyRetrievedPack(retrievedPackId)",
+          "description": "Применение импортированного пакета",
+          "parameters": [{ "name": "retrievedPackId", "type": "String", "required": true }],
+          "returns": "Boolean"
+        },
+        "createTableSnapshot": {
+          "signature": "createTableSnapshot(tableName)",
+          "description": "Создание снимка версий таблицы",
+          "parameters": [{ "name": "tableName", "type": "String", "required": true }],
+          "returns": "Integer"
+        },
+        "exportLocalPackVcsRecords": {
+          "signature": "exportLocalPackVcsRecords(sysVcsLocalPackId)",
+          "description": "Экспорт записей VCS в SOP-файл",
+          "parameters": [{ "name": "sysVcsLocalPackId", "type": "String", "required": true }],
+          "returns": "Object"
+        },
+        "importRetrievedPack": {
+          "signature": "importRetrievedPack(retrievedPackId)",
+          "description": "Импорт записей VCS",
+          "parameters": [{ "name": "retrievedPackId", "type": "String", "required": true }],
+          "returns": "Boolean"
+        },
+        "isLocalPackHasReferences": {
+          "signature": "isLocalPackHasReferences(localPackId)",
+          "description": "Проверка ссылок локального пакета",
+          "parameters": [{ "name": "localPackId", "type": "String", "required": true }],
+          "returns": "Boolean"
+        },
+        "isRetrievedPackHasReferences": {
+          "signature": "isRetrievedPackHasReferences(retrievedPackId)",
+          "description": "Проверка ссылок импортированного пакета",
+          "parameters": [{ "name": "retrievedPackId", "type": "String", "required": true }],
+          "returns": "Boolean"
+        },
+        "loadDataFromAttachment": {
+          "signature": "loadDataFromAttachment(sysVcsRetrievedPackId)",
+          "description": "Загрузка данных из вложения",
+          "parameters": [{ "name": "sysVcsRetrievedPackId", "type": "String", "required": true }],
+          "returns": "Boolean"
+        },
+        "mergeLocalPacks": {
+          "signature": "mergeLocalPacks(rowIds, name, description)",
+          "description": "Объединение локальных пакетов",
+          "parameters": [
+            { "name": "rowIds", "type": "String[]", "required": true },
+            { "name": "name", "type": "String", "required": true },
+            { "name": "description", "type": "String", "required": false }
+          ],
+          "returns": "String"
+        },
+        "moveVcsRecordsToDefault": {
+          "signature": "moveVcsRecordsToDefault(versionIds)",
+          "description": "Перемещение записей в пакет по умолчанию",
+          "parameters": [{ "name": "versionIds", "type": "String[]", "required": true }],
+          "returns": "Boolean"
+        },
+        "preview": {
+          "signature": "preview(sysVcsRetrievedPackId)",
+          "description": "Предварительный просмотр пакета",
+          "parameters": [{ "name": "sysVcsRetrievedPackId", "type": "String", "required": true }],
+          "returns": "Boolean"
+        },
+        "rollback": {
+          "signature": "rollback(packId)",
+          "description": "Откат локального пакета",
+          "parameters": [{ "name": "packId", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "rollBackPreview": {
+          "signature": "rollBackPreview(packId)",
+          "description": "Предпросмотр отката",
+          "parameters": [{ "name": "packId", "type": "String", "required": true }],
+          "returns": "Void"
+        }
+      }
+    }
+  }
+}

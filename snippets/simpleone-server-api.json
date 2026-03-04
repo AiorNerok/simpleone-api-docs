@@ -1,0 +1,620 @@
+{
+  "ss_info": {
+    "prefix": "ss_info",
+    "body": [
+      "ss.info('${1:message}');"
+    ],
+    "description": "Записать информационное сообщение в лог"
+  },
+  "ss_error": {
+    "prefix": "ss_error",
+    "body": [
+      "ss.error('${1:message}');"
+    ],
+    "description": "Записать сообщение об ошибке в лог"
+  },
+  "ss_warning": {
+    "prefix": "ss_warning",
+    "body": [
+      "ss.warning('${1:message}');"
+    ],
+    "description": "Записать предупреждение в лог"
+  },
+  "ss_debug": {
+    "prefix": "ss_debug",
+    "body": [
+      "ss.debug('${1:message}');"
+    ],
+    "description": "Записать отладочное сообщение в лог"
+  },
+  "ss_addInfoMessage": {
+    "prefix": "ss_addInfoMessage",
+    "body": [
+      "ss.addInfoMessage('${1:message}'${2:, {${3:param}: '${4:value}'}});"
+    ],
+    "description": "Показать информационное сообщение пользователю"
+  },
+  "ss_addErrorMessage": {
+    "prefix": "ss_addErrorMessage",
+    "body": [
+      "ss.addErrorMessage('${1:message}');"
+    ],
+    "description": "Показать сообщение об ошибке пользователю"
+  },
+  "ss_addSuccessMessage": {
+    "prefix": "ss_addSuccessMessage",
+    "body": [
+      "ss.addSuccessMessage('${1:message}');"
+    ],
+    "description": "Показать сообщение об успехе"
+  },
+  "simpleRecord_new": {
+    "prefix": "simpleRecord_new",
+    "body": [
+      "const ${1:record} = new SimpleRecord('${2:tableName}');"
+    ],
+    "description": "Создать новый SimpleRecord"
+  },
+  "simpleRecord_query": {
+    "prefix": "simpleRecord_query",
+    "body": [
+      "const ${1:record} = new SimpleRecord('${2:tableName}');",
+      "${1:record}.addQuery('${3:field}', '${4:value}');",
+      "${1:record}.orderBy('${5:column}');",
+      "${1:record}.setLimit(${6:10});",
+      "${1:record}.query();",
+      "while (${1:record}.next()) {",
+      "    ${7:console.log(${1:record}.${8:number});}",
+      "}"
+    ],
+    "description": "Выполнить запрос с фильтрацией"
+  },
+  "simpleRecord_get": {
+    "prefix": "simpleRecord_get",
+    "body": [
+      "const ${1:record} = new SimpleRecord('${2:tableName}');",
+      "${1:record}.get('${3:sys_id}');",
+      "${4:console.log(${1:record}.${5:number});}"
+    ],
+    "description": "Получить запись по ID"
+  },
+  "simpleRecord_insert": {
+    "prefix": "simpleRecord_insert",
+    "body": [
+      "const ${1:record} = new SimpleRecord('${2:tableName}');",
+      "${1:record}.${3:field} = '${4:value}';",
+      "const insertedID = ${1:record}.insert();",
+      "${5:console.log('Inserted ID:', insertedID);}"
+    ],
+    "description": "Вставить новую запись"
+  },
+  "simpleRecord_update": {
+    "prefix": "simpleRecord_update",
+    "body": [
+      "const ${1:record} = new SimpleRecord('${2:tableName}');",
+      "${1:record}.get('${3:sys_id}');",
+      "${1:record}.${4:field} = '${5:value}';",
+      "const updatedID = ${1:record}.update();",
+      "${6:console.log('Updated ID:', updatedID);}"
+    ],
+    "description": "Обновить запись"
+  },
+  "simpleRecord_deleteRecord": {
+    "prefix": "simpleRecord_deleteRecord",
+    "body": [
+      "const ${1:record} = new SimpleRecord('${2:tableName}');",
+      "${1:record}.get('${3:sys_id}');",
+      "const deleted = ${1:record}.deleteRecord();",
+      "${4:console.log('Deleted:', deleted);}"
+    ],
+    "description": "Удалить запись"
+  },
+  "simpleRecord_setValue": {
+    "prefix": "simpleRecord_setValue",
+    "body": [
+      "${1:record}.setValue('${2:property}', ${3:value});"
+    ],
+    "description": "Установить значение поля"
+  },
+  "simpleRecord_getValue": {
+    "prefix": "simpleRecord_getValue",
+    "body": [
+      "const value = ${1:record}.getValue('${2:property}');",
+      "${3:console.log(value);}"
+    ],
+    "description": "Получить значение поля"
+  },
+  "simpleRecord_getDisplayValue": {
+    "prefix": "simpleRecord_getDisplayValue",
+    "body": [
+      "const displayValue = ${1:record}.getDisplayValue('${2:property}');",
+      "${3:console.log(displayValue);}"
+    ],
+    "description": "Получить отображаемое значение поля"
+  },
+  "simpleRecord_canCreate": {
+    "prefix": "simpleRecord_canCreate",
+    "body": [
+      "const ${1:record} = new SimpleRecord('${2:tableName}');",
+      "if (${1:record}.canCreate()) {",
+      "    ${3:// право создания есть}",
+      "} else {",
+      "    ${4:// права создания нет}",
+      "}"
+    ],
+    "description": "Проверить право создания записей"
+  },
+  "simpleRecord_canRead": {
+    "prefix": "simpleRecord_canRead",
+    "body": [
+      "if (${1:record}.canRead()) {",
+      "    ${2:// право чтения есть}",
+      "}"
+    ],
+    "description": "Проверить право просмотра записей"
+  },
+  "simpleRecord_canUpdate": {
+    "prefix": "simpleRecord_canUpdate",
+    "body": [
+      "if (${1:record}.canUpdate()) {",
+      "    ${2:// право редактирования есть}",
+      "}"
+    ],
+    "description": "Проверить право редактирования записей"
+  },
+  "simpleRecord_canDelete": {
+    "prefix": "simpleRecord_canDelete",
+    "body": [
+      "if (${1:record}.canDelete()) {",
+      "    ${2:// право удаления есть}",
+      "}"
+    ],
+    "description": "Проверить право удаления записей"
+  },
+  "simpleRecord_silentMode": {
+    "prefix": "simpleRecord_silentMode",
+    "body": [
+      "${1:record}.silentMode();",
+      "${1:record}.setMultipleValue('${2:field}', '${3:value}');",
+      "${1:record}.updateMultiple();"
+    ],
+    "description": "Обновить записи без бизнес-логики"
+  },
+  "simpleRecord_setAbortAction": {
+    "prefix": "simpleRecord_setAbortAction",
+    "body": [
+      "if (${1:condition}) {",
+      "    current.setAbortAction(true, '${2:Сообщение об ошибке}');",
+      "}"
+    ],
+    "description": "Прервать операцию с сообщением"
+  },
+  "simpleRecord_journalInput": {
+    "prefix": "simpleRecord_journalInput",
+    "body": [
+      "const ${1:journalField} = current.getJournalInput('${2:work_notes}');",
+      "${1:journalField}.setComment('${3:message}', '${4:author}');"
+    ],
+    "description": "Добавить комментарий в Journal Input поле"
+  },
+  "simpleAttachment_base64Decode": {
+    "prefix": "simpleAttachment_base64Decode",
+    "body": [
+      "const attach = new SimpleAttachment();",
+      "const result = attach.base64Decode('${1:base64String}');",
+      "${2:console.log(result);}"
+    ],
+    "description": "Декодировать Base64 в ASCII"
+  },
+  "simpleAttachment_base64Encode": {
+    "prefix": "simpleAttachment_base64Encode",
+    "body": [
+      "const attach = new SimpleAttachment();",
+      "const encoded = attach.base64Encode('${1:asciiString}');",
+      "${2:console.log(encoded);}"
+    ],
+    "description": "Кодировать ASCII в Base64"
+  },
+  "simpleAttachment_write": {
+    "prefix": "simpleAttachment_write",
+    "body": [
+      "const simpleAttach = new SimpleAttachment();",
+      "const attachID = simpleAttach.write(",
+      "    ss.getDocIdByIds('${1:tableName}', '${2:sys_id}'),",
+      "    '${3:filename.txt}',",
+      "    '${4:content}',",
+      "    '${5:text/plain}'",
+      ");",
+      "${6:console.log('Attachment ID:', attachID);}"
+    ],
+    "description": "Создать вложение из строки"
+  },
+  "simpleAttachment_writeBase64": {
+    "prefix": "simpleAttachment_writeBase64",
+    "body": [
+      "const simpleAttach = new SimpleAttachment();",
+      "const attachID = simpleAttach.writeBase64(",
+      "    ss.getDocIdByIds('${1:tableName}', '${2:sys_id}'),",
+      "    '${3:filename.bin}',",
+      "    '${4:base64Data}',",
+      "    '${5:application/octet-stream}'",
+      ");"
+    ],
+    "description": "Создать вложение из Base64"
+  },
+  "simpleAttachment_readBase64": {
+    "prefix": "simpleAttachment_readBase64",
+    "body": [
+      "const read = new SimpleAttachment();",
+      "const base64Data = read.readBase64('${1:attachmentId}');",
+      "${2:console.log(base64Data);}"
+    ],
+    "description": "Прочитать вложение как Base64"
+  },
+  "simpleAttachment_copy": {
+    "prefix": "simpleAttachment_copy",
+    "body": [
+      "const attach = new SimpleAttachment();",
+      "const copied = attach.copy(",
+      "    '${1:sourceTableName}', '${2:sourceID}',",
+      "    '${3:targetTableName}', '${4:targetID}'",
+      ");",
+      "${5:console.log('Copied:', copied);}"
+    ],
+    "description": "Копировать вложения между записями"
+  },
+  "simpleAttachment_getAttachmentUrlById": {
+    "prefix": "simpleAttachment_getAttachmentUrlById",
+    "body": [
+      "const simpleAttach = new SimpleAttachment();",
+      "const url = simpleAttach.getAttachmentUrlById('${1:attachmentId}');",
+      "${2:console.log(url);}"
+    ],
+    "description": "Получить URL вложения в S3"
+  },
+  "ss_eventQueue": {
+    "prefix": "ss_eventQueue",
+    "body": [
+      "ss.eventQueue('${1:eventName}', current, ${2:param_1}, ${3:param_2});"
+    ],
+    "description": "Поставить событие в очередь"
+  },
+  "ss_eventQueueScheduled": {
+    "prefix": "ss_eventQueueScheduled",
+    "body": [
+      "const processTime = new SimpleDateTime();",
+      "processTime.addDays(${1:3});",
+      "ss.eventQueueScheduled('${2:eventName}', current, processTime, ${3:param_1});"
+    ],
+    "description": "Поставить событие в очередь по расписанию"
+  },
+  "ss_generateResetToken": {
+    "prefix": "ss_generateResetToken",
+    "body": [
+      "const resetToken = ss.generateResetToken();",
+      "${1:console.log(resetToken);}"
+    ],
+    "description": "Сгенерировать токен сброса пароля"
+  },
+  "ss_generateUrlAction": {
+    "prefix": "ss_generateUrlAction",
+    "body": [
+      "const url = ss.generateUrlAction('${1:userId}', '${2:script}', '${3:expire}');",
+      "${4:console.log(url);}"
+    ],
+    "description": "Сгенерировать URL для выполнения скрипта"
+  },
+  "ss_getProperty": {
+    "prefix": "ss_getProperty",
+    "body": [
+      "const value = ss.getProperty('${1:propertyName}');",
+      "${2:console.log(value);}"
+    ],
+    "description": "Получить системное свойство"
+  },
+  "ss_setProperty": {
+    "prefix": "ss_setProperty",
+    "body": [
+      "ss.setProperty('${1:propertyName}', '${2:value}', '${3:description}');"
+    ],
+    "description": "Установить системное свойство"
+  },
+  "ss_getUser": {
+    "prefix": "ss_getUser",
+    "body": [
+      "const user = ss.getUser();",
+      "${1:console.log(user.getTableName());}"
+    ],
+    "description": "Получить объект текущего пользователя"
+  },
+  "ss_getUserID": {
+    "prefix": "ss_getUserID",
+    "body": [
+      "const userId = ss.getUserID();",
+      "${1:console.log(userId);}"
+    ],
+    "description": "Получить ID текущего пользователя"
+  },
+  "ss_getDocIdByIds": {
+    "prefix": "ss_getDocIdByIds",
+    "body": [
+      "const docID = ss.getDocIdByIds('${1:tableId}', '${2:recordId}');",
+      "${3:console.log(docID);}"
+    ],
+    "description": "Получить Document ID по ID таблицы и записи"
+  },
+  "ss_hasRole": {
+    "prefix": "ss_hasRole",
+    "body": [
+      "if (ss.hasRole('${1:role}')) {",
+      "    ${2:// пользователь имеет роль}",
+      "}"
+    ],
+    "description": "Проверить наличие роли у пользователя"
+  },
+  "ss_importIncludeScript": {
+    "prefix": "ss_importIncludeScript",
+    "body": [
+      "ss.importIncludeScript('${1:scriptName}');",
+      "${2:const result = scriptFunction();}"
+    ],
+    "description": "Импортировать внешний скрипт"
+  },
+  "ss_setRedirect": {
+    "prefix": "ss_setRedirect",
+    "body": [
+      "ss.setRedirect('${1:/record/task?sys_id=ID}');"
+    ],
+    "description": "Перенаправить на URL"
+  },
+  "simpleRestRequest_execute": {
+    "prefix": "simpleRestRequest_execute",
+    "body": [
+      "const request = sws.restRequestV1('${1:requestName}', '${2:methodName}');",
+      "request.setStringParameter('${3:paramName}', '${4:paramValue}');",
+      "const response = request.execute();",
+      "if (response.haveError()) {",
+      "    ${5:ss.error('Ошибка при выполнении запроса');}",
+      "} else {",
+      "    ${6:const body = response.getBody();}",
+      "    ${7:console.log(body);}",
+      "}"
+    ],
+    "description": "Выполнить REST запрос"
+  },
+  "simpleRestRequest_manual": {
+    "prefix": "simpleRestRequest_manual",
+    "body": [
+      "const request = sws.restRequestV1();",
+      "request.setRequestUrl('${1:https://api.example.com/endpoint}');",
+      "request.setRequestMethod('${2:GET}');",
+      "request.setRequestHeader('Content-type', 'application/json');",
+      "const response = request.execute();",
+      "${3:console.log(response.getBody());}"
+    ],
+    "description": "Выполнить REST запрос с ручной настройкой"
+  },
+  "simpleRestRequest_auth": {
+    "prefix": "simpleRestRequest_auth",
+    "body": [
+      "const request = sws.restRequestV1();",
+      "request.setRequestUrl('${1:https://api.example.com/auth}');",
+      "request.setRequestMethod('POST');",
+      "request.setBasicAuth('${2:username}', '${3:password}');",
+      "const response = request.execute();",
+      "${4:const authKey = JSON.parse(response.getBody()).data.auth_key;}"
+    ],
+    "description": "Выполнить REST запрос с авторизацией"
+  },
+  "simpleRestResponse_getBody": {
+    "prefix": "simpleRestResponse_getBody",
+    "body": [
+      "const body = response.getBody();",
+      "${1:console.log(body);}"
+    ],
+    "description": "Получить тело ответа REST"
+  },
+  "simpleRestResponse_getStatusCode": {
+    "prefix": "simpleRestResponse_getStatusCode",
+    "body": [
+      "const statusCode = response.getStatusCode();",
+      "${1:console.log(statusCode);}"
+    ],
+    "description": "Получить HTTP код состояния"
+  },
+  "simpleWorkflow_start": {
+    "prefix": "simpleWorkflow_start",
+    "body": [
+      "const workflowManager = new SimpleWorkflow('${1:workflowId}');",
+      "const context = workflowManager.start(current);",
+      "if (context.state === 'finished') {",
+      "    ${2:ss.info('Рабочий процесс завершен!');}",
+      "}"
+    ],
+    "description": "Запустить рабочий процесс"
+  },
+  "simpleWorkflow_cancel": {
+    "prefix": "simpleWorkflow_cancel",
+    "body": [
+      "const simpleWorkflow = new SimpleWorkflow('${1:workflowId}');",
+      "if (simpleWorkflow.hasActiveContexts(current)) {",
+      "    simpleWorkflow.cancel(current);",
+      "}"
+    ],
+    "description": "Отменить активные контексты workflow"
+  },
+  "simpleWorkflow_startSubflow": {
+    "prefix": "simpleWorkflow_startSubflow",
+    "body": [
+      "const workflowManager = new SimpleWorkflow();",
+      "const subflowContext = workflowManager.startSubflow(",
+      "    activity, current, '${1:subflowWorkflowId}'",
+      ");",
+      "${2:console.log(subflowContext.state);}"
+    ],
+    "description": "Запустить подпроцесс workflow"
+  },
+  "simpleSearch_search": {
+    "prefix": "simpleSearch_search",
+    "body": [
+      "const searchManager = new SimpleSearch();",
+      "const results = searchManager.search('${1:text}', ['${2:tableId}']);",
+      "results.forEach(foundRecord => {",
+      "    ${3:ss.info(foundRecord.getTableName() + '/' + foundRecord.sys_id);}",
+      "});"
+    ],
+    "description": "Выполнить полнотекстовый поиск"
+  },
+  "simpleSearch_recreateIndices": {
+    "prefix": "simpleSearch_recreateIndices",
+    "body": [
+      "const searchManager = new SimpleSearch();",
+      "searchManager.recreateIndicesByTableName('${1:tableName}');"
+    ],
+    "description": "Переиндексировать таблицу"
+  },
+  "simpleMail_checkConnection": {
+    "prefix": "simpleMail_checkConnection",
+    "body": [
+      "const mail = new SimpleMail();",
+      "if (mail.checkConnection(current)) {",
+      "    ss.addInfoMessage('Соединение установлено');",
+      "} else {",
+      "    ss.addErrorMessage('Соединение не установлено');",
+      "}"
+    ],
+    "description": "Проверить соединение с почтовым сервером"
+  },
+  "simpleCache_resetCacheSystemUrl": {
+    "prefix": "simpleCache_resetCacheSystemUrl",
+    "body": [
+      "const cacheSystem = new SimpleCache();",
+      "const result = cacheSystem.resetCacheSystemUrl();",
+      "if (result) {",
+      "    ${1:ss.info('Кэш успешно сброшен');}",
+      "}"
+    ],
+    "description": "Сбросить кэш URL"
+  },
+  "simpleEngine_getAllEngines": {
+    "prefix": "simpleEngine_getAllEngines",
+    "body": [
+      "ss.importIncludeScript('SimpleEngine');",
+      "const engines = SimpleEngine.getAllEngines();",
+      "${1:console.log(engines);}"
+    ],
+    "description": "Получить список всех механизмов"
+  },
+  "simpleEngine_isEngineEnable": {
+    "prefix": "simpleEngine_isEngineEnable",
+    "body": [
+      "const engine = new SimpleEngine('${1:Engine Name}');",
+      "if (engine.isEngineEnable('${2:tableName}')) {",
+      "    ${3:ss.info('Механизм включен');}",
+      "}"
+    ],
+    "description": "Проверить включён ли механизм для таблицы"
+  },
+  "simpleTable_getParentTables": {
+    "prefix": "simpleTable_getParentTables",
+    "body": [
+      "const table = new SimpleTable('${1:tableName}');",
+      "const parents = table.getParentTables();",
+      "${2:console.log('Родительская таблица:', parents[0].name);}"
+    ],
+    "description": "Получить родительские таблицы"
+  },
+  "simpleTable_getChildTables": {
+    "prefix": "simpleTable_getChildTables",
+    "body": [
+      "const table = new SimpleTable('${1:tableName}');",
+      "const children = table.getChildTables();",
+      "for (let child of children) {",
+      "    ${2:ss.info('Дочерняя таблица: ' + child.name);}",
+      "}"
+    ],
+    "description": "Получить дочерние таблицы"
+  },
+  "simpleTemplate_applyTo": {
+    "prefix": "simpleTemplate_applyTo",
+    "body": [
+      "const template = new SimpleTemplate('${1:templateName}');",
+      "const record = new SimpleRecord('${2:tableName}');",
+      "template.applyTo(record);",
+      "${3:record.insert();}"
+    ],
+    "description": "Применить шаблон к записи"
+  },
+  "simpleTemplate_createBySimpleRecord": {
+    "prefix": "simpleTemplate_createBySimpleRecord",
+    "body": [
+      "const record = new SimpleRecord('${1:tableName}');",
+      "record.get('${2:sys_id}');",
+      "const template = new SimpleTemplate();",
+      "const templateId = template.createBySimpleRecord(record, '${3:templateName}');",
+      "${4:console.log(templateId);}"
+    ],
+    "description": "Создать шаблон из SimpleRecord"
+  },
+  "simpleVcs_importRetrievedPack": {
+    "prefix": "simpleVcs_importRetrievedPack",
+    "body": [
+      "const vcs = new SimpleVcs();",
+      "if (!vcs.importRetrievedPack(current.sys_id)) {",
+      "    ss.addErrorMessage('Ошибка импорта данных');",
+      "    return;",
+      "}",
+      "if (!vcs.applyRetrievedPack(current.sys_id)) {",
+      "    ss.addErrorMessage('Ошибка применения данных');",
+      "}"
+    ],
+    "description": "Импортировать и применить пакет VCS"
+  },
+  "simpleVcs_mergeLocalPacks": {
+    "prefix": "simpleVcs_mergeLocalPacks",
+    "body": [
+      "const vcsLocalPackId = [",
+      "    '${1:packId1}',",
+      "    '${2:packId2}'",
+      "];",
+      "const vcs = new SimpleVcs();",
+      "const mergedId = vcs.mergeLocalPacks(vcsLocalPackId, '${3:mergedName}', '${4:mergedDescription}');",
+      "${5:console.log('ID объединенного пакета:', mergedId);}"
+    ],
+    "description": "Объединить локальные пакеты VCS"
+  },
+  "simpleVcs_createTableSnapshot": {
+    "prefix": "simpleVcs_createTableSnapshot",
+    "body": [
+      "const vcs = new SimpleVcs();",
+      "const versionCount = vcs.createTableSnapshot('${1:tableName}');",
+      "${2:console.log('Создано версий:', versionCount);}"
+    ],
+    "description": "Создать снимок версий таблицы"
+  },
+  "simpleVcs_rollback": {
+    "prefix": "simpleVcs_rollback",
+    "body": [
+      "const vcs = new SimpleVcs();",
+      "vcs.rollback('${1:packId}');"
+    ],
+    "description": "Откатить локальный пакет"
+  },
+  "simpleDateTime_new": {
+    "prefix": "simpleDateTime_new",
+    "body": [
+      "const dateTime = new SimpleDateTime();",
+      "dateTime.addDays(${1:3});",
+      "${2:console.log(dateTime.getValue());}"
+    ],
+    "description": "Создать объект даты и времени"
+  },
+  "simpleSession_get": {
+    "prefix": "simpleSession_get",
+    "body": [
+      "const session = ss.getSession();",
+      "${1:console.log(session.getClientIP());}"
+    ],
+    "description": "Получить информацию о сессии"
+  }
+}

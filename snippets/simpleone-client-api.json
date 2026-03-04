@@ -1,0 +1,274 @@
+{
+  "s_i18n_getMessage": {
+    "prefix": "s_i18n_getMessage",
+    "body": [
+      "await s_i18n.getMessage('${1:msgKey}', {",
+      "    params: { ${2:paramName}: ${3:paramValue} },",
+      "    language: '${4:ru}',",
+      "    category: '${5:app}'",
+      "}, (response) => {",
+      "    ${6:console.log(response);}",
+      "});"
+    ],
+    "description": "Получить переведённое сообщение с ключом"
+  },
+  "s_i18n_getMessages": {
+    "prefix": "s_i18n_getMessages",
+    "body": [
+      "const data = {};",
+      "const btnTitles = [${1:'Accept', 'Cancel'}];",
+      "await s_i18n.getMessages(btnTitles, (response) => {",
+      "    [${2:data.acceptBtnTitle}, ${3:data.cancelBtnTitle}] = response;",
+      "});"
+    ],
+    "description": "Получить массив переведённых строк"
+  },
+  "simpleAjax_new": {
+    "prefix": "simpleAjax_new",
+    "body": [
+      "const sAjax = new SimpleAjax('${1:externalScriptName}');",
+      "sAjax.addParam('sysparm_${2:paramName}', '${3:paramValue}');",
+      "sAjax.getXML(${4:callback});",
+      "",
+      "function ${5:callback}(response) {",
+      "    const answer = response.responseXML.documentElement.getAttribute('answer');",
+      "    ${6:console.log(answer);}",
+      "}"
+    ],
+    "description": "Создать SimpleAjax и выполнить запрос"
+  },
+  "simpleAjax_runScript": {
+    "prefix": "simpleAjax_runScript",
+    "body": [
+      "const simpleAjax = new SimpleAjax();",
+      "await simpleAjax.runScript(",
+      "    `const current = new SimpleRecord('${1:tableName}');",
+      "     current.get('${2:CURRENT_ID}');",
+      "     setResult(current.${3:field})`,",
+      "    null,",
+      "    (response) => {",
+      "        ${4:console.log(response.data.result);}",
+      "    }",
+      ");"
+    ],
+    "description": "Выполнить серверный скрипт с клиента"
+  },
+  "simpleEventBus_on": {
+    "prefix": "simpleEventBus_on",
+    "body": [
+      "const obj = SimpleEventBus.on('${1:eventType}', (data) => {",
+      "    ${2:alert(data);}",
+      "});",
+      "// Отписка: obj.unsubscribe();"
+    ],
+    "description": "Подписаться на событие"
+  },
+  "simpleEventBus_emit": {
+    "prefix": "simpleEventBus_emit",
+    "body": [
+      "SimpleEventBus.emit('${1:eventType}', ${2:data});"
+    ],
+    "description": "Инициировать событие"
+  },
+  "s_form_setValue": {
+    "prefix": "s_form_setValue",
+    "body": [
+      "await s_form.setValue('${1:fieldName}', '${2:value}');"
+    ],
+    "description": "Установить значение поля формы"
+  },
+  "s_form_getValue": {
+    "prefix": "s_form_getValue",
+    "body": [
+      "const value = s_form.getValue('${1:fieldName}');",
+      "${2:console.log(value);}"
+    ],
+    "description": "Получить значение поля формы"
+  },
+  "s_form_save": {
+    "prefix": "s_form_save",
+    "body": [
+      "try {",
+      "    const sysId = await s_form.save();",
+      "    ${1:console.log('Запись сохранена:', sysId);}",
+      "} catch (error) {",
+      "    ${2:console.error('Ошибка сохранения:', error);}",
+      "}"
+    ],
+    "description": "Сохранить форму"
+  },
+  "s_form_addInfoMessage": {
+    "prefix": "s_form_addInfoMessage",
+    "body": [
+      "s_form.addInfoMessage('${1:message}', ${2:5000});"
+    ],
+    "description": "Показать информационное сообщение"
+  },
+  "s_form_addErrorMessage": {
+    "prefix": "s_form_addErrorMessage",
+    "body": [
+      "s_form.addErrorMessage('${1:message}');"
+    ],
+    "description": "Показать сообщение об ошибке"
+  },
+  "s_form_addSuccessMessage": {
+    "prefix": "s_form_addSuccessMessage",
+    "body": [
+      "s_form.addSuccessMessage('${1:message}', ${2:5000});"
+    ],
+    "description": "Показать сообщение об успехе"
+  },
+  "s_form_setVisible": {
+    "prefix": "s_form_setVisible",
+    "body": [
+      "s_form.setVisible('${1:fieldName}', ${2:true});"
+    ],
+    "description": "Установить видимость поля"
+  },
+  "s_form_setReadOnly": {
+    "prefix": "s_form_setReadOnly",
+    "body": [
+      "s_form.setReadOnly('${1:fieldName}', ${2:true});"
+    ],
+    "description": "Установить доступность поля (только чтение)"
+  },
+  "s_form_setMandatory": {
+    "prefix": "s_form_setMandatory",
+    "body": [
+      "s_form.setMandatory('${1:fieldName}', ${2:true});"
+    ],
+    "description": "Установить обязательность поля"
+  },
+  "s_form_showFieldMsg": {
+    "prefix": "s_form_showFieldMsg",
+    "body": [
+      "s_form.showFieldMsg('${1:fieldName}', '${2:message}', '${3:type}');"
+    ],
+    "description": "Показать сообщение под полем"
+  },
+  "s_go_open": {
+    "prefix": "s_go_open",
+    "body": [
+      "s_go.open('${1:/record/task?sys_id=ID}', '${2:_blank}', (${3:newWindow}) => {",
+      "    ${4:// callback}",
+      "});"
+    ],
+    "description": "Переход по URL"
+  },
+  "s_go_openRecord": {
+    "prefix": "s_go_openRecord",
+    "body": [
+      "s_go.openRecord('${1:tableName}', '${2:sys_id}');"
+    ],
+    "description": "Открыть форму записи"
+  },
+  "s_go_openList": {
+    "prefix": "s_go_openList",
+    "body": [
+      "s_go.openList('${1:tableName}', '${2:condition=(active=1)}');"
+    ],
+    "description": "Открыть список таблицы"
+  },
+  "s_list_deleteRows": {
+    "prefix": "s_list_deleteRows",
+    "body": [
+      "const table = s_list.getTablesName()[0];",
+      "const selectedRows = s_list.getCheckedRow(table);",
+      "s_list.deleteRows(table, selectedRows)",
+      "  .then(() => {",
+      "      ${1:s_list.refresh(table);}",
+      "  });"
+    ],
+    "description": "Удалить отмеченные строки списка"
+  },
+  "s_list_refresh": {
+    "prefix": "s_list_refresh",
+    "body": [
+      "s_list.refresh('${1:tableName}');"
+    ],
+    "description": "Обновить список"
+  },
+  "s_modal_setTitle": {
+    "prefix": "s_modal_setTitle",
+    "body": [
+      "s_modal.setTitle('${1:Заголовок}');",
+      "s_modal.setWidth(${2:500});",
+      "s_modal.renderTemplate(",
+      "    '<div><h1>${3:Контент}</h1></div>',",
+      "    '${4:h1 {color: red};}'",
+      ");",
+      "s_modal.setShow(true);"
+    ],
+    "description": "Показать модальное окно"
+  },
+  "s_user_getPreference": {
+    "prefix": "s_user_getPreference",
+    "body": [
+      "const response = await s_user.getPreference('${1:preference_name}');",
+      "${2:console.log(response);}"
+    ],
+    "description": "Получить настройку пользователя"
+  },
+  "s_user_setPreference": {
+    "prefix": "s_user_setPreference",
+    "body": [
+      "await s_user.setPreference('${1:name}', '${2:value}');"
+    ],
+    "description": "Установить настройку пользователя"
+  },
+  "s_user_getFullName": {
+    "prefix": "s_user_getFullName",
+    "body": [
+      "const fullName = s_user.getFullName();",
+      "${1:console.log(fullName);}"
+    ],
+    "description": "Получить полное имя пользователя"
+  },
+  "simpleRecord_client_new": {
+    "prefix": "simpleRecord_client_new",
+    "body": [
+      "const record = new SimpleRecord('${1:tableName}');",
+      "record.addQuery('${2:field}', '${3:like}', '${4:value}');",
+      "record.orderBy('${5:sys_created_at}');",
+      "record.setLimit(${6:10});",
+      "record.query(() => {",
+      "    while (record.next()) {",
+      "        ${7:console.log(record.${8:number});}",
+      "    }",
+      "});"
+    ],
+    "description": "Создать запрос SimpleRecord (клиент)"
+  },
+  "simpleStorage_setItem": {
+    "prefix": "simpleStorage_setItem",
+    "body": [
+      "SimpleStorage.setItem('${1:key}', '${2:value}');"
+    ],
+    "description": "Сохранить значение в хранилище"
+  },
+  "simpleStorage_getItem": {
+    "prefix": "simpleStorage_getItem",
+    "body": [
+      "const value = SimpleStorage.getItem('${1:key}');",
+      "${2:console.log(value);}"
+    ],
+    "description": "Получить значение из хранилища"
+  },
+  "ss_getTablePrefix": {
+    "prefix": "ss_getTablePrefix",
+    "body": [
+      "if (s_form.isNewRecord()) {",
+      "    const promise = await ss.getTablePrefix();",
+      "    s_form.setValue('${1:fieldName}', promise);",
+      "}"
+    ],
+    "description": "Получить префикс таблицы приложения"
+  },
+  "s_pref_refresh": {
+    "prefix": "s_pref_refresh",
+    "body": [
+      "await s_pref.refresh();"
+    ],
+    "description": "Обновить меню настроек"
+  }
+}
