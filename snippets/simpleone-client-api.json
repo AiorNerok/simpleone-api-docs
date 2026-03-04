@@ -270,5 +270,69 @@
       "await s_pref.refresh();"
     ],
     "description": "Обновить меню настроек"
+  },
+  "s_widget_setFieldValue": {
+    "prefix": "s_widget_setFieldValue",
+    "body": [
+      "s_widget.setFieldValue('${1:key}', ${2:value});"
+    ],
+    "description": "Установить значение поля виджета"
+  },
+  "s_widget_getFieldValue": {
+    "prefix": "s_widget_getFieldValue",
+    "body": [
+      "const value = s_widget.getFieldValue('${1:key}');",
+      "${2:console.log(value);}"
+    ],
+    "description": "Получить значение поля виджета"
+  },
+  "s_widget_addTemplate": {
+    "prefix": "s_widget_addTemplate",
+    "body": [
+      "s_widget.addTemplate('${1:id}', '<div>${2:content}</div>', '${3:script}', '${4:inner}');"
+    ],
+    "description": "Добавить дочерний шаблон к элементу виджета"
+  },
+  "s_widget_serverUpdate": {
+    "prefix": "s_widget_serverUpdate",
+    "body": [
+      "(async () => {",
+      "    s_widget.setFieldValue('${1:key}', ${2:value});",
+      "    const response = await s_widget.serverUpdate();",
+      "    ${3:console.log(response.getData().data);}",
+      "})();"
+    ],
+    "description": "Выполнить серверный скрипт виджета"
+  },
+  "s_widgets_getFieldValue": {
+    "prefix": "s_widgets_getFieldValue",
+    "body": [
+      "const value = s_widgets.getFieldValue('${1:widgetInstanceID}', '${2:key}');",
+      "${3:console.log(value);}"
+    ],
+    "description": "Получить значение поля виджета по ID экземпляра"
+  },
+  "s_widgets_setFieldValue": {
+    "prefix": "s_widgets_setFieldValue",
+    "body": [
+      "s_widgets.setFieldValue('${1:widgetInstanceID}', '${2:key}', ${3:value});"
+    ],
+    "description": "Установить значение поля виджета по ID экземпляра"
+  },
+  "s_widgets_getList": {
+    "prefix": "s_widgets_getList",
+    "body": [
+      "const list = s_widgets.getList('${1:name}');",
+      "${2:console.log(list);}"
+    ],
+    "description": "Получить список записей по имени виджета"
+  },
+  "s_widgets_getForm": {
+    "prefix": "s_widgets_getForm",
+    "body": [
+      "const form = s_widgets.getForm('${1:name}');",
+      "${2:await form.save();}"
+    ],
+    "description": "Получить встроенную форму"
   }
 }

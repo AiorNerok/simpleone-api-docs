@@ -534,6 +534,111 @@ declare namespace s_user {
     function setPreference(name: string, value: string): Promise<any>;
 }
 
+/**
+ * SimpleWidget - настройка структуры и функциональности текущего виджета
+ * @example s_widget.setFieldValue('table_name', tableName);
+ */
+declare namespace s_widget {
+    /**
+     * Добавляет дочерний шаблон к существующему элементу по его ID
+     * @param id - ID тега div
+     * @param template - Тело шаблона
+     * @param script - Скрипт шаблона (запускается один раз)
+     * @param type - Тип добавления: 'inner', 'before', 'after' (по умолчанию 'inner')
+     */
+    function addTemplate(id: string, template: string, script?: string, type?: 'inner' | 'before' | 'after'): void;
+
+    /** Возвращает массив элементов структуры виджета */
+    function getElements(): HTMLElement[];
+
+    /**
+     * Получает значение данных виджета по указанному ключу
+     * @param key - Ключ поля
+     */
+    function getFieldValue(key: string): any;
+
+    /** Возвращает ID экземпляра виджета */
+    function getId(): string;
+
+    /**
+     * Получает значение опции из схемы виджета по ключу
+     * @param key - Ключ опции из схемы
+     */
+    function getOptionValue(key: string): any;
+
+    /**
+     * Удаляет все дочерние узлы и содержимое элемента
+     * @param id - ID тега div
+     */
+    function removeTemplate(id: string): void;
+
+    /**
+     * Устанавливает значение для указанного ключа поля
+     * @param key - Ключ поля
+     * @param value - Новое значение
+     */
+    function setFieldValue(key: string, value: any): void;
+
+    /** Переносит данные на сервер для выполнения серверного скрипта виджета */
+    function serverUpdate(): Promise<any>;
+
+    /**
+     * Устанавливает значение для ключа опций виджета
+     * @param key - Ключ опции
+     * @param value - Новое значение
+     */
+    function setOptionValue(key: string, value: any): void;
+
+    /** Отображает данные виджета в консоли */
+    function showData(): void;
+}
+
+/**
+ * SimpleWidgets - взаимодействие с виджетами при добавлении на форму или страницу
+ * @example s_widgets.getFieldValue('157555401214600424', 'name');
+ */
+declare namespace s_widgets {
+    /**
+     * Возвращает значение из данных виджета по ID экземпляра и ключу
+     * @param widgetInstanceID - ID экземпляра виджета
+     * @param key - Ключ поля
+     */
+    function getFieldValue(widgetInstanceID: string, key: string): any;
+
+    /**
+     * Возвращает объект формы, размещённый через тег <Form> или <remform>
+     * @param name - Имя формы
+     */
+    function getForm(name: string): SimpleForm;
+
+    /** Возвращает все экземпляры класса SimpleList на странице */
+    function getLists(): Record<string, SimpleList[]>;
+
+    /**
+     * Получает список записей по имени экземпляра виджета recordList
+     * @param name - Название виджета recordList
+     * @param widgetInstanceId - ID экземпляра (если несколько одинаковых)
+     */
+    function getList(name: string, widgetInstanceId?: string): SimpleList;
+
+    /** Возвращает список ID всех экземпляров виджетов на странице */
+    function getWidgets(): string[];
+
+    /**
+     * Фильтрует значения. Используйте, если s_widget.addTemplate не работает
+     * @param value - Значение для фильтрации
+     */
+    function sanitizeValue(value: string): string;
+
+    /**
+     * Устанавливает значение для ключа в данных виджета по ID экземпляра
+     * @param widgetInstanceID - ID экземпляра виджета
+     * @param key - Ключ поля
+     * @param value - Новое значение
+     */
+    function setFieldValue(widgetInstanceID: string, key: string, value: any): void;
+}
+
 /** Глобальные переменные */
 declare const CURRENT_ID: string;
 declare const currentFieldLabel: any;

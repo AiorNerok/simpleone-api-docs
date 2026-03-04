@@ -921,6 +921,165 @@
           "returns": "Promise<Object>"
         }
       }
+    },
+    "SimpleWidget": {
+      "name": "SimpleWidget",
+      "globalObject": "s_widget",
+      "description": "Класс для настройки структуры и функциональности текущего виджета",
+      "methods": {
+        "addTemplate": {
+          "signature": "addTemplate(id, template, script, type)",
+          "description": "Добавляет дочерний шаблон к существующему элементу по его ID",
+          "parameters": [
+            { "name": "id", "type": "String", "required": true, "description": "ID тега div" },
+            { "name": "template", "type": "String", "required": true, "description": "Тело шаблона" },
+            { "name": "script", "type": "String", "required": false, "description": "Скрипт шаблона (запускается один раз)" },
+            { "name": "type", "type": "String", "required": false, "description": "Тип добавления: inner, before, after", "default": "inner" }
+          ],
+          "returns": "Void",
+          "example": "s_widget.addTemplate('steps', '<div class=\"main\">', '', 'inner');"
+        },
+        "getElements": {
+          "signature": "getElements()",
+          "description": "Возвращает массив элементов структуры виджета в порядке их расположения на странице",
+          "returns": "Array of HTML elements",
+          "example": "s_widget.getElements();"
+        },
+        "getFieldValue": {
+          "signature": "getFieldValue(key)",
+          "description": "Получает значение данных виджета по указанному ключу",
+          "parameters": [
+            { "name": "key", "type": "String", "required": true, "description": "Ключ поля" }
+          ],
+          "returns": "Any",
+          "example": "s_widget.getFieldValue('element');"
+        },
+        "getId": {
+          "signature": "getId()",
+          "description": "Возвращает ID экземпляра виджета",
+          "returns": "String",
+          "example": "s_widget.getId();"
+        },
+        "getOptionValue": {
+          "signature": "getOptionValue(key)",
+          "description": "Получает значение опции из схемы виджета по ключу",
+          "parameters": [
+            { "name": "key", "type": "String", "required": true, "description": "Ключ опции из схемы" }
+          ],
+          "returns": "Any",
+          "example": "s_widget.getOptionValue('label');"
+        },
+        "removeTemplate": {
+          "signature": "removeTemplate(id)",
+          "description": "Удаляет все дочерние узлы и содержимое элемента, сохраняя сам элемент и его атрибуты",
+          "parameters": [
+            { "name": "id", "type": "String", "required": true, "description": "ID тега div" }
+          ],
+          "returns": "Void",
+          "example": "s_widget.removeTemplate('element1');"
+        },
+        "setFieldValue": {
+          "signature": "setFieldValue(key, value)",
+          "description": "Устанавливает значение для указанного ключа поля",
+          "parameters": [
+            { "name": "key", "type": "String", "required": true, "description": "Ключ поля" },
+            { "name": "value", "type": "Any", "required": true, "description": "Новое значение" }
+          ],
+          "returns": "Void",
+          "example": "s_widget.setFieldValue('table_name', tableName);"
+        },
+        "serverUpdate": {
+          "signature": "serverUpdate()",
+          "description": "Переносит данные на сервер для выполнения серверного скрипта виджета",
+          "async": true,
+          "returns": "Promise<Object>",
+          "example": "const response = await s_widget.serverUpdate();"
+        },
+        "setOptionValue": {
+          "signature": "setOptionValue(key, value)",
+          "description": "Устанавливает значение для ключа опций виджета",
+          "parameters": [
+            { "name": "key", "type": "String", "required": true, "description": "Ключ опции" },
+            { "name": "value", "type": "Any", "required": true, "description": "Новое значение" }
+          ],
+          "returns": "Void",
+          "example": "s_widget.setOptionValue('label', 'Наименование');"
+        },
+        "showData": {
+          "signature": "showData()",
+          "description": "Отображает данные виджета в консоли",
+          "returns": "Void",
+          "example": "s_widget.showData();"
+        }
+      }
+    },
+    "SimpleWidgets": {
+      "name": "SimpleWidgets",
+      "globalObject": "s_widgets",
+      "description": "Класс для взаимодействия с виджетами при добавлении на форму или страницу",
+      "methods": {
+        "getFieldValue": {
+          "signature": "getFieldValue(widgetInstanceID, key)",
+          "description": "Возвращает значение из данных виджета по ID экземпляра и ключу",
+          "parameters": [
+            { "name": "widgetInstanceID", "type": "String", "required": true, "description": "ID экземпляра виджета" },
+            { "name": "key", "type": "String", "required": true, "description": "Ключ поля" }
+          ],
+          "returns": "Any",
+          "example": "s_widgets.getFieldValue('157555401214600424', 'name');"
+        },
+        "getForm": {
+          "signature": "getForm(name)",
+          "description": "Возвращает объект формы, размещённый через тег <Form> или <remform>",
+          "parameters": [
+            { "name": "name", "type": "String", "required": true, "description": "Имя формы" }
+          ],
+          "returns": "Object (SimpleForm)",
+          "example": "const builtInForm = s_widgets.getForm('custom');"
+        },
+        "getLists": {
+          "signature": "getLists()",
+          "description": "Возвращает все экземпляры класса SimpleList на странице",
+          "returns": "Object",
+          "example": "const lists = s_widgets.getLists();"
+        },
+        "getList": {
+          "signature": "getList(name, widgetInstanceId)",
+          "description": "Получает список записей по имени экземпляра виджета recordList",
+          "parameters": [
+            { "name": "name", "type": "String", "required": true, "description": "Название виджета recordList" },
+            { "name": "widgetInstanceId", "type": "String", "required": false, "description": "ID экземпляра (если несколько одинаковых)" }
+          ],
+          "returns": "Object (SimpleList)",
+          "example": "const lists = s_widgets.getList('myList');"
+        },
+        "getWidgets": {
+          "signature": "getWidgets()",
+          "description": "Возвращает список ID всех экземпляров виджетов на странице",
+          "returns": "Array",
+          "example": "s_widgets.getWidgets();"
+        },
+        "sanitizeValue": {
+          "signature": "sanitizeValue(value)",
+          "description": "Фильтрует значения. Используйте, если s_widget.addTemplate не работает",
+          "parameters": [
+            { "name": "value", "type": "String", "required": true, "description": "Значение для фильтрации" }
+          ],
+          "returns": "String",
+          "example": "s_widgets.sanitizeValue(test);"
+        },
+        "setFieldValue": {
+          "signature": "setFieldValue(widgetInstanceID, key, value)",
+          "description": "Устанавливает значение для ключа в данных виджета по ID экземпляра",
+          "parameters": [
+            { "name": "widgetInstanceID", "type": "String", "required": true, "description": "ID экземпляра виджета" },
+            { "name": "key", "type": "String", "required": true, "description": "Ключ поля" },
+            { "name": "value", "type": "Any", "required": true, "description": "Новое значение" }
+          ],
+          "returns": "Void",
+          "example": "s_widgets.setFieldValue('157555401214600424', 'name', 'Александр');"
+        }
+      }
     }
   }
 }

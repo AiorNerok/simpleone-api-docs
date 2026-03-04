@@ -266,6 +266,28 @@ declare class SimpleAttachment {
 }
 
 /**
+ * SimpleAttachmentService - сбор вложений с удаленного экземпляра при миграции
+ */
+declare class SimpleAttachmentService {
+    constructor();
+
+    /** Создать вложение по URL */
+    createAttachmentByUrl(url: string, recordDocId: string, fileName: string): string;
+
+    /** Установить URL удалённого экземпляра */
+    setUrl(url: string): void;
+
+    /** Установить логин пользователя */
+    setUsername(username: string): void;
+
+    /** Установить пароль пользователя */
+    setPassword(password: string): void;
+
+    /** Получить вложение с удалённого экземпляра */
+    getAttachmentSN(sourceDocId: string, targetDocId: string): string;
+}
+
+/**
  * SimpleSystem - системная информация (глобальный объект ss)
  * @example ss.info('Сообщение');
  */
@@ -720,179 +742,301 @@ declare class SimpleVcs {
 }
 
 /**
- * SimpleImage - работа с изображениями
+ * SimpleImage - работа с изображениями из таблицы sys_image
  */
 declare class SimpleImage {
     constructor();
-    
-    /** Изменить размер изображения */
-    resize(imageId: string, width: number, height: number): string;
-    
-    /** Обрезать изображение */
-    crop(imageId: string, x: number, y: number, width: number, height: number): string;
-    
-    /** Конвертировать формат */
-    convert(imageId: string, format: 'png' | 'jpg' | 'gif'): string;
+
+    /** Получить сообщения об ошибках */
+    getErrors(): string[];
+
+    /** Получить URL изображения по ID */
+    getImageUrlById(imageId: string): string;
+
+    /** Получить изображение в base64 */
+    readImageBase64(imageId: string): string;
+
+    /** Создать запись изображения из base64 */
+    writeImageBase64(fileName: string, base64: string, contentType: string, imageColumnId: string): string;
 }
 
 /**
- * SimpleTemplatePrinter - печать шаблонов
+ * SimpleTemplatePrinter - печать в сообщениях почты
  */
 declare class SimpleTemplatePrinter {
-    constructor();
-    
-    /** Извлечь данные из шаблона */
-    extractData(template: string, record: SimpleRecord): Record<string, any>;
-    
-    /** Передать информацию в сообщение */
-    sendToMessage(data: Record<string, any>, messageId: string): void;
+    /** Получить строки сообщения */
+    getPrint(): string;
+
+    /** Получить количество пробелов */
+    getSpace(): number;
+
+    /** Вставить строку текста */
+    print(string: string): void;
+
+    /** Вставить пробелы */
+    space(spaces?: number): void;
 }
 
 /**
  * SimpleTime - работа со временем
  */
 declare class SimpleTime {
-    constructor();
-    
-    /** Получить текущее время */
-    now(): string;
-    
-    /** Добавить часы */
-    addHours(hours: number): void;
-    
-    /** Добавить минуты */
-    addMinutes(minutes: number): void;
-    
-    /** Получить часы */
-    getHours(): number;
-    
-    /** Получить минуты */
-    getMinutes(): number;
-    
-    /** Получить секунды */
-    getSeconds(): number;
+    constructor(time?: number);
+
+    /** Получить время в формате */
+    getByFormat(format?: string): string;
+
+    /** Получить время в формате 'Ч:м:с' */
+    getDisplayValue(): string;
+
+    /** Получить часы (локальное время) */
+    getHourLocalTime(): string;
+
+    /** Получить часы (UTC) */
+    getHourUTC(): string;
+
+    /** Получить значение времени (UTC) */
+    getValue(): string;
+
+    /** Установить время */
+    setValue(time?: string): void;
 }
 
 /**
- * SimpleDuration - продолжительность
+ * SimpleDuration - хранит продолжительность в виде даты и времени
  */
 declare class SimpleDuration {
-    constructor();
-    
-    /** Создать из дней */
-    fromDays(days: number): void;
-    
-    /** Создать из часов */
-    fromHours(hours: number): void;
-    
-    /** Создать из минут */
-    fromMinutes(minutes: number): void;
-    
-    /** Получить значение в секундах */
-    getValue(): number;
-    
+    constructor(duration?: number | string);
+
+    /** Добавить значение другого SimpleDuration */
+    add(duration: SimpleDuration): SimpleDuration;
+
+    /** Получить значение в заданном формате */
+    getByFormat(format?: string): string;
+
+    /** Получить количество целых дней */
+    getDayPart(): number;
+
     /** Получить отображаемое значение */
     getDisplayValue(): string;
+
+    /** Получить значение в секундах */
+    getDurationSeconds(): number;
+
+    /** Получить значение в формате 'д ч:м:с' */
+    getDurationValue(): string;
+
+    /** Получить округлённое количество дней */
+    getRoundedDayPart(): number;
+
+    /** Получить значение во внутреннем формате */
+    getValue(): string;
+
+    /** Установить значение в формате 'д ч:м:с' */
+    setDisplayValue(duration: string): void;
+
+    /** Установить значение в формате 'ГГГГ-ММ-ДД ч:м:с' */
+    setValue(dateTime: string | SimpleDateTime): void;
+
+    /** Вычесть значение другого SimpleDuration */
+    subtract(duration: SimpleDuration): SimpleDuration;
 }
 
 /**
- * SimpleImport - импорт данных
+ * SimpleImport - импорт данных из внешних источников
  */
 declare class SimpleImport {
     constructor();
-    
-    /** Импортировать CSV */
-    importCSV(csvData: string, tableName: string): number;
-    
-    /** Импортировать JSON */
-    importJSON(jsonData: string, tableName: string): number;
-    
-    /** Импортировать XML */
-    importXML(xmlData: string, tableName: string): number;
+
+    /** Получить сообщение об ошибке */
+    getErrorMessage(): string;
+
+    /** Импортировать записи из вложения */
+    import(record: SimpleRecord, testMode?: boolean): boolean;
+
+    /** Запустить запланированный импорт с преобразованием */
+    importTransform(record: SimpleRecord): void;
+
+    /** Проверить подключение к LDAP */
+    testLdapConnection(record: SimpleRecord): any;
+
+    /** Проверить все подключения LDAP */
+    testLdapConnections(record: SimpleRecord): any;
+
+    /** Трансформировать данные в целевую таблицу */
+    transform(record: SimpleRecord): boolean;
 }
 
 /**
- * SimpleDelegation - делегирование
+ * SimpleDelegation - работа с записями делегирования
  */
 declare class SimpleDelegation {
     constructor();
-    
-    /** Создать делегирование */
-    create(userId: string, delegateId: string, startDate: SimpleDateTime, endDate: SimpleDateTime): string;
-    
-    /** Отменить делегирование */
-    cancel(delegationId: string): boolean;
-    
-    /** Получить активные делегирования */
-    getActive(userId: string): SimpleRecord[];
+
+    /** Получить массив заместителей */
+    getDelegatesOfType(type: 'access' | 'approvals' | 'tasks' | 'notifications', delegatorId: string, from?: SimpleDateTime, to?: SimpleDateTime): SimpleRecord[];
+
+    /** Получить сотрудников, делегировавших полномочия */
+    getDelegatorsOfType(type: string, delegateId: string, from?: SimpleDateTime, to?: SimpleDateTime): SimpleRecord[];
+
+    /** Проверить наличие записей делегирования */
+    hasDelegationOfType(type: string, delegatorIds: string[], delegateId: string, from?: SimpleDateTime, to?: SimpleDateTime): boolean;
 }
 
 /**
- * SimpleSchedule - календари
+ * SimpleSchedule - работа с календарями
  */
 declare class SimpleSchedule {
-    constructor();
-    
-    /** Проверить рабочий день */
-    isWorkDay(date: SimpleDateTime, calendarId: string): boolean;
-    
-    /** Получить следующий рабочий день */
-    nextWorkDay(date: SimpleDateTime, calendarId: string): SimpleDateTime;
-    
-    /** Добавить рабочие дни */
-    addWorkDays(date: SimpleDateTime, days: number, calendarId: string): SimpleDateTime;
+    constructor(id?: string, timezoneTitle?: string);
+
+    /** Определить разницу во времени по календарю */
+    duration(startDateTime: SimpleDateTime, endDateTime: SimpleDateTime): SimpleDuration;
+
+    /** Получить название календаря */
+    getName(): string;
+
+    /** Проверить наличие datetime в календаре */
+    isInSchedule(datetime: SimpleDateTime): boolean;
+
+    /** Проверить действительность календаря */
+    isValid(): boolean;
+
+    /** Проверить рабочее время */
+    isWorkingTime(datetime: SimpleDateTime): boolean;
+
+    /** Инициализировать календарь по ID */
+    load(sysId: string, timezoneTitle?: string): void;
+
+    /** Установить часовой пояс */
+    setTimeZone(timezoneTitle: string): void;
+
+    /** Получить время до следующего элемента расписания */
+    whenNext(datetime: SimpleDateTime, timezoneTitle: string): SimpleDuration;
+
+    /** Рассчитать время истечения срока */
+    whenWillExpire(startDateTime: SimpleDateTime, finalWorkingSeconds: number): SimpleDateTime;
 }
 
 /**
- * SimpleMessage - локализация
+ * SimpleMessage - локализация сообщений
  */
 declare class SimpleMessage {
     constructor();
-    
-    /** Получить сообщение */
-    getMessage(key: string, language?: string): string;
-    
-    /** Получить сообщения категории */
-    getMessagesByCategory(category: string, language?: string): Record<string, string>;
+
+    /** Перевести сообщение на текущий язык */
+    getMessage(message: string, category?: string, params?: Record<string, any>, language?: string): string;
 }
 
 /**
- * SimpleEmailOutbound - исходящая почта
+ * SimpleEmailOutbound - работа с электронной почтой в скриптах уведомлений
  */
 declare class SimpleEmailOutbound {
-    constructor();
-    
-    /** Отправить email */
-    send(to: string, subject: string, body: string, from?: string): boolean;
-    
-    /** Отправить с вложением */
-    sendWithAttachment(to: string, subject: string, body: string, attachmentId: string, from?: string): boolean;
+    /** Добавить адрес в поле «Кому» */
+    addAddress(address: string, displayName?: string): void;
+
+    /** Добавить адрес в поле «Скрытая копия» */
+    addAddressBcc(address: string, displayName?: string): void;
+
+    /** Добавить адрес в поле «Копия» */
+    addAddressCc(address: string, displayName?: string): void;
+
+    /** Получить адреса получателей */
+    getAddresses(): string[];
+
+    /** Получить адреса скрытой копии */
+    getAddressesBcc(): string[];
+
+    /** Получить адреса копии */
+    getAddressesCc(): string[];
+
+    /** Получить текст письма */
+    getBody(): string;
+
+    /** Получить адрес отправителя */
+    getFrom(): string;
+
+    /** Получить адрес для ответа */
+    getReplyTo(): string;
+
+    /** Получить тему письма */
+    getSubject(): string;
+
+    /** Установить текст письма */
+    setBody(bodyText: string): void;
+
+    /** Изменить адрес отправителя */
+    setFrom(address: string): void;
+
+    /** Установить адрес для ответа */
+    setReplyTo(address: string): void;
+
+    /** Установить тему письма */
+    setSubject(subject: string): void;
 }
 
 /**
- * SimpleEmailTemplate - шаблоны почты
+ * SimpleEmailTemplate - создание почтовых уведомлений
  */
 declare class SimpleEmailTemplate {
-    constructor(templateName: string);
-    
-    /** Применить шаблон */
-    apply(record: SimpleRecord): { subject: string; body: string };
-    
-    /** Отправить по шаблону */
-    send(record: SimpleRecord, to: string): boolean;
+    constructor(title?: string);
+
+    /** Установить заголовок уведомления */
+    setTitle(title: string): void;
+
+    /** Установить заголовок содержимого */
+    setBodyHeader(bodyHeader: string): void;
+
+    /** Установить содержимое уведомления */
+    setBodyText(bodyText: string): void;
+
+    /** Установить комментарий */
+    setComment(comment: string): void;
+
+    /** Получить заголовок уведомления */
+    getTitle(): string;
+
+    /** Получить заголовок содержимого */
+    getBodyHeader(): string;
+
+    /** Получить текст письма */
+    getBodyText(): string;
+
+    /** Получить текст комментариев */
+    getComment(): string;
+
+    /** Получить массив кнопок */
+    getButtons(): any[];
+
+    /** Добавить кнопку */
+    addButton(text: string, url: string, color?: string, buttonArray?: any[]): any[];
+
+    /** Удалить последнюю кнопку */
+    removeButton(): void;
+
+    /** Удалить все кнопки */
+    removeAllButtons(): void;
+
+    /** Установить свойство */
+    setProperty(propertyName: string, input: string | number, propertyTitle: string): void;
+
+    /** Сформировать HTML-шаблон */
+    formEmailTemplate(): string;
 }
 
 /**
- * SimpleLogArchive - архивы логов
+ * SimpleLogArchive - работа с архивами журналов
  */
 declare class SimpleLogArchive {
     constructor();
-    
-    /** Архивировать логи */
-    archiveLogs(tableName: string, daysOld: number): number;
-    
-    /** Восстановить из архива */
-    restoreFromArchive(archiveId: string): boolean;
+
+    /** Удалить временные таблицы после распаковки */
+    removeUnpacked(sysLogArchiveId: string): void;
+
+    /** Архивировать устаревшие журналы */
+    runPacking(): void;
+
+    /** Распаковать архив журнала */
+    runUnpacking(sysLogArchiveId: string): void;
 }
 
 /**
@@ -900,20 +1044,33 @@ declare class SimpleLogArchive {
  */
 declare class SimpleRecordDeletionLog {
     constructor();
-    
-    /** Получить удалённые записи */
-    getDeletedRecords(tableName: string, fromDate: SimpleDateTime, toDate: SimpleDateTime): SimpleRecord[];
-    
-    /** Восстановить запись */
-    restoreRecord(logId: string): boolean;
+
+    /** Восстановить удалённую запись */
+    restore(recordDeletionLogId: string): boolean;
 }
 
 /**
- * SimpleRecordSecure - записи с учётом ACL
+ * SimpleRecordSecure - работа с записями с учётом ACL
  */
 declare class SimpleRecordSecure extends SimpleRecord {
-    /** Создать с проверкой ACL */
     constructor(tableName: string);
+
+    /** Получить ошибки операций */
+    getErrors(): string[];
+}
+
+/**
+ * SimpleUser Server-Side - информация о пользователе
+ */
+declare namespace su {
+    /** Получить настройку пользователя */
+    function getPreference(name: string): string;
+
+    /** Установить настройку пользователя */
+    function setPreference(name: string, value: string): void;
+
+    /** Получить все настройки пользователя */
+    function getUserPreferences(): SimpleRecord;
 }
 
 /**
@@ -921,42 +1078,56 @@ declare class SimpleRecordSecure extends SimpleRecord {
  */
 declare class SimpleUserCriteria {
     constructor();
-    
-    /** Проверить критерий */
-    matchesCriteria(userId: string, criteriaName: string): boolean;
-    
-    /** Получить пользователей по критерию */
-    getUsersByCriteria(criteriaName: string): string[];
+
+    /** Проверить соответствие пользователя критериям */
+    userAcceptanceByCriteria(user: string, criteria: string | string[], excludeDelegation?: boolean): boolean;
 }
 
 /**
- * SimpleWysiwyg - конвертация данных
+ * SimpleWysiwyg - конвертация HTML и WYSIWYG-JSON
  */
 declare class SimpleWysiwyg {
     constructor();
-    
-    /** Конвертировать HTML в текст */
-    htmlToText(html: string): string;
-    
-    /** Конвертировать текст в HTML */
-    textToHtml(text: string): string;
-    
-    /** Очистить HTML */
-    sanitizeHtml(html: string): string;
+
+    /** Конвертировать HTML в WYSIWYG-JSON */
+    convertFromHtml(html: string): string;
+
+    /** Конвертировать WYSIWYG в HTML */
+    convertToHtml(wysiwyg: string): string;
 }
 
 /**
- * SimpleExternalRabbitMQ - RabbitMQ
+ * SimpleExternalRabbitMQ - отправка сообщений в RabbitMQ
  */
 declare class SimpleExternalRabbitMQ {
     constructor(queueName: string);
-    
+
+    /** Получить ошибки */
+    getErrors(): string[];
+
     /** Отправить сообщение */
-    publish(message: Record<string, any>): boolean;
-    
-    /** Получить сообщения */
-    consume(callback: (message: any) => void): void;
+    publishMessage(routingKey: string, payloads: string, options?: Record<string, any>): SimpleExternalRabbitMQ;
+
+    /** Отправить массив сообщений */
+    publishMultipleMessages(routingKey: string, payloads: string[], options?: Record<string, any>): SimpleExternalRabbitMQ;
+
+    /** Тест подключения к потребителю (статический) */
+    static testConsumerConnection(id?: string, options?: Record<string, any>): string;
+
+    /** Тест подключения к поставщику (статический) */
+    static testProducerConnection(id?: string, options?: Record<string, any>): string;
 }
+
+/**
+ * ExportVariables - глобальные функции для работы с серверными скриптами
+ */
+declare function alert(message: string): void;
+declare function echo(messages: string): void;
+declare function json(value: any): void;
+declare function print(message: any): number;
+declare function print_r(value: any): void;
+declare function sleep(seconds: number): void;
+declare function var_dump(value: any): void;
 
 /** Глобальные переменные */
 declare const current: SimpleRecord;

@@ -996,6 +996,1011 @@
           "returns": "Void"
         }
       }
+    },
+    "ExportVariables": {
+      "name": "ExportVariables",
+      "globalObject": null,
+      "description": "Класс предоставляет набор независимых методов для работы с серверными скриптами",
+      "methods": {
+        "alert": {
+          "signature": "alert(message)",
+          "description": "Выводит строку в блок «Состояние» после выполнения серверного скрипта",
+          "parameters": [{ "name": "message", "type": "String", "required": true }],
+          "returns": "Void",
+          "example": "alert('Сообщение');"
+        },
+        "echo": {
+          "signature": "echo(messages)",
+          "description": "Выводит одну или несколько строк в блок «Состояние»",
+          "parameters": [{ "name": "messages", "type": "String", "required": true }],
+          "returns": "Void",
+          "example": "echo('Сообщение');"
+        },
+        "json": {
+          "signature": "json(value)",
+          "description": "Выводит строку, содержащую JSON-представление значения",
+          "parameters": [{ "name": "value", "type": "Any", "required": true }],
+          "returns": "Void",
+          "example": "json('{\"key\":\"value\"}');"
+        },
+        "print": {
+          "signature": "print(message)",
+          "description": "Выводит строку в блок «Состояние», возвращает количество символов",
+          "parameters": [{ "name": "message", "type": "Any", "required": true }],
+          "returns": "Integer",
+          "example": "print('Сообщение');"
+        },
+        "print_r": {
+          "signature": "print_r(value)",
+          "description": "Выводит значение переменной в понятном формате",
+          "parameters": [{ "name": "value", "type": "Any", "required": true }],
+          "returns": "Void",
+          "example": "print_r({key: 'value'});"
+        },
+        "sleep": {
+          "signature": "sleep(seconds)",
+          "description": "Откладывает выполнение скрипта на указанное количество секунд",
+          "parameters": [{ "name": "seconds", "type": "Integer", "required": true }],
+          "returns": "Void",
+          "example": "sleep(10);"
+        },
+        "var_dump": {
+          "signature": "var_dump(value)",
+          "description": "Выводит информацию о каждом принятом параметре",
+          "parameters": [{ "name": "value", "type": "Any", "required": true }],
+          "returns": "Void",
+          "example": "var_dump({key: 'value'});"
+        }
+      }
+    },
+    "SimpleAttachmentService": {
+      "name": "SimpleAttachmentService",
+      "globalObject": null,
+      "description": "Серверный класс для сбора вложений с удаленного экземпляра при миграции",
+      "constructor": "SimpleAttachmentService()",
+      "methods": {
+        "createAttachmentByUrl": {
+          "signature": "createAttachmentByUrl(url, recordDocId, fileName)",
+          "description": "Создаёт копию вложения из удалённого экземпляра по URL",
+          "parameters": [
+            { "name": "url", "type": "String", "required": true },
+            { "name": "recordDocId", "type": "String", "required": true },
+            { "name": "fileName", "type": "String", "required": true }
+          ],
+          "returns": "String",
+          "example": "const attachId = attach.createAttachmentByUrl('http://simple.instance.com/file', docID, 'test.sop');"
+        },
+        "setUrl": {
+          "signature": "setUrl(url)",
+          "description": "Указывает URL-адрес удалённого экземпляра",
+          "parameters": [{ "name": "url", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setUsername": {
+          "signature": "setUsername(username)",
+          "description": "Задаёт логин пользователя для соединения",
+          "parameters": [{ "name": "username", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setPassword": {
+          "signature": "setPassword(password)",
+          "description": "Устанавливает пароль для пользователя",
+          "parameters": [{ "name": "password", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "getAttachmentSN": {
+          "signature": "getAttachmentSN(sourceDocId, targetDocId)",
+          "description": "Получает файл с удалённого экземпляра и прикрепляет к записи",
+          "parameters": [
+            { "name": "sourceDocId", "type": "String", "required": true },
+            { "name": "targetDocId", "type": "String", "required": true }
+          ],
+          "returns": "String"
+        }
+      }
+    },
+    "SimpleDateTime": {
+      "name": "SimpleDateTime",
+      "globalObject": null,
+      "description": "Класс для работы с датой и временем, хранит данные в UTC",
+      "constructor": "SimpleDateTime(dateTime)",
+      "methods": {
+        "addDays": {
+          "signature": "addDays(days)",
+          "description": "Изменяет число дней относительно текущей даты",
+          "parameters": [{ "name": "days", "type": "Integer", "required": true }],
+          "returns": "Void"
+        },
+        "addMonths": {
+          "signature": "addMonths(months)",
+          "description": "Изменяет значение месяца относительно текущей даты",
+          "parameters": [{ "name": "months", "type": "Integer", "required": true }],
+          "returns": "Void"
+        },
+        "addSeconds": {
+          "signature": "addSeconds(seconds)",
+          "description": "Изменяет секунды относительно текущего времени",
+          "parameters": [{ "name": "seconds", "type": "Integer", "required": true }],
+          "returns": "Void"
+        },
+        "addWeeks": {
+          "signature": "addWeeks(weeks)",
+          "description": "Изменяет порядковый номер недели",
+          "parameters": [{ "name": "weeks", "type": "Integer", "required": true }],
+          "returns": "Void"
+        },
+        "addYears": {
+          "signature": "addYears(years)",
+          "description": "Изменяет год относительно текущей даты",
+          "parameters": [{ "name": "years", "type": "Integer", "required": true }],
+          "returns": "Void"
+        },
+        "after": {
+          "signature": "after(dateTime)",
+          "description": "Определяет, следует ли текущая дата после заданной",
+          "parameters": [{ "name": "dateTime", "type": "SimpleDateTime", "required": true }],
+          "returns": "Boolean"
+        },
+        "before": {
+          "signature": "before(dateTime)",
+          "description": "Определяет, предшествует ли текущая дата указанной",
+          "parameters": [{ "name": "dateTime", "type": "SimpleDateTime", "required": true }],
+          "returns": "Boolean"
+        },
+        "compareTo": {
+          "signature": "compareTo(dateTime)",
+          "description": "Сравнивает два объекта даты и времени (0=равны, 1=после, -1=до)",
+          "parameters": [{ "name": "dateTime", "type": "SimpleDateTime", "required": true }],
+          "returns": "Integer"
+        },
+        "equals": {
+          "signature": "equals(dateTime)",
+          "description": "Сравнивает dateTime с текущей датой объекта",
+          "parameters": [{ "name": "dateTime", "type": "SimpleDateTime", "required": true }],
+          "returns": "Boolean"
+        },
+        "getDate": {
+          "signature": "getDate()",
+          "description": "Возвращает дату в часовом поясе UTC",
+          "returns": "String"
+        },
+        "getDayOfMonthLocalTime": {
+          "signature": "getDayOfMonthLocalTime()",
+          "description": "Возвращает день месяца в часовом поясе пользователя",
+          "returns": "Integer"
+        },
+        "getDayOfMonthUTC": {
+          "signature": "getDayOfMonthUTC()",
+          "description": "Возвращает день месяца в часовом поясе UTC",
+          "returns": "Integer"
+        },
+        "getDayOfWeekLocalTime": {
+          "signature": "getDayOfWeekLocalTime()",
+          "description": "Возвращает день недели в часовом поясе пользователя",
+          "returns": "String"
+        },
+        "getDayOfWeekUTC": {
+          "signature": "getDayOfWeekUTC()",
+          "description": "Возвращает день недели в часовом поясе UTC",
+          "returns": "String"
+        },
+        "getDaysInMonthLocalTime": {
+          "signature": "getDaysInMonthLocalTime()",
+          "description": "Возвращает количество дней в месяце (локальное время)",
+          "returns": "Integer"
+        },
+        "getDaysInMonthUTC": {
+          "signature": "getDaysInMonthUTC()",
+          "description": "Возвращает количество дней в месяце (UTC)",
+          "returns": "Integer"
+        },
+        "getDisplayValue": {
+          "signature": "getDisplayValue()",
+          "description": "Возвращает дату и время в формате пользователя",
+          "returns": "String"
+        },
+        "getErrorMsg": {
+          "signature": "getErrorMsg()",
+          "description": "Возвращает сообщение об ошибке некорректного объекта",
+          "returns": "String"
+        },
+        "getLocalDate": {
+          "signature": "getLocalDate()",
+          "description": "Возвращает дату в часовом поясе пользователя",
+          "returns": "String"
+        },
+        "getLocalTime": {
+          "signature": "getLocalTime()",
+          "description": "Возвращает время в часовом поясе пользователя",
+          "returns": "SimpleDateTime"
+        },
+        "getMonthLocalTime": {
+          "signature": "getMonthLocalTime()",
+          "description": "Возвращает месяц в часовом поясе пользователя",
+          "returns": "String"
+        },
+        "getMonthUTC": {
+          "signature": "getMonthUTC()",
+          "description": "Возвращает месяц в часовом поясе UTC",
+          "returns": "String"
+        },
+        "getNumericValue": {
+          "signature": "getNumericValue()",
+          "description": "Возвращает Unix-временную метку (секунды)",
+          "returns": "Integer"
+        },
+        "getTime": {
+          "signature": "getTime()",
+          "description": "Возвращает объект SimpleTime со значением времени",
+          "returns": "SimpleDateTime"
+        },
+        "getValue": {
+          "signature": "getValue()",
+          "description": "Возвращает дату и время в часовом поясе UTC",
+          "returns": "String"
+        },
+        "getWeekOfYearLocalTime": {
+          "signature": "getWeekOfYearLocalTime()",
+          "description": "Возвращает порядковый номер недели (локальное время)",
+          "returns": "Integer"
+        },
+        "getWeekOfYearUTC": {
+          "signature": "getWeekOfYearUTC()",
+          "description": "Возвращает номер недели в часовом поясе UTC",
+          "returns": "Integer"
+        },
+        "getYearLocalTime": {
+          "signature": "getYearLocalTime()",
+          "description": "Возвращает год в часовом поясе пользователя",
+          "returns": "Integer"
+        },
+        "getYearUTC": {
+          "signature": "getYearUTC()",
+          "description": "Возвращает год в часовом поясе UTC",
+          "returns": "Integer"
+        },
+        "isValid": {
+          "signature": "isValid()",
+          "description": "Определяет, является ли значение даты допустимым",
+          "returns": "Boolean"
+        },
+        "setValue": {
+          "signature": "setValue(dateTime)",
+          "description": "Устанавливает значение даты и времени",
+          "parameters": [{ "name": "dateTime", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "subtract": {
+          "signature": "subtract(first, second)",
+          "description": "Возвращает количество времени между двумя значениями или вычитает время",
+          "parameters": [
+            { "name": "first", "type": "SimpleDateTime/Integer", "required": true },
+            { "name": "second", "type": "SimpleDateTime", "required": false }
+          ],
+          "returns": "SimpleDuration"
+        }
+      }
+    },
+    "SimpleDelegation": {
+      "name": "SimpleDelegation",
+      "globalObject": null,
+      "description": "Серверный класс для работы с записями делегирования",
+      "constructor": "SimpleDelegation()",
+      "methods": {
+        "getDelegatesOfType": {
+          "signature": "getDelegatesOfType(type, delegatorId, from, to)",
+          "description": "Получение массива заместителей",
+          "parameters": [
+            { "name": "type", "type": "String", "required": true, "description": "access|approvals|tasks|notifications" },
+            { "name": "delegatorId", "type": "String", "required": true },
+            { "name": "from", "type": "SimpleDateTime", "required": false },
+            { "name": "to", "type": "SimpleDateTime", "required": false }
+          ],
+          "returns": "Array of SimpleRecords"
+        },
+        "getDelegatorsOfType": {
+          "signature": "getDelegatorsOfType(type, delegateId, from, to)",
+          "description": "Получение массива сотрудников, делегировавших полномочия",
+          "parameters": [
+            { "name": "type", "type": "String", "required": true },
+            { "name": "delegateId", "type": "String", "required": true },
+            { "name": "from", "type": "SimpleDateTime", "required": false },
+            { "name": "to", "type": "SimpleDateTime", "required": false }
+          ],
+          "returns": "Array of SimpleRecords"
+        },
+        "hasDelegationOfType": {
+          "signature": "hasDelegationOfType(type, delegatorIds, delegateId, from, to)",
+          "description": "Проверка наличия записей делегирования",
+          "parameters": [
+            { "name": "type", "type": "String", "required": true },
+            { "name": "delegatorIds", "type": "Array<String>", "required": true },
+            { "name": "delegateId", "type": "String", "required": true },
+            { "name": "from", "type": "SimpleDateTime", "required": false },
+            { "name": "to", "type": "SimpleDateTime", "required": false }
+          ],
+          "returns": "Boolean"
+        }
+      }
+    },
+    "SimpleDuration": {
+      "name": "SimpleDuration",
+      "globalObject": null,
+      "description": "Хранит продолжительность в виде даты и времени с 1 января 1970 года",
+      "constructor": "SimpleDuration(duration)",
+      "methods": {
+        "add": {
+          "signature": "add(duration)",
+          "description": "Добавляет значение другого объекта SimpleDuration",
+          "parameters": [{ "name": "duration", "type": "SimpleDuration", "required": true }],
+          "returns": "SimpleDuration"
+        },
+        "getByFormat": {
+          "signature": "getByFormat(format)",
+          "description": "Возвращает значение продолжительности в заданном формате",
+          "parameters": [{ "name": "format", "type": "String", "required": false }],
+          "returns": "String"
+        },
+        "getDayPart": {
+          "signature": "getDayPart()",
+          "description": "Возвращает значение длительности в целых днях",
+          "returns": "Integer"
+        },
+        "getDisplayValue": {
+          "signature": "getDisplayValue()",
+          "description": "Возвращает количество дней, часов, минут и секунд",
+          "returns": "String"
+        },
+        "getDurationSeconds": {
+          "signature": "getDurationSeconds()",
+          "description": "Возвращает значение продолжительности в секундах",
+          "returns": "Integer"
+        },
+        "getDurationValue": {
+          "signature": "getDurationValue()",
+          "description": "Возвращает значение в формате 'д ч:м:с'",
+          "returns": "String"
+        },
+        "getRoundedDayPart": {
+          "signature": "getRoundedDayPart()",
+          "description": "Возвращает количество дней с округлением",
+          "returns": "Integer"
+        },
+        "getValue": {
+          "signature": "getValue()",
+          "description": "Возвращает значение даты во внутреннем формате",
+          "returns": "String"
+        },
+        "setDisplayValue": {
+          "signature": "setDisplayValue(duration)",
+          "description": "Устанавливает значение в формате 'д ч:м:с'",
+          "parameters": [{ "name": "duration", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setValue": {
+          "signature": "setValue(dateTime)",
+          "description": "Устанавливает значение в формате 'ГГГГ-ММ-ДД ч:м:с'",
+          "parameters": [{ "name": "dateTime", "type": "String/SimpleDateTime", "required": true }],
+          "returns": "Void"
+        },
+        "subtract": {
+          "signature": "subtract(duration)",
+          "description": "Вычитает значение другого объекта SimpleDuration",
+          "parameters": [{ "name": "duration", "type": "SimpleDuration", "required": true }],
+          "returns": "SimpleDuration"
+        }
+      }
+    },
+    "SimpleEmailOutbound": {
+      "name": "SimpleEmailOutbound",
+      "globalObject": null,
+      "description": "Класс для взаимодействия с объектом электронной почты в скриптах уведомлений",
+      "methods": {
+        "addAddress": {
+          "signature": "addAddress(address, displayName)",
+          "description": "Добавляет адрес в поле «Кому»",
+          "parameters": [
+            { "name": "address", "type": "String", "required": true },
+            { "name": "displayName", "type": "String", "required": false }
+          ],
+          "returns": "Void"
+        },
+        "addAddressBcc": {
+          "signature": "addAddressBcc(address, displayName)",
+          "description": "Добавляет адрес в поле «Скрытая копия»",
+          "parameters": [
+            { "name": "address", "type": "String", "required": true },
+            { "name": "displayName", "type": "String", "required": false }
+          ],
+          "returns": "Void"
+        },
+        "addAddressCc": {
+          "signature": "addAddressCc(address, displayName)",
+          "description": "Добавляет адрес в поле «Копия»",
+          "parameters": [
+            { "name": "address", "type": "String", "required": true },
+            { "name": "displayName", "type": "String", "required": false }
+          ],
+          "returns": "Void"
+        },
+        "getAddresses": {
+          "signature": "getAddresses()",
+          "description": "Получает адреса получателей",
+          "returns": "Array<String>"
+        },
+        "getAddressesBcc": {
+          "signature": "getAddressesBcc()",
+          "description": "Получает адреса получателей скрытой копии",
+          "returns": "Array<String>"
+        },
+        "getAddressesCc": {
+          "signature": "getAddressesCc()",
+          "description": "Получает адреса получателей копии",
+          "returns": "Array<String>"
+        },
+        "getBody": {
+          "signature": "getBody()",
+          "description": "Получает текст письма",
+          "returns": "String"
+        },
+        "getFrom": {
+          "signature": "getFrom()",
+          "description": "Получает адрес отправителя",
+          "returns": "String"
+        },
+        "getReplyTo": {
+          "signature": "getReplyTo()",
+          "description": "Получает адрес для ответа",
+          "returns": "String"
+        },
+        "getSubject": {
+          "signature": "getSubject()",
+          "description": "Получает тему письма",
+          "returns": "String"
+        },
+        "setBody": {
+          "signature": "setBody(bodyText)",
+          "description": "Устанавливает текст письма",
+          "parameters": [{ "name": "bodyText", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setFrom": {
+          "signature": "setFrom(address)",
+          "description": "Изменяет адрес отправителя",
+          "parameters": [{ "name": "address", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setReplyTo": {
+          "signature": "setReplyTo(address)",
+          "description": "Устанавливает адрес для ответа",
+          "parameters": [{ "name": "address", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setSubject": {
+          "signature": "setSubject(subject)",
+          "description": "Устанавливает тему письма",
+          "parameters": [{ "name": "subject", "type": "String", "required": true }],
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleEmailTemplate": {
+      "name": "SimpleEmailTemplate",
+      "globalObject": null,
+      "description": "Класс для создания уведомлений и настройки почтовых шаблонов",
+      "constructor": "SimpleEmailTemplate(title)",
+      "methods": {
+        "setTitle": {
+          "signature": "setTitle(title)",
+          "description": "Настройка основного заголовка уведомления",
+          "parameters": [{ "name": "title", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setBodyHeader": {
+          "signature": "setBodyHeader(bodyHeader)",
+          "description": "Настройка заголовка в тексте содержимого",
+          "parameters": [{ "name": "bodyHeader", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setBodyText": {
+          "signature": "setBodyText(bodyText)",
+          "description": "Задание содержимого уведомления",
+          "parameters": [{ "name": "bodyText", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "setComment": {
+          "signature": "setComment(comment)",
+          "description": "Настройка комментариев в уведомлении",
+          "parameters": [{ "name": "comment", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "getTitle": {
+          "signature": "getTitle()",
+          "description": "Получение заголовка уведомления",
+          "returns": "String"
+        },
+        "getBodyHeader": {
+          "signature": "getBodyHeader()",
+          "description": "Получение заголовка содержимого",
+          "returns": "String"
+        },
+        "getBodyText": {
+          "signature": "getBodyText()",
+          "description": "Получение текста письма",
+          "returns": "String"
+        },
+        "getComment": {
+          "signature": "getComment()",
+          "description": "Получение текста комментариев",
+          "returns": "String"
+        },
+        "getButtons": {
+          "signature": "getButtons()",
+          "description": "Получение массива кнопок",
+          "returns": "Array"
+        },
+        "addButton": {
+          "signature": "addButton(text, url, color, buttonArray)",
+          "description": "Добавление кнопки к массиву",
+          "parameters": [
+            { "name": "text", "type": "String", "required": true },
+            { "name": "url", "type": "String", "required": true },
+            { "name": "color", "type": "String", "required": false },
+            { "name": "buttonArray", "type": "Array", "required": true }
+          ],
+          "returns": "Array"
+        },
+        "removeButton": {
+          "signature": "removeButton()",
+          "description": "Удаление последней добавленной кнопки",
+          "returns": "Void"
+        },
+        "removeAllButtons": {
+          "signature": "removeAllButtons()",
+          "description": "Удаление всех кнопок",
+          "returns": "Void"
+        },
+        "setProperty": {
+          "signature": "setProperty(propertyName, input, propertyTitle)",
+          "description": "Задание внутреннего метода проверки типа ввода",
+          "parameters": [
+            { "name": "propertyName", "type": "String", "required": true },
+            { "name": "input", "type": "String/Number", "required": true },
+            { "name": "propertyTitle", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "formEmailTemplate": {
+          "signature": "formEmailTemplate()",
+          "description": "Создание и возврат HTML-шаблона",
+          "returns": "String"
+        }
+      }
+    },
+    "SimpleImage": {
+      "name": "SimpleImage",
+      "globalObject": null,
+      "description": "Класс для работы с изображениями из таблицы sys_image",
+      "constructor": "SimpleImage()",
+      "methods": {
+        "getErrors": {
+          "signature": "getErrors()",
+          "description": "Получает сообщения об ошибках",
+          "returns": "Array<String>"
+        },
+        "getImageUrlById": {
+          "signature": "getImageUrlById(imageId)",
+          "description": "Получает URL изображения в хранилище",
+          "parameters": [{ "name": "imageId", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "readImageBase64": {
+          "signature": "readImageBase64(imageId)",
+          "description": "Получает изображение в кодировке base64",
+          "parameters": [{ "name": "imageId", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "writeImageBase64": {
+          "signature": "writeImageBase64(fileName, base64, contentType, imageColumnId)",
+          "description": "Создаёт запись изображения из base64",
+          "parameters": [
+            { "name": "fileName", "type": "String", "required": true },
+            { "name": "base64", "type": "String", "required": true },
+            { "name": "contentType", "type": "String", "required": true },
+            { "name": "imageColumnId", "type": "String", "required": true }
+          ],
+          "returns": "String"
+        }
+      }
+    },
+    "SimpleImport": {
+      "name": "SimpleImport",
+      "globalObject": null,
+      "description": "Класс для импорта данных из внешних источников",
+      "constructor": "SimpleImport()",
+      "methods": {
+        "getErrorMessage": {
+          "signature": "getErrorMessage()",
+          "description": "Возвращает сообщение об ошибке",
+          "returns": "String"
+        },
+        "import": {
+          "signature": "import(record, testMode)",
+          "description": "Импортирует записи из вложения в таблицу",
+          "parameters": [
+            { "name": "record", "type": "SimpleRecord", "required": true },
+            { "name": "testMode", "type": "Boolean", "required": false }
+          ],
+          "returns": "Boolean"
+        },
+        "importTransform": {
+          "signature": "importTransform(record)",
+          "description": "Запускает запланированный импорт с преобразованием",
+          "parameters": [{ "name": "record", "type": "SimpleRecord", "required": true }],
+          "returns": "Void"
+        },
+        "testLdapConnection": {
+          "signature": "testLdapConnection(record)",
+          "description": "Проверяет подключение к серверу LDAP",
+          "parameters": [{ "name": "record", "type": "SimpleRecord", "required": true }],
+          "returns": "Object"
+        },
+        "testLdapConnections": {
+          "signature": "testLdapConnections(record)",
+          "description": "Проверяет все подключения LDAP",
+          "parameters": [{ "name": "record", "type": "SimpleRecord", "required": true }],
+          "returns": "Object"
+        },
+        "transform": {
+          "signature": "transform(record)",
+          "description": "Переносит записи в целевую таблицу с использованием схемы трансформации",
+          "parameters": [{ "name": "record", "type": "SimpleRecord", "required": true }],
+          "returns": "Boolean"
+        }
+      }
+    },
+    "SimpleLogArchive": {
+      "name": "SimpleLogArchive",
+      "globalObject": null,
+      "description": "Класс для работы с архивами журналов (sys_log, sys_log_script, sys_log_exception)",
+      "constructor": "SimpleLogArchive()",
+      "methods": {
+        "removeUnpacked": {
+          "signature": "removeUnpacked(sysLogArchiveId)",
+          "description": "Удаляет временные таблицы журналов после распаковки",
+          "parameters": [{ "name": "sysLogArchiveId", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "runPacking": {
+          "signature": "runPacking()",
+          "description": "Помещает устаревшие журналы в архив",
+          "returns": "Void"
+        },
+        "runUnpacking": {
+          "signature": "runUnpacking(sysLogArchiveId)",
+          "description": "Запускает распаковку архива журнала",
+          "parameters": [{ "name": "sysLogArchiveId", "type": "String", "required": true }],
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleMessage": {
+      "name": "SimpleMessage",
+      "globalObject": null,
+      "description": "Класс для работы с локализацией сообщений",
+      "constructor": "SimpleMessage()",
+      "methods": {
+        "getMessage": {
+          "signature": "getMessage(message, category, params, language)",
+          "description": "Переводит сообщение на текущий язык пользователя",
+          "parameters": [
+            { "name": "message", "type": "String", "required": true },
+            { "name": "category", "type": "String", "required": false, "default": "app" },
+            { "name": "params", "type": "Object", "required": false },
+            { "name": "language", "type": "String", "required": false }
+          ],
+          "returns": "String"
+        }
+      }
+    },
+    "SimpleRecordDeletionLog": {
+      "name": "SimpleRecordDeletionLog",
+      "globalObject": null,
+      "description": "Класс API для работы с журналом удаления записей, позволяет восстанавливать удалённые записи",
+      "constructor": "SimpleRecordDeletionLog()",
+      "methods": {
+        "restore": {
+          "signature": "restore(recordDeletionLogId)",
+          "description": "Восстанавливает удалённую запись по идентификатору журнала удаления",
+          "parameters": [{ "name": "recordDeletionLogId", "type": "String", "required": true }],
+          "returns": "Boolean"
+        }
+      }
+    },
+    "SimpleRecordSecure": {
+      "name": "SimpleRecordSecure",
+      "globalObject": null,
+      "description": "Серверный класс для работы с записями базы данных с учётом правил контроля доступа (ACL)",
+      "constructor": "SimpleRecordSecure(tableName)",
+      "methods": {
+        "getErrors": {
+          "signature": "getErrors()",
+          "description": "Возвращает ошибки, возникшие при выполнении операции",
+          "returns": "Array<String>"
+        }
+      },
+      "note": "Все остальные методы идентичны методам класса SimpleRecord"
+    },
+    "SimpleSchedule": {
+      "name": "SimpleSchedule",
+      "globalObject": null,
+      "description": "Класс для работы с объектами расписаний (календарями)",
+      "constructor": "SimpleSchedule(id, timezoneTitle)",
+      "methods": {
+        "duration": {
+          "signature": "duration(startDateTime, endDateTime)",
+          "description": "Определяет разницу во времени по календарю",
+          "parameters": [
+            { "name": "startDateTime", "type": "SimpleDateTime", "required": true },
+            { "name": "endDateTime", "type": "SimpleDateTime", "required": true }
+          ],
+          "returns": "SimpleDuration"
+        },
+        "getName": {
+          "signature": "getName()",
+          "description": "Возвращает название календаря",
+          "returns": "String"
+        },
+        "isInSchedule": {
+          "signature": "isInSchedule(datetime)",
+          "description": "Проверяет, включает ли календарь указанное datetime",
+          "parameters": [{ "name": "datetime", "type": "SimpleDateTime", "required": true }],
+          "returns": "Boolean"
+        },
+        "isValid": {
+          "signature": "isValid()",
+          "description": "Проверяет действительность календаря",
+          "returns": "Boolean"
+        },
+        "isWorkingTime": {
+          "signature": "isWorkingTime(datetime)",
+          "description": "Определяет, являются ли дата и время рабочими",
+          "parameters": [{ "name": "datetime", "type": "SimpleDateTime", "required": true }],
+          "returns": "Boolean"
+        },
+        "load": {
+          "signature": "load(sysId, timezoneTitle)",
+          "description": "Инициализирует календарь по ID",
+          "parameters": [
+            { "name": "sysId", "type": "String", "required": true },
+            { "name": "timezoneTitle", "type": "String", "required": false }
+          ],
+          "returns": "Void"
+        },
+        "setTimeZone": {
+          "signature": "setTimeZone(timezoneTitle)",
+          "description": "Применяет часовой пояс к календарю",
+          "parameters": [{ "name": "timezoneTitle", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "whenNext": {
+          "signature": "whenNext(datetime, timezoneTitle)",
+          "description": "Возвращает время до следующего элемента расписания",
+          "parameters": [
+            { "name": "datetime", "type": "SimpleDateTime", "required": true },
+            { "name": "timezoneTitle", "type": "String", "required": true }
+          ],
+          "returns": "SimpleDuration"
+        },
+        "whenWillExpire": {
+          "signature": "whenWillExpire(startDateTime, finalWorkingSeconds)",
+          "description": "Рассчитывает дату и время истечения срока",
+          "parameters": [
+            { "name": "startDateTime", "type": "SimpleDateTime", "required": true },
+            { "name": "finalWorkingSeconds", "type": "Integer", "required": true }
+          ],
+          "returns": "SimpleDateTime"
+        }
+      }
+    },
+    "SimpleSession": {
+      "name": "SimpleSession",
+      "globalObject": null,
+      "description": "Класс для получения информации о текущем сеансе. Конструктор недоступен, используйте ss.getSession()",
+      "methods": {
+        "getClientIP": {
+          "signature": "getClientIP()",
+          "description": "Получает IP-адрес клиента текущего сеанса",
+          "returns": "String"
+        }
+      }
+    },
+    "SimpleTemplatePrinter": {
+      "name": "SimpleTemplatePrinter",
+      "globalObject": null,
+      "description": "Класс для извлечения информации из скрипта почты и печати в сообщении",
+      "methods": {
+        "getPrint": {
+          "signature": "getPrint()",
+          "description": "Получает строки из тела сообщения, произведённые методом print()",
+          "returns": "String"
+        },
+        "getSpace": {
+          "signature": "getSpace()",
+          "description": "Получает количество пробелов в теле сообщения",
+          "returns": "Integer"
+        },
+        "print": {
+          "signature": "print(string)",
+          "description": "Вставляет строку текста в тело сообщения",
+          "parameters": [{ "name": "string", "type": "String", "required": true }],
+          "returns": "Void"
+        },
+        "space": {
+          "signature": "space(spaces)",
+          "description": "Вставляет цепочку пробелов в тело письма",
+          "parameters": [{ "name": "spaces", "type": "Integer", "required": false }],
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleTime": {
+      "name": "SimpleTime",
+      "globalObject": null,
+      "description": "Класс для работы с объектами SimpleTime (время)",
+      "constructor": "SimpleTime(time)",
+      "methods": {
+        "getByFormat": {
+          "signature": "getByFormat(format)",
+          "description": "Возвращает время в заданном формате",
+          "parameters": [{ "name": "format", "type": "String", "required": false }],
+          "returns": "String"
+        },
+        "getDisplayValue": {
+          "signature": "getDisplayValue()",
+          "description": "Возвращает время в формате 'Ч:м:с'",
+          "returns": "String"
+        },
+        "getHourLocalTime": {
+          "signature": "getHourLocalTime()",
+          "description": "Возвращает количество часов локального времени",
+          "returns": "String"
+        },
+        "getHourUTC": {
+          "signature": "getHourUTC()",
+          "description": "Возвращает количество часов по UTC",
+          "returns": "String"
+        },
+        "getValue": {
+          "signature": "getValue()",
+          "description": "Возвращает значение времени (UTC)",
+          "returns": "String"
+        },
+        "setValue": {
+          "signature": "setValue(time)",
+          "description": "Определяет время объекта SimpleTime",
+          "parameters": [{ "name": "time", "type": "String", "required": false }],
+          "returns": "Void"
+        }
+      }
+    },
+    "SimpleUser": {
+      "name": "SimpleUser",
+      "globalObject": "su",
+      "description": "Класс для получения информации о текущем пользователе и его персональных предпочтениях",
+      "methods": {
+        "getPreference": {
+          "signature": "getPreference(name)",
+          "description": "Получает персональную настройку пользователя",
+          "parameters": [{ "name": "name", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "setPreference": {
+          "signature": "setPreference(name, value)",
+          "description": "Устанавливает персональную настройку пользователя",
+          "parameters": [
+            { "name": "name", "type": "String", "required": true },
+            { "name": "value", "type": "String", "required": true }
+          ],
+          "returns": "Void"
+        },
+        "getUserPreferences": {
+          "signature": "getUserPreferences()",
+          "description": "Получает все настройки пользователя",
+          "returns": "SimpleRecord"
+        }
+      }
+    },
+    "SimpleUserCriteria": {
+      "name": "SimpleUserCriteria",
+      "globalObject": null,
+      "description": "Класс для взаимодействия с пользовательскими критериями",
+      "constructor": "SimpleUserCriteria()",
+      "methods": {
+        "userAcceptanceByCriteria": {
+          "signature": "userAcceptanceByCriteria(user, criteria, excludeDelegation)",
+          "description": "Проверяет, соответствует ли пользователь указанным критериям",
+          "parameters": [
+            { "name": "user", "type": "String", "required": true },
+            { "name": "criteria", "type": "String/Array", "required": true },
+            { "name": "excludeDelegation", "type": "Boolean", "required": false }
+          ],
+          "returns": "Boolean"
+        }
+      }
+    },
+    "SimpleWysiwyg": {
+      "name": "SimpleWysiwyg",
+      "globalObject": null,
+      "description": "Класс для конвертации данных из HTML в WYSIWYG-JSON и обратно",
+      "constructor": "SimpleWysiwyg()",
+      "methods": {
+        "convertFromHtml": {
+          "signature": "convertFromHtml(html)",
+          "description": "Конвертирует данные из HTML в WYSIWYG-JSON",
+          "parameters": [{ "name": "html", "type": "String", "required": true }],
+          "returns": "String"
+        },
+        "convertToHtml": {
+          "signature": "convertToHtml(wysiwyg)",
+          "description": "Конвертирует WYSIWYG в HTML",
+          "parameters": [{ "name": "wysiwyg", "type": "String", "required": true }],
+          "returns": "String"
+        }
+      }
+    },
+    "SimpleExternalRabbitMQ": {
+      "name": "SimpleExternalRabbitMQ",
+      "globalObject": null,
+      "description": "Класс для формирования и отправки сообщений в очередь RabbitMQ",
+      "constructor": "SimpleExternalRabbitMQ(queueName)",
+      "methods": {
+        "getErrors": {
+          "signature": "getErrors()",
+          "description": "Возвращает сообщения об ошибках",
+          "returns": "Array<String>"
+        },
+        "publishMessage": {
+          "signature": "publishMessage(routingKey, payloads, options)",
+          "description": "Отправляет сообщение в очередь (макс. 26000 символов)",
+          "parameters": [
+            { "name": "routingKey", "type": "String", "required": true },
+            { "name": "payloads", "type": "String", "required": true },
+            { "name": "options", "type": "Object", "required": false }
+          ],
+          "returns": "SimpleExternalRabbitMQ"
+        },
+        "publishMultipleMessages": {
+          "signature": "publishMultipleMessages(routingKey, payloads, options)",
+          "description": "Отправляет массив сообщений в очередь",
+          "parameters": [
+            { "name": "routingKey", "type": "String", "required": true },
+            { "name": "payloads", "type": "Array<String>", "required": true },
+            { "name": "options", "type": "Object", "required": false }
+          ],
+          "returns": "SimpleExternalRabbitMQ"
+        },
+        "testConsumerConnection": {
+          "signature": "testConsumerConnection(id, options)",
+          "description": "Создаёт тестовое подключение к потребителю (статический)",
+          "static": true,
+          "parameters": [
+            { "name": "id", "type": "String", "required": false },
+            { "name": "options", "type": "Object", "required": false }
+          ],
+          "returns": "String"
+        },
+        "testProducerConnection": {
+          "signature": "testProducerConnection(id, options)",
+          "description": "Создаёт тестовое подключение к поставщику (статический)",
+          "static": true,
+          "parameters": [
+            { "name": "id", "type": "String", "required": false },
+            { "name": "options", "type": "Object", "required": false }
+          ],
+          "returns": "String"
+        }
+      }
     }
   }
 }
