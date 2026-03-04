@@ -1,4 +1,4 @@
-# SimpleOne API Documentation для VS Code
+# SimpleOne API Документатион для VS Code
 
 
 <div align="center">
@@ -628,7 +628,7 @@ my-project/
 
 ## 📄 Лицензия
 
-MIT
+Данный проект распространяется под лицензией [MIT](LICENSE).
 
 ---
 
