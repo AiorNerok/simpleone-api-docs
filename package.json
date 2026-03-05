@@ -2,7 +2,7 @@
   "name": "simpleone-api-docs",
   "displayName": "SimpleOne API Documentation",
   "description": "Полная документация по клиентскому и серверному API платформы SimpleOne",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "AiorNerok",
   "license": "MIT",
   "icon": "images/icon.png",
